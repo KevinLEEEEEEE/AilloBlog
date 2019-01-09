@@ -2,11 +2,13 @@ const http = require('http');
 const fs = require('fs');
 const url = require('url');
 const path = require('path');
+const mime = require('mime');
 
 const server = http.createServer((request, response) => {
   const pathObj = url.parse(request.url, true);
   const staticPath = path.resolve(__dirname, '../static');
   const filePath = path.join(staticPath, pathObj.pathname);
+  const mimeType = mime.getType(filePath);
 
   fs.readFile(filePath, 'binary', (err, fileContent) => {
     if (err) {
@@ -15,7 +17,7 @@ const server = http.createServer((request, response) => {
       response.end('<h1>404 Not Found</h1>');
     } else {
       console.log('ok');
-      response.setHeader('content-type', 'text/plain');
+      response.setHeader('content-type', mimeType);
       response.setHeader('Access-Control-Allow-Origin', '*');
       response.write(fileContent, 'binary');
       response.end();
