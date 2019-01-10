@@ -1,9 +1,9 @@
 <template>
-  <transition-group tag="ul" class="notes_container">
-    <li v-for="note in notes" :key="note.id" class="notes">
+  <transition-group class="notes_container" tag="ul">
+    <li class="notes" v-for="note in notes" :key="note.id">
       <div class="note_image" :style="style">
         <router-link class="note_title"
-          to="/">
+          :to="`/reader/${note.title}`">
           {{ note.title }}
         </router-link>
       </div>
@@ -25,16 +25,10 @@ export default {
   data() {
     return {
       notes: [],
-      bg: 'gray',
+      style: {
+        backgroundImage: 'gray',
+      },
     };
-  },
-
-  computed: {
-    style() {
-      return {
-        backgroundImage: this.bg,
-      };
-    },
   },
 
   methods: {
@@ -53,13 +47,13 @@ export default {
     updateNotesBgImage() {
      import('@/assets/notes_cover/bg.jpg')
        .then((res) => {
-         this.bg = `url(${res.default})`;
+         this.style.backgroundImage = `url(${res.default})`;
        });
     },
   },
 
   mounted() {
-    console.log('mounted');
+    console.log('notes node mounted');
 
     this.$axios.get('list.json')
       .then((res) => {
@@ -85,12 +79,40 @@ export default {
   float: left;
 }
 
+@media screen and (max-width: 1024px) {
+  .notes {
+    width: 48% !important;
+  }
+}
+
+@media screen and (max-width: 567px) {
+  .notes {
+    width: 100% !important;
+  }
+}
+
 .notes:not(:nth-child(3n)) {
-  margin-right: 5%
+  margin-right: 5%;
+}
+
+@media screen and (max-width: 1024px) {
+  .notes:not(:nth-child(3n)) {
+    margin-right: 0;
+  }
+
+  .notes:not(:nth-child(2n)) {
+    margin-right: 4% !important;
+  }
+}
+
+@media screen and (max-width: 567px) {
+  .notes {
+    margin-right: 0 !important;
+  }
 }
 
 .note_image {
-  height: 550px;
+  height: 30vw;
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -101,7 +123,7 @@ export default {
   padding: 0.7rem;
   box-sizing: border-box;
   color: white;
-  font-size: 3rem;
+  font-size: 3vw;
   font-weight: 900;
   text-decoration: none;
   text-align: left !important;
@@ -118,6 +140,7 @@ export default {
 
 .note_info {
   height: 10%;
+  font-size: 1vw;
   text-align: start;
   text-indent: 5%;
   line-height: 30px;

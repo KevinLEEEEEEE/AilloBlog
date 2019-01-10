@@ -17,6 +17,11 @@ export default new Router({
       component: () => import('./views/Notes.vue'),
     },
     {
+      path: '/reader/:id',
+      name: 'notes_reader',
+      component: () => import('./views/Notes_reader.vue'),
+    },
+    {
       path: '/about',
       name: 'about',
       // route level code-splitting
