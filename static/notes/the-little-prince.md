@@ -12,9 +12,12 @@ BUT。
 
 ---
 
+> 百度网盘下载：
+> 链接: [https://pan.baidu.com/s/1zOM5wGBWjh8iOG481IwYzQ](https://pan.baidu.com/s/1zOM5wGBWjh8iOG481IwYzQ)
+> 提取码: bdd9
+
 # 最初的想法
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20181229223201624.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwMTI3Mzk3,size_16,color_FFFFFF,t_70)
 这是最初的想法，这个想法起源于照片调色，照片调色的核心是[光色互补原理](https://baike.baidu.com/item/%E4%BA%92%E8%A1%A5%E8%89%B2/3198044?fr=aladdin)，举个例子就像是我想去北极玩，按照正常思维应该先去买许多御寒的衣服，装备上齐全的设备，在物色一位风趣能干的导游，然后......，但其实正确的方法是先挣钱，没钱拿什么去北极（真实）。
 
 所以这个道理同样适用于调色，有首歌唱得好：”你说的黑不是黑，你要的白是什么白“，大抵说的就是这意思吧（鲁迅说过）。
@@ -27,7 +30,6 @@ BUT。
 
 # 尝试一：扩展面板
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20181229224429178.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwMTI3Mzk3,size_16,color_FFFFFF,t_70)
 这就是第一次尝试，就是把CMYK这四个值做进原有的面板里，显然，这大大的不行，首先观感不能，特别是饱和度面板，从左向右饱和度减少的模式非常吃藕chou！
 
 **问题： 丑、难以使用、老瓶装新醋~**
@@ -36,7 +38,6 @@ BUT。
 
 # 尝试二：颜料圈混合
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20181229224747110.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwMTI3Mzk3,size_16,color_FFFFFF,t_70)
 1. 获得初始的两个颜色
 2. 拖动其中一个颜色向另一个颜色缓缓靠近
 3. 当被拖动的色环进入静止色环50%及更少时，混色为“ 静止颜色 * 100% + 移动颜色 * x% ”
@@ -49,7 +50,7 @@ BUT。
 --- 
 
 # 尝试三：曲线调色器
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20181229225037808.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwMTI3Mzk3,size_16,color_FFFFFF,t_70)
+
 到这一步，设计就变得非常实用化了，色环中的圆圈显示初始颜色和当前颜色所在的位置，帮助更好掌握颜色的构成。
 在启动时，调整曲线在R G B三个位置均有一个控制点，控制点可加可删。
 当你拖动以有或者新创建的点，即意味着向调色盘内增加该点所对应的颜色；当你拖动线，既意味着整体饱和度的调整；当你拖动内部的圆环，则意味着亮度的调整。
@@ -62,15 +63,13 @@ PS：部分软件内使用HSV（V指代Volum），这里用的还是Brightness�
 
 **问题：趣味性不存在的，变成了非常具有 ‘ 插件感 ’ 的生产力工具，当然不是因为编这个太难了，咳咳**
 
-
 ---
 
 # 尝试四：拟物化 - 工具台调色
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20181229225114653.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwMTI3Mzk3,size_16,color_FFFFFF,t_70)
+
 于是乎，经过七天七夜，七七四十九天，我们从毛里求斯的椰子树上找到了灵感（没有）。
 最终我们还是决定把这个App做的更加有趣一点，设想一下，当在旅途的你，打开了一个精致的便当盒子，就像这样。
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20181230093247918.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwMTI3Mzk3,size_16,color_FFFFFF,t_70)
 每一片食物，都像玩具般有趣，恨不得全拨弄一遍，于是乎，抱着靠近那样的趣味感的想法，我们设计出来更新后的第一版设计，就是开始的那张图。
 
 1. 左侧的三大支颜料，对应简易R G B调色，中心色块的大小会显示颜料的多少
@@ -86,34 +85,27 @@ PS：部分软件内使用HSV（V指代Volum），这里用的还是Brightness�
 # 尝试五（最终版）：卡通风 - 小王子星球调色器
 
 ## 设计参照
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20181230094542810.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwMTI3Mzk3,size_16,color_FFFFFF,t_70)
+
 这是原著的小王子。最后的设计很多参考自原著，所以味道还是比较正的~ 嘿嘿
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20181230094550398.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwMTI3Mzk3,size_16,color_FFFFFF,t_70)
+
 这是一幅同人作品。
 
 ## 第一版
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20181229225248649.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwMTI3Mzk3,size_16,color_FFFFFF,t_70)
+
 第一版主要是试试效果，整个界面还是很粗糙的（因为是我画的，或者PS扣的），不过就氛围而言还是有点意思的，所以决定继续加工。
 
 ## 第二版
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/2018122922531071.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwMTI3Mzk3,size_16,color_FFFFFF,t_70)
 第二版主要是尝试动效，比如月亮的阴晴圆缺，星球的转动，星光闪烁的效果以及背景星空的周期运行。
 测试效果尚可，这才决定继续细化。
 
 ## 第三版
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20181229225318904.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwMTI3Mzk3,size_16,color_FFFFFF,t_70)
 第三版，也就是现在的版本。来简单介绍一下功能吧。
 
 1. 月球：当前颜色显示器，月相的变化对应色相（0 ~ 360°），当颜色改变时，月相也会随之改变，以一种动画的方式。
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20181230095400615.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwMTI3Mzk3,size_16,color_FFFFFF,t_70)![在这里插入图片描述](https://img-blog.csdnimg.cn/2018123009541044.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwMTI3Mzk3,size_16,color_FFFFFF,t_70)
 2. 星星：亮度调节器，点击星星，星光会由明至暗，这回直接调整当前颜料颜色的亮度，并反应在月球上
-
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20181230095717490.png)![在这里插入图片描述](https://img-blog.csdnimg.cn/20181230095724871.png)![在这里插入图片描述](https://img-blog.csdnimg.cn/20181230095730871.png)
-
 3. 画板：点击画板可以进入试色界面，颜色会随之慢慢变淡
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20181230095934152.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwMTI3Mzk3,size_16,color_FFFFFF,t_70) 
 4. 星球与小王子：点击小王子，星球会随之转动，同时小王子的跑动特效开始播放，背景的星空也开始移动。星球内部有可用颜色的颜料，点击有动画，同时，内部的时钟指针表示当前颜色的所属范围，体验即可知哦~
 
 以上就是软件的简单说明，在设计之初还有非常多的奇思妙想，但时间原因无法一一实现，只能待日后有空闲时（真的有么？）再继续加工完成。
@@ -123,7 +115,7 @@ PS：部分软件内使用HSV（V指代Volum），这里用的还是Brightness�
 
 ## 技术总结
 
-#### 总结所用技术，以月球的实现为主
+### 总结所用技术，以月球的实现为主
 
 按照文档的要求来，首先是关于代码行数，小组总共三人，制作成品两个。
 
@@ -132,10 +124,8 @@ PS：部分软件内使用HSV（V指代Volum），这里用的还是Brightness�
 这个是最初的制作，因为被毙了（咳咳），但是关于调色的问题是从这里发源的，也算是大家劳动的结晶吧。
 制作三周（虽然中间有断档啦，因为有些其他事情）
 
-[Github：里面有些需求分析啥的，不过不是重点](https://github.com/KevinLEEEEEEE/CopyBoard)
+[Github：里面有些需求分析啥的，不过不是重点](https://github.com/KevinLEEEEEEE/CopyBoard)\
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20181230101208372.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwMTI3Mzk3,size_16,color_FFFFFF,t_70)
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20181230101215970.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwMTI3Mzk3,size_16,color_FFFFFF,t_70)
 ### 项目二：the little prince
 
 就是之前这么多说的，项目依旧三人完成，历时1 + 1.5周，因为中间重新设计停滞了三天
@@ -157,7 +147,6 @@ class Moon extends HTMLElement {
 
 这里定义了月亮的属性，“ 颜色 ” 和 “ 月相 ”，这样日后这个月亮可以被使用在任何地方，整体使用了WebComponent实现模块化，非常的简洁。
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/2018123013541921.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwMTI3Mzk3,size_16,color_FFFFFF,t_70)
 
 ```javascript
   calcMoonMuskXFromPhase(phase) {
@@ -230,7 +219,8 @@ class Moon extends HTMLElement {
 - 渐变层：使得明暗边界有渐变，不会过于突兀
 
 数学上两圆相交，切点的位置公式计算可得，实践中用了几种方法简化计算，就不一一赘述了。下面介绍一下辅助线。
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20181230134942716.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwMTI3Mzk3,size_16,color_FFFFFF,t_70)
+
+![在这里插入图片描述](https://s3-us-west-2.amazonaws.com/s.cdpn.io/450744/mona-eendra.jpg)
 
 ```javascript
   // @ts-ignore
@@ -290,7 +280,7 @@ customElements.define('simple-moon', Moon);
 
 注册模板，全局可使用
 
-```javascript 
+```javascript
 // @ts-check
 
 import '../../css/main.css';
@@ -332,6 +322,8 @@ new CanvasComponent(hsvFilter, shadeCanvas, cvsOpenBtn, cvsCloseBtn); // 生成�
 ```
 
 总之模块化之后 index.js 就变得非常简洁了，index.js是入口文件，增删任何一块完全不会影响其他组件的运作。
+
+<iframe id="cp_embed_ZVMwRp" src="//codepen.io/kevinleeeeeee/embed/preview/ZVMwRp?height=320&theme-id=dark&slug-hash=ZVMwRp&default-tab=css%2Cresult&user=kevinleeeeeee&pen-title=ZVMwRp&preview=true" scrolling="no" allowtransparency="true" allowfullscreen="true" allowpaymentrequest="true" name="CodePen Embed" title="ZVMwRp" class="cp_embed_iframe " style="width: 100%; overflow: hidden; display: block" height="320" frameborder="0"></iframe>
 
 ---
 
@@ -461,7 +453,7 @@ export default class ColorConverter {
 ```
 
 其余的就是一些监听变化，调整颜色的脚本，创建一个Observer，负责统一的输入输出，没啥好说的。
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20181230140838452.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwMTI3Mzk3,size_16,color_FFFFFF,t_70)
+
 单元测试截图~
 
 ---
@@ -477,7 +469,6 @@ export default class ColorConverter {
 但这样不好，我总还是希望能在下学期传承这学期这些作品的意志，虽然说设计上可能大改，代码也可能全部推翻重回来，但是这种表达 “ 玩具 ” 核心的小思念，小牵挂，确实是应该继续绵延下去，在这个新春佳节静静地发酵，在下个春暖花开之日，肆意地绽放。
 
 **新年安好。**
-                                                                                                                                                                   
 
 参考：
 [wiki颜色理论]

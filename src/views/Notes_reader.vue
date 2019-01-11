@@ -1,10 +1,5 @@
 <template>
   <div class="reader_container">
-    <pre class="prettyprint linenums lang-html">
-      int x = foo();  /* This is a comment  <span class="nocode">This is not code</span>
-        Continuation of comment */
-      int y = bar();
-    </pre>
     <div v-html="rawHtml" class="reader_content"></div>
   </div>
 </template>
@@ -23,9 +18,24 @@ export default {
 
   methods: {
     updateHtmlByMd(data) {
+      const frag = document.getElementsByClassName('reader_container')[0];
       const html = this.$md2html(data);
 
-      this.rawHtml = html;
+      this.rawHtml = this.$transTextForLazyload(html);
+
+      this.$nextTick(() => {
+        this.highlightCodeInHtml();
+
+        this.$lazyload(frag);
+      });
+    },
+
+    highlightCodeInHtml() {
+      const blocks = document.querySelectorAll('pre');
+
+      blocks.forEach((block) => {
+        this.$highlight.highlightBlock(block);
+      });
     },
   },
 
@@ -42,7 +52,7 @@ export default {
 
 <style scoped>
 .reader_container {
-  margin: 0 18%;
+  margin: 0 25%;
   text-align: start;
 }
 
@@ -51,17 +61,19 @@ export default {
 }
 
 .reader_content >>> hr {
-  border: 0.5px solid rgb(200, 200, 200);
+  border: none;
+  border-bottom: 1px solid rgb(210, 210, 210);
 }
 
-.reader_content >>> h1, .reader_content >>> h2 {
-  color: rgb(30, 30, 30);
+.reader_content >>> h1, .reader_content >>> h2, .reader_content >>> h3,
+.reader_content >>> h4, .reader_content >>> h5, .reader_content >>> h6 {
+  color: rgb(50, 50, 50);
   line-height: 3rem;
 }
 
 .reader_content >>> p {
+  color: rgb(50, 50, 50);
   font-size: 0.9rem;
-  font-weight: 300;
   line-height: 1.5rem;
 }
 
@@ -71,13 +83,30 @@ export default {
 }
 
 .reader_content >>> pre {
-  position: relative;
-  padding: 30px 20px;
+  padding: 20px 30px;
   overflow-x: auto;
   font-size: 0.9rem;
   line-height: 1.3rem;
-  color: white;
-  background-color: rgb(40, 40, 40);
+}
+
+.reader_content >>> a {
+  color: rgb(30, 143, 172);
+  text-decoration: none;
+}
+
+.reader_content >>> a:hover {
+  text-decoration: underline;
+}
+
+.reader_content >>> blockquote {
+  margin: 0;
+  padding: 1rem 2rem;
+  background: linear-gradient(to right, rgb(170, 170, 170) 4px, rgb(240, 240, 240) 4px);
+}
+
+.reader_content >>> img {
+  width: 100%;
+  height: 100%;
 }
 
 </style>

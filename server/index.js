@@ -10,6 +10,8 @@ const server = http.createServer((request, response) => {
   const filePath = path.join(staticPath, pathObj.pathname);
   const mimeType = mime.getType(filePath);
 
+  console.log(filePath);
+
   fs.readFile(filePath, 'binary', (err, fileContent) => {
     if (err) {
       console.log('404');
