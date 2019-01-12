@@ -220,7 +220,7 @@ class Moon extends HTMLElement {
 
 数学上两圆相交，切点的位置公式计算可得，实践中用了几种方法简化计算，就不一一赘述了。下面介绍一下辅助线。
 
-![在这里插入图片描述](https://s3-us-west-2.amazonaws.com/s.cdpn.io/450744/mona-eendra.jpg)
+![在这里插入图片描述](http://pl73wegle.bkt.clouddn.com/bridge.png?imageView2/0/q/75|imageslim)
 
 ```javascript
   // @ts-ignore

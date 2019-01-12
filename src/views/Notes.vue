@@ -1,15 +1,15 @@
 <template>
   <transition-group class="notes_container" tag="ul">
     <li class="notes" v-for="note in notes" :key="note.id">
-      <div class="note_image" :style="style">
+      <div class="note_image" :style="getBgImage(note.cover)">
         <router-link class="note_title"
-          :to="`/reader/${note.title}`">
+          :to="`/reader/${note.filename}`">
           {{ note.title }}
         </router-link>
       </div>
 
       <div class="note_info">
-        {{ note.data }}
+        {{ note.date }}
       </div>
     </li>
   </transition-group>
@@ -44,11 +44,8 @@ export default {
       }
     },
 
-    updateNotesBgImage() {
-     import('@/assets/notes_cover/bg.jpg')
-       .then((res) => {
-         this.style.backgroundImage = `url(${res.default})`;
-       });
+    getBgImage(src) {
+      return { backgroundImage: `url(${src})` };
     },
   },
 
@@ -58,8 +55,6 @@ export default {
     this.$axios.get('list.json')
       .then((res) => {
         this.updateNotesValue(res.data);
-
-        this.updateNotesBgImage();
       });
   },
 

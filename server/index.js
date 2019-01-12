@@ -21,12 +21,14 @@ const server = http.createServer((request, response) => {
       console.log('ok');
       response.setHeader('content-type', mimeType);
       response.setHeader('Access-Control-Allow-Origin', '*');
+      // response.setHeader('Access-Control-Allow-Headers', 'X-Requested-With');
+      // response.setHeader('Access-Control-Allow-Methods', 'PUT,POST,GET,DELETE,OPTIONS');
       response.write(fileContent, 'binary');
       response.end();
     }
   });
 });
 
-server.listen(3001);
+server.listen(80);
 
-console.log('listening on http://localhost:3001');
+console.log('listening on http://localhost:80');

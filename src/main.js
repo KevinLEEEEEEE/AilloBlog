@@ -29,7 +29,9 @@ Vue.use(VueLazyload, {
 
 Vue.config.productionTip = false;
 
-axios.defaults.baseURL = 'http://localhost:3001';
+// axios.defaults.baseURL = 'http://localhost:80';
+
+axios.defaults.baseURL = 'http://pl73wegle.bkt.clouddn.com/blog';
 
 hljs.registerLanguage('javascript', javascript);
 
