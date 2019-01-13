@@ -40,7 +40,7 @@ export default {
       if (process.env.NODE_ENV === 'production') {
         this.imageloader.loadImageFromCDN(path, 'imageView2/0/q/75|imageslim')
           .then((res) => {
-            this.style.backgroundImage = `url${res}`;
+            this.style.backgroundImage = `url(${res})`;
           });
       } else {
         this.imageloader.loadImageFromLocal(`${this.route}/${this.covername}`)

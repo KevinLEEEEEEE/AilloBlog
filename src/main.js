@@ -20,7 +20,7 @@ Vue.use(vueLazyload);
 Vue.use(vueAxios, axios);
 
 Vue.use(vueImageLoader, axios, {
-  cdn: 'http://cdn.lucario.cn:80',
+  cdn: 'http://cdn.lucario.cn',
 });
 
 Vue.use(vueMd2html, Showdown);
