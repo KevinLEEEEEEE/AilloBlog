@@ -31,7 +31,7 @@ Vue.config.productionTip = false;
 
 // axios.defaults.baseURL = 'http://localhost:80';
 
-axios.defaults.baseURL = 'http://pl73wegle.bkt.clouddn.com/blog';
+axios.defaults.baseURL = 'http://www.lucario.cn:80';
 
 hljs.registerLanguage('javascript', javascript);
 

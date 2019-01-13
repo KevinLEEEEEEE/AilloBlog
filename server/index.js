@@ -1,34 +1,16 @@
-const http = require('http');
-const fs = require('fs');
-const url = require('url');
+const Koa = require('koa');
+
+const app = new Koa();
+const serve = require('koa-static');
+const cors = require('koa2-cors');
 const path = require('path');
-const mime = require('mime');
 
-const server = http.createServer((request, response) => {
-  const pathObj = url.parse(request.url, true);
-  const staticPath = path.resolve(__dirname, '../static');
-  const filePath = path.join(staticPath, pathObj.pathname);
-  const mimeType = mime.getType(filePath);
+const staticPath = path.resolve(__dirname, '../static');
 
-  console.log(filePath);
+app.use(cors());
 
-  fs.readFile(filePath, 'binary', (err, fileContent) => {
-    if (err) {
-      console.log('404');
-      response.writeHead(404, 'not found');
-      response.end('<h1>404 Not Found</h1>');
-    } else {
-      console.log('ok');
-      response.setHeader('content-type', mimeType);
-      response.setHeader('Access-Control-Allow-Origin', '*');
-      // response.setHeader('Access-Control-Allow-Headers', 'X-Requested-With');
-      // response.setHeader('Access-Control-Allow-Methods', 'PUT,POST,GET,DELETE,OPTIONS');
-      response.write(fileContent, 'binary');
-      response.end();
-    }
-  });
+app.use(serve(staticPath));
+
+app.listen(80, () => {
+  console.log('listening on http://localhost:80');
 });
-
-server.listen(80);
-
-console.log('listening on http://localhost:80');

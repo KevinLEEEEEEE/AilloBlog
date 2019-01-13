@@ -16,7 +16,6 @@
 </template>
 
 <script>
-
 export default {
   name: 'notes',
   components: {
@@ -40,7 +39,7 @@ export default {
       if (this.isValidNotesList(data)) {
         this.notes = data.notes;
       } else {
-        console.error('notes list doesn\' exist in list');
+        console.error('"notes" doesn\'t exist in list');
       }
     },
 
@@ -52,7 +51,7 @@ export default {
   mounted() {
     console.log('notes node mounted');
 
-    this.$axios.get('list.json')
+    this.$http.get('list.json')
       .then((res) => {
         this.updateNotesValue(res.data);
       });
@@ -110,6 +109,7 @@ export default {
   height: 30vw;
   background-repeat: no-repeat;
   background-size: cover;
+  background-position: center center;
 }
 
 .note_title {

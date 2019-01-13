@@ -22,10 +22,6 @@ export default {
     };
   },
 
-  watch: {
-
-  },
-
   beforeMount() {
     const { filename } = this.$route.params;
 

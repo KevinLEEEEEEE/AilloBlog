@@ -7,5 +7,7 @@ export default {
     }
 
     Vue.prototype.$axios = axios;
+
+    Vue.prototype.$http = axios;
   },
 };
