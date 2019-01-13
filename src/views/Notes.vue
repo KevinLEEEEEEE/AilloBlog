@@ -1,25 +1,29 @@
 <template>
-  <transition-group class="notes_container" tag="ul">
-    <li class="notes" v-for="note in notes" :key="note.id">
-      <div class="note_image" :style="getBgImage(note.cover)">
-        <router-link class="note_title"
-          :to="`/reader/${note.filename}`">
-          {{ note.title }}
-        </router-link>
-      </div>
+  <div>
+    <blog-header></blog-header>
 
-      <div class="note_info">
-        {{ note.date }}
-      </div>
-    </li>
-  </transition-group>
+    <transition-group class="notes_container" tag="ul">
+      <note-poster v-for="note in notes" :key="note.id" class="notes"
+        :title="note.title"
+        :route="note.route"
+        :filename="note.filename"
+        :covername="note.covername"
+        :date="note.date"
+      ></note-poster>
+    </transition-group>
+
+    <blog-footer></blog-footer>
+  </div>
 </template>
 
 <script>
+import BlogHeader from '@/components/BlogHeader.vue';
+import BlogFooter from '@/components/BlogFooter.vue';
+import NotePoster from '@/components/NotePoster.vue';
+
 export default {
   name: 'notes',
-  components: {
-  },
+  components: { BlogHeader, BlogFooter, NotePoster },
 
   data() {
     return {
@@ -41,10 +45,6 @@ export default {
       } else {
         console.error('"notes" doesn\'t exist in list');
       }
-    },
-
-    getBgImage(src) {
-      return { backgroundImage: `url(${src})` };
     },
   },
 
@@ -103,41 +103,5 @@ export default {
   .notes {
     margin-right: 0 !important;
   }
-}
-
-.note_image {
-  height: 30vw;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center center;
-}
-
-.note_title {
-  display: block;
-  height: 100%;
-  padding: 0.7rem;
-  box-sizing: border-box;
-  color: white;
-  font-size: 3vw;
-  font-weight: 900;
-  text-decoration: none;
-  text-align: left !important;
-  text-transform: capitalize;
-  -webkit-transition: background-color 225ms cubic-bezier(0.4, 0.25, 0.3, 1);
-  -moz-transition: background-color 225ms cubic-bezier(0.4, 0.25, 0.3, 1);
-  -o-transition: background-color 225ms cubic-bezier(0.4, 0.25, 0.3, 1);
-  transition: background-color 225ms cubic-bezier(0.4, 0.25, 0.3, 1);
-}
-
-.note_title:hover {
-  background-color: rgba(0, 0, 0, .6);
-}
-
-.note_info {
-  height: 10%;
-  font-size: 1vw;
-  text-align: start;
-  text-indent: 5%;
-  line-height: 30px;
 }
 </style>

@@ -13,10 +13,15 @@ import vueAxios from './plugins/vue-axios/index';
 import vueMd2html from './plugins/vue-md2html/index';
 import vueHighlight from './plugins/vue-highlight/index';
 import vueLazyload from './plugins/vue-lazyload/index';
+import vueImageLoader from './plugins/vue-imgloader/index';
 
 Vue.use(vueLazyload);
 
 Vue.use(vueAxios, axios);
+
+Vue.use(vueImageLoader, axios, {
+  cdn: 'http://cdn.lucario.cn:80',
+});
 
 Vue.use(vueMd2html, Showdown);
 
@@ -29,9 +34,9 @@ Vue.use(VueLazyload, {
 
 Vue.config.productionTip = false;
 
-// axios.defaults.baseURL = 'http://localhost:80';
-
-axios.defaults.baseURL = 'http://www.lucario.cn:80';
+axios.defaults.baseURL = process.env.NODE_ENV === 'production'
+  ? 'http://www.lucario.cn:80/assets'
+  : 'http://localhost:80';
 
 hljs.registerLanguage('javascript', javascript);
 

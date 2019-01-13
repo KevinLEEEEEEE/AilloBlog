@@ -1,21 +1,28 @@
 <template>
-  <div class="reader_container">
-    <router-link
-      to="/notes">
-      return
-    </router-link>
-    <md-reader class="reader_content"
-      :filename="filename"
-    ></md-reader>
+  <div>
+    <blog-header></blog-header>
+
+    <div class="reader_container">
+      <router-link to="/notes">
+        return
+      </router-link>
+      <md-reader class="reader_content"
+        :filename="filename"
+      ></md-reader>
+    </div>
+
+    <blog-footer></blog-footer>
   </div>
 </template>
 
 <script>
-import MdReader from '../components/MdReader.vue';
+import MdReader from '@/components/MdReader.vue';
+import BlogHeader from '@/components/BlogHeader.vue';
+import BlogFooter from '@/components/BlogFooter.vue';
 
 export default {
   name: 'notes_reader',
-  components: { MdReader },
+  components: { MdReader, BlogHeader, BlogFooter },
   data() {
     return {
       filename: '',
@@ -25,7 +32,7 @@ export default {
   beforeMount() {
     const { filename } = this.$route.params;
 
-    this.filename = `/notes/${filename}/${filename}.md`;
+    this.filename = `blog/notes/${filename}/${filename}.md`;
   },
 };
 </script>
