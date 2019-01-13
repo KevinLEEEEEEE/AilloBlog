@@ -40,7 +40,7 @@ export default {
       if (process.env.NODE_ENV === 'production') {
         this.imageloader.loadImageFromCDN(path, 'imageView2/0/q/75|imageslim')
           .then((res) => {
-            this.style.backgroundImage = res;
+            this.style.backgroundImage = `url${res}`;
           });
       } else {
         this.imageloader.loadImageFromLocal(`${this.route}/${this.covername}`)
@@ -68,14 +68,15 @@ export default {
 .title {
   display: block;
   height: 100%;
-  padding: 0.7rem;
+  padding: 1rem 2rem 0 1rem;
   box-sizing: border-box;
   color: white;
-  font-size: 3vw;
+  font-size: 2.8vw;
   font-weight: 900;
   text-decoration: none;
   text-align: left !important;
   text-transform: capitalize;
+  word-wrap: break-word;
   -webkit-transition: background-color 225ms cubic-bezier(0.4, 0.25, 0.3, 1);
   -moz-transition: background-color 225ms cubic-bezier(0.4, 0.25, 0.3, 1);
   -o-transition: background-color 225ms cubic-bezier(0.4, 0.25, 0.3, 1);

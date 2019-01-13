@@ -22,17 +22,18 @@ export default {
     Vue.prototype.$lazyload = (frag) => {
       let io = null;
       const imgs = frag.querySelectorAll('img.lazyload');
-      const callback = function(changes) {
+
+      function callback(changes) {
         changes.forEach((change) => {
           diaplayImageAndDetachObserver(io, change);
-        })
+        });
       }
 
       io = new IntersectionObserver(callback);
 
       imgs.forEach((img) => {
         io.observe(img);
-      })
+      });
     };
 
     /**
@@ -42,7 +43,7 @@ export default {
       const regexp = /<img src\s*=\s*"(.+?)"/g; // <img src="$1" ... >
 
       return text.replace(regexp, '<img class="lazyload" data-src="$1"');
-    }
+    };
 
     /**
      * @param {DocumentFragment} frag
@@ -56,7 +57,7 @@ export default {
         img.setAttribute('data-src', src);
 
         img.setAttribute('src', '');
-      })
-    }
+      });
+    };
   },
 };

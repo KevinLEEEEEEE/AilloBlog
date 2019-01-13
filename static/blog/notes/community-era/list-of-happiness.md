@@ -18,7 +18,7 @@
 
 基因镌刻的特性确实可以给出足够的解释，但却并不是如此结果的首要诱因，潜藏于其下的，还有难以忽视的社会因素。”宁愿做不幸福的人，也不做幸福的猪”,我没有也不敢对这句话有任何异议，或者，难道有人愿意承认自己是猪？
 
-![饕餮常遭孤立](http://cdn.lucario.cn/blog/notes/list-of-happiness/A1.png?imageView2/2/w/1000/h/1000/q/75|imageslim)
+![饕餮常遭孤立](http://cdn.lucario.cn/blog/notes/community-era/A1.png?imageView2/0/q/75|imageslim)
 
 （狼吞虎咽的人甚至成为了危险人物）
 
@@ -34,7 +34,7 @@
 
 为了后文方便议论，我暂且把网盘吗出生所携带的幸福列表称作”先天幸福“，而把社会与环境教给我们的，日后添加进这张神奇列表的项称作“后天幸福”。
 
-![幸福列表的假想图](http://cdn.lucario.cn/blog/notes/list-of-happiness/A2.png?imageView2/2/w/1000/h/1000/q/75|imageslim)
+![幸福列表的假想图](http://cdn.lucario.cn/blog/notes/community-era/A2.png?imageView2/0/q/75|imageslim)
 
 总之就是这样了，我们的生活围绕着这一张表展开，而我今天的故事，也与它有着密不可分的关系，在第一节的最后，我来梳理一下现在为止对这张表的描述。
 

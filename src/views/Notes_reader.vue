@@ -32,7 +32,7 @@ export default {
   beforeMount() {
     const { filename } = this.$route.params;
 
-    this.filename = `blog/notes/${filename}/${filename}.md`;
+    this.filename = `blog/notes/community-era/${filename}.md`;
   },
 };
 </script>

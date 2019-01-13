@@ -10,6 +10,6 @@ export default {
 
     const converter = new Showdown.Converter();
 
-    Vue.prototype.$md2html = (text) => converter.makeHtml(text);
+    Vue.prototype.$md2html = text => converter.makeHtml(text);
   },
 };
