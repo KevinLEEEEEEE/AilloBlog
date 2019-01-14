@@ -15,7 +15,7 @@
       </p>
 
       <p class="description">
-        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        {{ description }}
       </p>
     </router-link>
   </li>
@@ -26,6 +26,7 @@ export default {
   name: 'note-poster',
   props: {
     title: String,
+    description: String,
     route: String,
     filename: String,
     covername: String,
@@ -64,17 +65,30 @@ export default {
 <style>
 .poster_container {
   display: block;
-  height: 400px;
-  border-bottom: 1px lightgray solid;
+  font-size: 0.8vw;
   text-align: left;
 }
 
-.poster_container:hover {
-  border-bottom-color: gray;
+@media screen and (max-width: 1448px) and (min-width: 1024px) {
+  .poster_container {
+    font-size: 1vw;
+  }
+}
+
+@media screen and (max-width: 1024px) and (min-width: 567px) {
+  .poster_container {
+    font-size: 1.4vw;
+  }
+}
+
+@media screen and (max-width: 567px) {
+  .poster_container {
+    font-size: 5vw;
+  }
 }
 
 .poster_container:hover .cover {
-  transform: scale(1.01);
+  transform: scale(1.02);
 }
 
 .poster_container:hover .title {
@@ -82,77 +96,86 @@ export default {
 }
 
 .cover_container {
-  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 250px;
   overflow: hidden;
 }
 
 .cover {
-  transition: transform 0.3s ease;
+  min-width: 100%;
+  min-height: 100%;
+  transition: transform 0.2s ease;
 }
 
 .title {
-  margin: 20px 0 5px 0;
-  color: black;
+  margin: 20px 0 0 0;
   overflow: hidden;
-  font-weight: 900;
-  font-size: 1.3rem;
+  color: black;
+  font-size: 1.2em;
   text-transform: capitalize;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
+@media screen and (max-width: 1024px) and (min-width: 567px) {
+  .title {
+    font-size: 1.4em;
+  }
+}
+
+@media screen and (max-width: 567px) {
+  .title {
+    white-space: normal;
+  }
+}
+
 .info {
-  color: lightgray;
-  font-weight: 700;
-  font-size: 0.6rem;
+  color: rgb(180, 180, 180);
+  font-size: 0.65em;
+}
+
+@media screen and (max-width: 1448px) and (min-width: 1024px) {
+  .info {
+    font-size: 0.75em;
+  }
+}
+
+@media screen and (max-width: 1024px) and (min-width: 567px) {
+  .info {
+    font-size: 0.75em;
+  }
 }
 
 .description {
-  margin-top: 1rem;
-  padding-right: 2rem;
-  color: rgb(82, 82, 82);
-  font-size: 0.8rem;
+  margin: 1.5em 0 5em 0;
+  padding-right: 1rem;
+  color: rgb(80, 80, 80);
+  font-size: 0.8em;
   word-wrap: break-word;
+  letter-spacing: 1px;
+}
+
+@media screen and (max-width: 1448px) and (min-width: 1024px) {
+  .description {
+    font-size: 0.9em;
+  }
+}
+
+@media screen and (max-width: 1024px) and (min-width: 567px) {
+  .description {
+    font-size: 0.9em;
+  }
+}
+
+@media screen and (max-width: 567px) {
+  .description {
+    font-size: 0.7em;
+  }
 }
 
 a {
   text-decoration: none;
 }
-
-/* .cover {
-  height: 30vw;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center center;
-}
-
-.title {
-  display: block;
-  height: 100%;
-  padding: 1rem 2rem 0 1rem;
-  box-sizing: border-box;
-  color: white;
-  font-size: 2.8vw;
-  font-weight: 900;
-  text-decoration: none;
-  text-align: left !important;
-  text-transform: capitalize;
-  word-wrap: break-word;
-  -webkit-transition: background-color 225ms cubic-bezier(0.4, 0.25, 0.3, 1);
-  -moz-transition: background-color 225ms cubic-bezier(0.4, 0.25, 0.3, 1);
-  -o-transition: background-color 225ms cubic-bezier(0.4, 0.25, 0.3, 1);
-  transition: background-color 225ms cubic-bezier(0.4, 0.25, 0.3, 1);
-}
-
-.title:hover {
-  background-color: rgba(0, 0, 0, .6);
-}
-
-.info {
-  height: 10%;
-  font-size: 1vw;
-  text-align: start;
-  text-indent: 5%;
-  line-height: 30px;
-} */
 </style>

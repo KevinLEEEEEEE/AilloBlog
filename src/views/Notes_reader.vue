@@ -3,9 +3,9 @@
     <blog-header></blog-header>
 
     <div class="reader_container">
-      <router-link to="/notes">
+      <p @click="back">
         return
-      </router-link>
+      </p>
       <md-reader class="reader_content"
         :filename="filename"
       ></md-reader>
@@ -29,10 +29,22 @@ export default {
     };
   },
 
+  methods: {
+    back() {
+      this.$router.go(-1);
+    },
+
+    resetScrollPosition() {
+      document.body.scrollTop = 0;
+    },
+  },
+
   beforeMount() {
     const { filename } = this.$route.params;
 
     this.filename = `blog/notes/community-era/${filename}.md`;
+
+    this.resetScrollPosition();
   },
 };
 </script>

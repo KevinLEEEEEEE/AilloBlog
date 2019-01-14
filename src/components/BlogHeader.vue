@@ -26,7 +26,7 @@ header {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin: 2rem 18% 3rem 18%;
+  padding: 3rem 18% 4rem 18%;
 }
 
 @media screen and (max-width: 1024px) {
@@ -37,16 +37,17 @@ header {
 
 header h1 {
   margin: 0;
+  font-size: 2.7rem;
 }
 
 header a {
   text-decoration: none;
   color: black;
-  background-image: linear-gradient(transparent calc(100% - 1px), black 100%);
+  background-image: linear-gradient(to top, black 1px, transparent 1px);
   background-repeat: no-repeat;
   background-size: 0 100%;
   animation-duration: 0.2s;
-  animation-timing-function: cubic-bezier(0, .91, .53, .87);
+  animation-timing-function: ease;
   animation-fill-mode: forwards;
 }
 
@@ -74,7 +75,7 @@ nav {
 
 nav a {
   margin: 0 1rem;
-  padding: 0.1rem;
+  padding: 0.2rem 0.1rem;
   font-size: .85rem;
 }
 

@@ -3,8 +3,9 @@
     <blog-header></blog-header>
 
     <ul class="notes_container">
-      <note-poster v-for="note in notes" :key="note.id" class="notes_cell"
+      <note-poster v-for="note in notes" :key="note.id" class="notes_cell bgscale_anim"
         :title="note.title"
+        :description="note.description"
         :route="note.route"
         :filename="note.filename"
         :covername="note.covername"
@@ -12,12 +13,11 @@
       ></note-poster>
     </ul>
 
-    <div class="pagination">
-      <div class="link_container">
-        <router-link to="/notes/1" class="pagelink">1</router-link>
-        <router-link to="/notes/2" class="pagelink">2</router-link>
-      </div>
-    </div>
+    <page-number class="pagination"
+      route="/notes"
+      :count="pagesCount"
+      :current="currentPage"
+    ></page-number>
 
     <blog-footer></blog-footer>
   </div>
@@ -27,14 +27,19 @@
 import BlogHeader from '@/components/BlogHeader.vue';
 import BlogFooter from '@/components/BlogFooter.vue';
 import NotePoster from '@/components/NotePoster.vue';
+import PageNumber from '@/components/PageNumber.vue';
 
 export default {
   name: 'notes',
-  components: { BlogHeader, BlogFooter, NotePoster },
-
+  components: {
+    BlogHeader,
+    BlogFooter,
+    NotePoster,
+    PageNumber,
+  },
   data() {
     return {
-      itemPerPage: 9,
+      itemsPerPage: 12,
       notesList: [],
       notes: [],
       style: {
@@ -47,10 +52,18 @@ export default {
     notesCount() {
       return this.notesList.length;
     },
+
+    pagesCount() {
+      return Math.ceil(this.notesCount / this.itemsPerPage);
+    },
+
+    currentPage() {
+      return parseInt(this.$route.params.page, 10);
+    },
   },
 
   watch: {
-    '$route.params.page': (to, from) => {
+    '$route.params.page': function callback(to, from) {
       if (to !== from) {
         this.updateNotesValue(parseInt(to, 10));
       }
@@ -63,8 +76,6 @@ export default {
         this.notesList = data.notes;
 
         this.updateNotesValue(1);
-      } else {
-        console.error('"notes" doesn\'t exist in list');
       }
     },
 
@@ -87,8 +98,6 @@ export default {
   },
 
   mounted() {
-    console.log('notes node mounted');
-
     this.$http.get('list.json')
       .then((res) => {
         this.initNotesList(res.data);
@@ -101,63 +110,61 @@ export default {
 <style scoped>
 .notes_container {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-gap: 2rem 1rem;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 2rem;
   margin: 0 18%;
   padding: 0;
+}
+
+@media screen and (max-width: 1448px) {
+  .notes_container {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 @media screen and (max-width: 1024px) {
   .notes_container {
     grid-template-columns: repeat(2, 1fr);
-    margin: 0 10%;
   }
 }
 
 @media screen and (max-width: 567px) {
   .notes_container {
     grid-template-columns: 1fr;
-    margin: 0 10%;
   }
 }
 
 .notes_cell {
   min-width: 0;
+  align-self: stretch;
   list-style: none;
 }
 
 .pagination {
-  height: 35px;
-  margin: 50px 18%;
-  background-image: linear-gradient(transparent calc(50% - 0.5px),
-                                  black calc(50% - 0.5px),
-                                  black calc(50% + 0.5px),
-                                    transparent calc(50% + 0.5px),
-                                    transparent 100%);
+  margin: 100px 18% 0 18%;
 }
 
-.link_container {
-  display: inline-flex;
-  flex-direction: row;
-  justify-content: center;
-  background-color: white;
+.bgscale_anim {
+  box-shadow: 0 1px lightgray;
+  background-image: linear-gradient(to top, black 1px, transparent 1px);
+  background-repeat: no-repeat;
+  background-size: 0 100%;
+  animation-duration: 0.15s;
+  animation-timing-function: ease;
+  animation-fill-mode: forwards;
 }
 
-.pagelink {
-  display: block;
-  width: 35px;
-  height: 35px;
-  margin: 0 5px;
-  border: 1px solid black;
-  box-sizing: border-box;
-  font-size: 0.8rem;
-  line-height: 35px;
-  text-align: center;
-  align-content: center;
-  transition: all ease 0.07s;
+.bgscale_anim:hover {
+  animation-name: bgScale;
 }
 
-.pagelink:hover {
-  height: 40px;
+@keyframes bgScale {
+  from {
+    background-size: 0 100%;
+  }
+
+  to {
+    background-size: 100% 100%;
+  }
 }
 </style>
