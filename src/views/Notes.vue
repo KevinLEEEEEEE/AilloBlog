@@ -3,7 +3,7 @@
     <blog-header></blog-header>
 
     <ul class="notes_container">
-      <note-poster v-for="note in notes" :key="note.id" class="notes_cell bgscale_anim"
+      <note-poster v-for="note in notes" :key="note.id" class="notes_cell"
         :title="note.title"
         :description="note.description"
         :route="note.route"
@@ -142,29 +142,5 @@ export default {
 
 .pagination {
   margin: 100px 18% 0 18%;
-}
-
-.bgscale_anim {
-  box-shadow: 0 1px lightgray;
-  background-image: linear-gradient(to top, black 1px, transparent 1px);
-  background-repeat: no-repeat;
-  background-size: 0 100%;
-  animation-duration: 0.15s;
-  animation-timing-function: ease;
-  animation-fill-mode: forwards;
-}
-
-.bgscale_anim:hover {
-  animation-name: bgScale;
-}
-
-@keyframes bgScale {
-  from {
-    background-size: 0 100%;
-  }
-
-  to {
-    background-size: 100% 100%;
-  }
 }
 </style>

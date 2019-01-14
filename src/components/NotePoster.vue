@@ -1,5 +1,5 @@
 <template>
-  <li>
+  <li class="bgscale_anim">
     <router-link class="poster_container"
       :to="`/read/${filename}`">
       <div class="cover_container">
@@ -87,14 +87,6 @@ export default {
   }
 }
 
-.poster_container:hover .cover {
-  transform: scale(1.02);
-}
-
-.poster_container:hover .title {
-  overflow: visible;
-}
-
 .cover_container {
   display: flex;
   justify-content: center;
@@ -177,5 +169,33 @@ export default {
 
 a {
   text-decoration: none;
+}
+
+.bgscale_anim:hover {
+  animation-name: bgScale;
+}
+
+.bgscale_anim:hover .cover {
+  transform: scale(1.06);
+}
+
+.bgscale_anim {
+  box-shadow: inset 0 -1px rgba(0, 0, 0, 0.2);
+  background-image: linear-gradient(to top, black 1px, transparent 1px);
+  background-repeat: no-repeat;
+  background-size: 0 100%;
+  animation-duration: 0.2s;
+  animation-timing-function: ease;
+  animation-fill-mode: forwards;
+}
+
+@keyframes bgScale {
+  from {
+    background-size: 0 100%;
+  }
+
+  to {
+    background-size: 100% 100%;
+  }
 }
 </style>
