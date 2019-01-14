@@ -1,17 +1,23 @@
 <template>
   <li>
-    <div class="cover" :style="style">
-      <router-link class="title"
-        :to="`/read/${filename}`">
+    <router-link class="poster_container"
+      :to="`/read/${filename}`">
+      <div class="cover_container">
+        <img :src="src" alt="poster" class="cover">
+      </div>
+
+      <p class="title">
         {{ title }}
-      </router-link>
-    </div>
+      </p>
 
-    <img src="" alt="" id="hi">
+      <p class="info">
+        Posted：{{ date }}
+      </p>
 
-    <div class="info">
-      {{ date }}
-    </div>
+      <p class="description">
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+      </p>
+    </router-link>
   </li>
 </template>
 
@@ -27,9 +33,7 @@ export default {
   },
   data() {
     return {
-      style: {
-        backgroundImage: 'gray',
-      },
+      src: '',
     };
   },
 
@@ -40,12 +44,12 @@ export default {
       if (process.env.NODE_ENV === 'production') {
         this.imageloader.loadImageFromCDN(path, 'imageView2/0/q/75|imageslim')
           .then((res) => {
-            this.style.backgroundImage = `url(${res})`;
+            this.src = res;
           });
       } else {
         this.imageloader.loadImageFromLocal(`${this.route}/${this.covername}`)
           .then((res) => {
-            this.style.backgroundImage = `url(${res.result})`;
+            this.src = res.result;
           });
       }
     },
@@ -58,7 +62,64 @@ export default {
 </script>
 
 <style>
+.poster_container {
+  display: block;
+  height: 400px;
+  border-bottom: 1px lightgray solid;
+  text-align: left;
+}
+
+.poster_container:hover {
+  border-bottom-color: gray;
+}
+
+.poster_container:hover .cover {
+  transform: scale(1.01);
+}
+
+.poster_container:hover .title {
+  overflow: visible;
+}
+
+.cover_container {
+  height: 200px;
+  overflow: hidden;
+}
+
 .cover {
+  transition: transform 0.3s ease;
+}
+
+.title {
+  margin: 20px 0 5px 0;
+  color: black;
+  overflow: hidden;
+  font-weight: 900;
+  font-size: 1.3rem;
+  text-transform: capitalize;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.info {
+  color: lightgray;
+  font-weight: 700;
+  font-size: 0.6rem;
+}
+
+.description {
+  margin-top: 1rem;
+  padding-right: 2rem;
+  color: rgb(82, 82, 82);
+  font-size: 0.8rem;
+  word-wrap: break-word;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* .cover {
   height: 30vw;
   background-repeat: no-repeat;
   background-size: cover;
@@ -93,5 +154,5 @@ export default {
   text-align: start;
   text-indent: 5%;
   line-height: 30px;
-}
+} */
 </style>

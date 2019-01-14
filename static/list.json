@@ -4,63 +4,70 @@
     "route": "blog/notes/community-era",
 		"filename": "list-of-happiness",
 		"covername": "cover.png",
-		"date": "Fri Sep 15, 2018",
+		"date": "Sep 15, 2018",
 		"id": 1
 	}, {
 		"title": "the list has two layers",
     "route": "blog/notes/community-era",
 		"filename": "the-list-has-two-layers",
 		"covername": "cover.png",
-		"date": "Fri Sep 15, 2018",
+		"date": "Sep 15, 2018",
 		"id": 2
 	}, {
 		"title": "questioner and questionee",
     "route": "blog/notes/community-era",
 		"filename": "questioner-and-questionee",
 		"covername": "cover.png",
-		"date": "Fri Sep 15, 2018",
+		"date": "Sep 15, 2018",
 		"id": 3
 	}, {
 		"title": "self persuasion",
     "route": "blog/notes/community-era",
 		"filename": "self-persuasion",
 		"covername": "cover.png",
-		"date": "Fri Sep 15, 2018",
+		"date": "Sep 15, 2018",
 		"id": 4
 	}, {
 		"title": "the role of imagination",
     "route": "blog/notes/community-era",
 		"filename": "the-role-of-imagination",
 		"covername": "cover.png",
-		"date": "Fri Sep 15, 2018",
+		"date": "Sep 15, 2018",
 		"id": 5
 	}, {
 		"title": "sense of mission",
     "route": "blog/notes/community-era",
 		"filename": "sense-of-mission",
 		"covername": "cover.png",
-		"date": "Fri Sep 15, 2018",
+		"date": "Sep 15, 2018",
 		"id": 6
 	}, {
 		"title": "the plight of online communities",
     "route": "blog/notes/community-era",
 		"filename": "the-plight-of-online-communities",
 		"covername": "cover.png",
-		"date": "Fri Sep 15, 2018",
+		"date": "Sep 15, 2018",
 		"id": 7
 	}, {
 		"title": "communities",
     "route": "blog/notes/community-era",
 		"filename": "communities",
 		"covername": "cover.png",
-		"date": "Fri Sep 15, 2018",
+		"date": "Sep 15, 2018",
 		"id": 8
 	}, {
 		"title": "be yourself",
     "route": "blog/notes/community-era",
 		"filename": "be-yourself",
 		"covername": "cover.png",
-		"date": "Fri Sep 15, 2018",
+		"date": "Sep 15, 2018",
 		"id": 9
+	}, {
+		"title": "be yourself",
+    "route": "blog/notes/community-era",
+		"filename": "be-yourself",
+		"covername": "cover.png",
+		"date": "Sep 15, 2018",
+		"id": 10
 	}]
 }

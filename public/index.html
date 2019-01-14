@@ -6,13 +6,23 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
     <link href="https://cdn.bootcss.com/highlight.js/9.13.0/styles/tomorrow-night.min.css" rel="stylesheet">
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
+      [v-cloak] {
+        display: none !important;
+      }
+    </style>
     <title>ailloblog</title>
   </head>
   <body>
     <noscript>
       <strong>We're sorry but ailloblog doesn't work properly without JavaScript enabled.</strong>
     </noscript>
-    <div id="app"></div>
+    <div id="app" v-cloak></div>
     <!-- built files will be auto injected -->
   </body>
 </html>

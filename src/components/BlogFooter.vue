@@ -12,8 +12,16 @@ export default {
 
 
 <style scoped>
-footer{
+footer {
+  height: 250px;
   margin-top: 5%;
   clear: both;
+  background-color: rgb(230, 230, 230);
+}
+
+footer a {
+  color: gray;
+  text-decoration: none;
+  font-size: 0.8rem;
 }
 </style>

@@ -12,7 +12,7 @@ export default new Router({
       component: Home,
     },
     {
-      path: '/notes',
+      path: '/notes/:page',
       name: 'notes',
       component: () => import('./views/Notes.vue'),
     },
