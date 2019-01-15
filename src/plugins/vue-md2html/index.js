@@ -3,8 +3,6 @@
 export default {
   install(Vue, Showdown) {
     if (!Showdown) {
-      console.error('You have to install showdown');
-
       return;
     }
 

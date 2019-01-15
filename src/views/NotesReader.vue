@@ -21,7 +21,7 @@ import BlogHeader from '@/components/BlogHeader.vue';
 import BlogFooter from '@/components/BlogFooter.vue';
 
 export default {
-  name: 'notes_reader',
+  name: 'notes-reader',
   components: { MdReader, BlogHeader, BlogFooter },
   data() {
     return {
@@ -40,9 +40,9 @@ export default {
   },
 
   beforeMount() {
-    const { filename } = this.$route.params;
+    const { route, filename } = this.$route.params;
 
-    this.filename = `blog/notes/community-era/${filename}.md`;
+    this.filename = `${route}/${filename}`;
 
     this.resetScrollPosition();
   },
@@ -51,7 +51,19 @@ export default {
 
 <style scoped>
 .reader_container {
-  margin: 0 25%;
+  margin: 0 18%;
   text-align: start;
+}
+
+@media screen and (max-width: 1024px) and (min-width: 567px) {
+  .reader_container {
+    margin: 0 14%;
+  }
+}
+
+@media screen and (max-width: 567px) {
+  .reader_container {
+    margin: 0 10%;
+  }
 }
 </style>

@@ -1,8 +1,6 @@
 export default {
   install(Vue, axios, { cdn }) {
     if (!axios) {
-      console.error('You have to install axios');
-
       return;
     }
 

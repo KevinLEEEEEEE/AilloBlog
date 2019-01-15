@@ -116,13 +116,13 @@ export default {
   padding: 0;
 }
 
-@media screen and (max-width: 1448px) {
+@media screen and (max-width: 1448px) and (min-width: 1024px) {
   .notes_container {
     grid-template-columns: repeat(3, 1fr);
   }
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 1024px) and (min-width: 567px) {
   .notes_container {
     grid-template-columns: repeat(2, 1fr);
   }

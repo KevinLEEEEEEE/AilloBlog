@@ -1,24 +1,21 @@
 <template>
-  <li class="poster bgscale_anim">
-    <router-link class="poster_container"
-      :to="`/read/${filename}`">
-      <div class="cover_container">
-        <img :src="src" class="cover">
-        <div class="imgloading"></div>
-      </div>
+  <li class="poster bgscale_anim" @click="pagejump">
+    <div class="cover_container">
+      <img :src="src" class="cover">
+      <div class="imgloading"></div>
+    </div>
 
-      <p class="title">
-        {{ title }}
-      </p>
+    <p class="title">
+      {{ title }}
+    </p>
 
-      <p class="info">
-        Posted：{{ date }}
-      </p>
+    <p class="info">
+      Posted：{{ date }}
+    </p>
 
-      <p class="description">
-        {{ description }}
-      </p>
-    </router-link>
+    <p class="description">
+      {{ description }}
+    </p>
   </li>
 </template>
 
@@ -55,10 +52,20 @@ export default {
           });
       }
     },
+
+    pagejump() {
+      this.$router.push({
+        name: 'read',
+        params: {
+          route: this.route,
+          filename: this.filename,
+        },
+      });
+    },
   },
 
   mounted() {
-    // this.updateBgImage();
+    this.updateBgImage();
   },
 };
 </script>
@@ -67,6 +74,9 @@ export default {
 @import '../css/globalAnim.css';
 
 .poster {
+  display: block;
+  font-size: 0.8vw;
+  text-align: left;
   box-shadow: inset 0 -1px rgba(0, 0, 0, 0.2);
 }
 
@@ -74,26 +84,20 @@ export default {
   transform: scale(1.06);
 }
 
-.poster_container {
-  display: block;
-  font-size: 0.8vw;
-  text-align: left;
-}
-
 @media screen and (max-width: 1448px) and (min-width: 1024px) {
-  .poster_container {
-    font-size: 1vw;
+  .poster {
+    font-size: 1.1vw;
   }
 }
 
 @media screen and (max-width: 1024px) and (min-width: 567px) {
-  .poster_container {
+  .poster {
     font-size: 1.4vw;
   }
 }
 
 @media screen and (max-width: 567px) {
-  .poster_container {
+  .poster {
     font-size: 5vw;
   }
 }

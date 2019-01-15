@@ -1,3 +1,10 @@
+const isProduction = process.env.NODE_ENV === 'production';
+const removeConsolePlugin = [];
+
+if (isProduction) {
+  removeConsolePlugin.push('transform-remove-console');
+}
+
 module.exports = {
   presets: [
     '@vue/app',
@@ -21,5 +28,6 @@ module.exports = {
         proposal: 'minimal',
       },
     ],
+    removeConsolePlugin,
   ],
 };

@@ -39,9 +39,9 @@ export default {
   },
 
   mounted() {
-    this.$axios.get(this.filename)
+    this.$axios.get(`${this.filename}.md`)
       .then((res) => {
-        console.log(`blog-reader receive file: ${this.filename}, start rendering.`);
+        console.log(`md-reader receive file: ${this.route}/${this.filename}.md.`);
 
         this.updateHtmlByMd(res.data);
       });
