@@ -1,9 +1,10 @@
 <template>
-  <li class="bgscale_anim">
+  <li class="poster bgscale_anim">
     <router-link class="poster_container"
       :to="`/read/${filename}`">
       <div class="cover_container">
-        <img :src="src" alt="poster" class="cover">
+        <img :src="src" class="cover">
+        <div class="imgloading"></div>
       </div>
 
       <p class="title">
@@ -57,12 +58,22 @@ export default {
   },
 
   mounted() {
-    this.updateBgImage();
+    // this.updateBgImage();
   },
 };
 </script>
 
 <style>
+@import '../css/globalAnim.css';
+
+.poster {
+  box-shadow: inset 0 -1px rgba(0, 0, 0, 0.2);
+}
+
+.poster:hover .cover {
+  transform: scale(1.06);
+}
+
 .poster_container {
   display: block;
   font-size: 0.8vw;
@@ -91,6 +102,7 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
   height: 250px;
   overflow: hidden;
 }
@@ -99,6 +111,57 @@ export default {
   min-width: 100%;
   min-height: 100%;
   transition: transform 0.2s ease;
+}
+
+.cover[src=''] + div {
+  display: block !important;
+}
+
+.imgloading {
+  display: none;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgb(240, 240, 240);
+}
+
+.imgloading::after {
+  content: 'loading';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 15px;
+  text-align: right;
+  font-size: 3em;
+  font-weight: 900;
+  color: rgba(0, 0, 0, 0.08);
+  animation: loading 2s linear infinite alternate;
+}
+
+@media screen and (max-width: 567px) {
+  .imgloading::after {
+    font-size: 1.8em;
+  }
+}
+
+@keyframes loading {
+  0% {
+    content: 'loading';
+  }
+
+  33% {
+    content: 'loading.';
+  }
+
+  66% {
+    content: 'loading..';
+  }
+
+  100% {
+    content: 'loading...';
+  }
 }
 
 .title {
@@ -169,33 +232,5 @@ export default {
 
 a {
   text-decoration: none;
-}
-
-.bgscale_anim:hover {
-  animation-name: bgScale;
-}
-
-.bgscale_anim:hover .cover {
-  transform: scale(1.06);
-}
-
-.bgscale_anim {
-  box-shadow: inset 0 -1px rgba(0, 0, 0, 0.2);
-  background-image: linear-gradient(to top, black 1px, transparent 1px);
-  background-repeat: no-repeat;
-  background-size: 0 100%;
-  animation-duration: 0.2s;
-  animation-timing-function: ease;
-  animation-fill-mode: forwards;
-}
-
-@keyframes bgScale {
-  from {
-    background-size: 0 100%;
-  }
-
-  to {
-    background-size: 100% 100%;
-  }
 }
 </style>

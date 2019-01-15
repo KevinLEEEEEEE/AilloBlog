@@ -3,7 +3,7 @@
     <div class="link_container">
       <router-link v-for="index in count" :key="index"
         :to="`${route}/${index}`"
-        :class="[(index === current && count) !== 1 ? 'page_current' : '', 'pagelink']"
+        :class="[(index === current && count !== 1) ? 'page_current' : '', 'pagelink']"
       >{{ index }}</router-link>
     </div>
   </div>
@@ -44,6 +44,7 @@ export default {
   margin: 0 5px;
   border: 1px solid black;
   box-sizing: border-box;
+  color: black;
   font-size: 0.8rem;
   line-height: 35px;
   text-align: center;

@@ -5,11 +5,11 @@
     </h1>
 
     <nav>
-      <router-link to="/notes/1">札记</router-link> ·
-      <router-link to="/">编程作品集</router-link> ·
-      <router-link to="/">影像年鉴</router-link> ·
-      <router-link to="/">设计</router-link> ·
-      <router-link to="/">杂谈</router-link>
+      <router-link class="bgscale_anim" to="/notes/1">札记</router-link> ·
+      <router-link class="bgscale_anim" to="/">编程作品集</router-link> ·
+      <router-link class="bgscale_anim" to="/">影像年鉴</router-link> ·
+      <router-link class="bgscale_anim" to="/">设计</router-link> ·
+      <router-link class="bgscale_anim" to="/">杂谈</router-link>
     </nav>
   </header>
 </template>
@@ -22,6 +22,8 @@ export default {
 
 
 <style scoped>
+@import '../css/globalAnim.css';
+
 header {
   display: flex;
   flex-direction: row;
@@ -43,16 +45,6 @@ header h1 {
 header a {
   text-decoration: none;
   color: black;
-  background-image: linear-gradient(to top, black 1px, transparent 1px);
-  background-repeat: no-repeat;
-  background-size: 0 100%;
-  animation-duration: 0.2s;
-  animation-timing-function: ease;
-  animation-fill-mode: forwards;
-}
-
-header a:hover {
-  animation-name: bgScale;
 }
 
 nav {
@@ -77,15 +69,5 @@ nav a {
   margin: 0 1rem;
   padding: 0.2rem 0.1rem;
   font-size: .85rem;
-}
-
-@keyframes bgScale {
-  from {
-    background-size: 0 100%;
-  }
-
-  to {
-    background-size: 100% 100%;
-  }
 }
 </style>
