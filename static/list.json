@@ -4,7 +4,7 @@
     "description": "在莎草纸上书写，记录着我们对幸福的定义",
     "route": "blog/notes/community-era",
 		"filename": "list-of-happiness",
-		"covername": "cover.png",
+		"covername": "cover1.png",
 		"date": "Sep 15, 2018",
 		"id": 1
 	}, {
@@ -12,7 +12,7 @@
     "description": "肉眼所无法感知的幸福，讲述关于爱好的故事",
     "route": "blog/notes/community-era",
 		"filename": "the-list-has-two-layers",
-		"covername": "cover.png",
+		"covername": "cover1.png",
 		"date": "Sep 15, 2018",
 		"id": 2
 	}, {
@@ -20,7 +20,7 @@
     "description": "当不同的对爱好的理解碰撞时擦出的火花",
     "route": "blog/notes/community-era",
 		"filename": "questioner-and-questionee",
-		"covername": "cover.png",
+		"covername": "cover1.png",
 		"date": "Sep 15, 2018",
 		"id": 3
 	}, {
@@ -28,7 +28,7 @@
     "description": "无意识的主观能动性",
     "route": "blog/notes/community-era",
 		"filename": "self-persuasion",
-		"covername": "cover.png",
+		"covername": "cover2.png",
 		"date": "Sep 15, 2018",
 		"id": 4
 	}, {
@@ -36,7 +36,7 @@
     "description": "啊，看见别人幸福，这是多么的痛苦",
     "route": "blog/notes/community-era",
 		"filename": "the-role-of-imagination",
-		"covername": "cover.png",
+		"covername": "cover2.png",
 		"date": "Sep 15, 2018",
 		"id": 5
 	}, {
@@ -44,7 +44,7 @@
     "description": "持之以恒的奥秘",
     "route": "blog/notes/community-era",
 		"filename": "sense-of-mission",
-		"covername": "cover.png",
+		"covername": "cover2.png",
 		"date": "Sep 15, 2018",
 		"id": 6
 	}, {
@@ -52,7 +52,7 @@
     "description": "为什么我们只喜欢聊自己喜欢的",
     "route": "blog/notes/community-era",
 		"filename": "the-plight-of-online-communities",
-		"covername": "cover.png",
+		"covername": "cover3.png",
 		"date": "Sep 15, 2018",
 		"id": 7
 	}, {
@@ -60,7 +60,7 @@
     "description": "理想的彼岸，是让梦想照进现实的舞台",
     "route": "blog/notes/community-era",
 		"filename": "communities",
-		"covername": "cover.png",
+		"covername": "cover3.png",
 		"date": "Sep 15, 2018",
 		"id": 8
 	}, {
@@ -68,7 +68,7 @@
     "description": "舞台上真情的出演",
     "route": "blog/notes/community-era",
 		"filename": "be-yourself",
-		"covername": "cover.png",
+		"covername": "cover3.png",
 		"date": "Sep 15, 2018",
 		"id": 9
 	}, {
