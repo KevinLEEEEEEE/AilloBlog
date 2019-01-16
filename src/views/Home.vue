@@ -2,7 +2,7 @@
   <div class="home">
     <blog-header class="head"></blog-header>
 
-    <div class="welcome">
+    <div class="welcome fadein">
       <div class="big ball"></div>
       <div class="middle ball"></div>
       <div class="small ball"></div>
@@ -38,6 +38,8 @@ export default {
 </script>
 
 <style scoped>
+@import '../css/globalAnim.css';
+
 .head {
   position: absolute;
   width: 64%;
@@ -79,10 +81,21 @@ export default {
   width: 70vmax;
   height: 70vmax;
   background: linear-gradient(to top, rgba(0, 0, 0, 0.01), rgba(0, 0, 0, 0.05));
+  animation: biganim 1s ease;
 }
 
 .big:hover {
   transform: translateY(-30px);
+}
+
+@keyframes biganim {
+  from {
+    transform: translateY(-30px);
+  }
+
+  to {
+    transform: translateY(0);
+  }
 }
 
 @media screen and (max-width: 1448px) and (min-width: 1024px) {
@@ -118,6 +131,21 @@ export default {
   width: 33vw;
   height: 33vw;
   background: linear-gradient(rgba(0, 0, 0, 0.03), rgba(0, 0, 0, 0.1));
+  animation: middleanim 1s ease;
+}
+
+.middle:hover {
+  transform: translateX(25px);
+}
+
+@keyframes middleanim {
+  from {
+    transform: translateY(25px);
+  }
+
+  to {
+    transform: translateY(0);
+  }
 }
 
 @media screen and (max-width: 1448px) and (min-width: 1024px) {
@@ -143,16 +171,27 @@ export default {
   }
 }
 
-.middle:hover {
-  transform: translateX(25px);
-}
-
 .small {
   top: -10%;
   left: 6%;
   width: 13vw;
   height: 13vw;
   background: linear-gradient(to right, rgba(0, 0, 0, 0.06), rgba(0, 0, 0, 0.15));
+  animation: smallanim 1s ease;
+}
+
+.small:hover {
+  transform: translateY(15px);
+}
+
+@keyframes smallanim {
+  from {
+    transform: translateY(25px);
+  }
+
+  to {
+    transform: translateY(0);
+  }
 }
 
 @media screen and (max-width: 1448px) and (min-width: 1024px) {
@@ -173,10 +212,6 @@ export default {
     width: 20vw;
     height: 20vw;
   }
-}
-
-.small:hover {
-  transform: translateY(15px);
 }
 
 .welcometitle {

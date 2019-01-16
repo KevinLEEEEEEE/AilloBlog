@@ -36,3 +36,17 @@
     transform: translateY(0);
   }
 }
+
+.fadein {
+  animation: fadein 0.3s ease-out;
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}

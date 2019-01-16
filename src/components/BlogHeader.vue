@@ -42,6 +42,10 @@ header h1 {
   font-size: 2rem;
 }
 
+h1 a {
+  color: rgb(30, 30, 30);
+}
+
 nav {
   display: flex;
   justify-content: center;
