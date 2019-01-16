@@ -27,7 +27,7 @@ const config = {
 };
 
 if (isProduction) {
-  config.plugins.push('babel-plugin-transform-remove-console');
+  config.plugins.push('transform-remove-console');
 }
 
 module.exports = config;

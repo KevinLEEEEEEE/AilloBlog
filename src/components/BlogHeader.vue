@@ -28,7 +28,7 @@ header {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin: 2rem 18% 2rem 18%;
+  margin: 2rem 18% 3rem 18%;
 }
 
 @media screen and (max-width: 1024px) {
@@ -39,12 +39,7 @@ header {
 
 header h1 {
   margin: 0;
-  font-size: 2.7rem;
-}
-
-header a {
-  text-decoration: none;
-  color: black;
+  font-size: 2rem;
 }
 
 nav {
@@ -69,5 +64,11 @@ nav a {
   margin: 0 1rem;
   padding: 0.2rem 0.1rem;
   font-size: .85rem;
+  letter-spacing: 1px;
+}
+
+a {
+  text-decoration: none;
+  color: black;
 }
 </style>

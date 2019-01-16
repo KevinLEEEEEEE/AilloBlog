@@ -53,6 +53,7 @@ export default {
 <style scoped>
 .reader {
   letter-spacing: 0.05rem;
+  --fontcolor: rgb(40, 40, 40);
 }
 
 .reader >>> hr {
@@ -62,7 +63,7 @@ export default {
 
 .reader >>> h1, .reader >>> h2, .reader >>> h3,
 .reader >>> h4, .reader >>> h5, .reader >>> h6 {
-  color: rgb(50, 50, 50);
+  color: var(--fontcolor);
   line-height: 3rem;
 }
 
@@ -71,7 +72,7 @@ export default {
 }
 
 .reader >>> p {
-  color: rgb(50, 50, 50);
+  color: var(--fontcolor);
   font-size: 0.9rem;
   line-height: 1.5rem;
 }

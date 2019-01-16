@@ -1,6 +1,6 @@
 {
 	"notes": [{
-    "title": "list of happiness",
+    "title": "幸福列表",
     "description": "在莎草纸上书写，记录着我们对幸福的定义",
     "route": "blog/notes/community-era",
 		"filename": "list-of-happiness",
@@ -8,7 +8,7 @@
 		"date": "Sep 15, 2018",
 		"id": 1
 	}, {
-    "title": "the list has two layers",
+    "title": "这份列表有两层",
     "description": "肉眼所无法感知的幸福，讲述关于爱好的故事",
     "route": "blog/notes/community-era",
 		"filename": "the-list-has-two-layers",
@@ -16,7 +16,7 @@
 		"date": "Sep 15, 2018",
 		"id": 2
 	}, {
-    "title": "questioner and questionee",
+    "title": "提问者和被提问者",
     "description": "当不同的对爱好的理解碰撞时擦出的火花",
     "route": "blog/notes/community-era",
 		"filename": "questioner-and-questionee",
@@ -24,7 +24,7 @@
 		"date": "Sep 15, 2018",
 		"id": 3
 	}, {
-    "title": "self persuasion",
+    "title": "自我说服",
     "description": "无意识的主观能动性",
     "route": "blog/notes/community-era",
 		"filename": "self-persuasion",
@@ -32,7 +32,7 @@
 		"date": "Sep 15, 2018",
 		"id": 4
 	}, {
-    "title": "the role of imagination",
+    "title": "想象的作用",
     "description": "啊，看见别人幸福，这是多么的痛苦",
     "route": "blog/notes/community-era",
 		"filename": "the-role-of-imagination",
@@ -40,7 +40,7 @@
 		"date": "Sep 15, 2018",
 		"id": 5
 	}, {
-    "title": "sense of mission",
+    "title": "使命感",
     "description": "持之以恒的奥秘",
     "route": "blog/notes/community-era",
 		"filename": "sense-of-mission",
@@ -48,7 +48,7 @@
 		"date": "Sep 15, 2018",
 		"id": 6
 	}, {
-    "title": "plight of online community",
+    "title": "线上社群的困境",
     "description": "为什么我们只喜欢聊自己喜欢的",
     "route": "blog/notes/community-era",
 		"filename": "the-plight-of-online-communities",
@@ -56,7 +56,7 @@
 		"date": "Sep 15, 2018",
 		"id": 7
 	}, {
-    "title": "communities",
+    "title": "社群",
     "description": "理想的彼岸，是让梦想照进现实的舞台",
     "route": "blog/notes/community-era",
 		"filename": "communities",
@@ -64,7 +64,7 @@
 		"date": "Sep 15, 2018",
 		"id": 8
 	}, {
-    "title": "be yourself",
+    "title": "做自己",
     "description": "舞台上真情的出演",
     "route": "blog/notes/community-era",
 		"filename": "be-yourself",
@@ -72,44 +72,12 @@
 		"date": "Sep 15, 2018",
 		"id": 9
 	}, {
-    "title": "be yourself",
-    "description": "舞台上真情的出演",
-    "route": "blog/notes/community-era",
-		"filename": "be-yourself",
+    "title": "师生关系",
+    "description": "最应该携手并肩，却渐行渐远",
+    "route": "blog/notes/teacher-student-relationship",
+		"filename": "teacher-student-relationship",
 		"covername": "cover.png",
-		"date": "Sep 15, 2018",
+		"date": "Jan 16, 2019",
 		"id": 10
-	}, {
-    "title": "be yourself",
-    "description": "舞台上真情的出演",
-    "route": "blog/notes/community-era",
-		"filename": "be-yourself",
-		"covername": "cover.png",
-		"date": "Sep 15, 2018",
-		"id": 11
-	}, {
-    "title": "be yourself",
-    "description": "舞台上真情的出演",
-    "route": "blog/notes/community-era",
-		"filename": "be-yourself",
-		"covername": "cover.png",
-		"date": "Sep 15, 2018",
-		"id": 12
-	}, {
-    "title": "be yourself",
-    "description": "舞台上真情的出演",
-    "route": "blog/notes/community-era",
-		"filename": "be-yourself",
-		"covername": "cover.png",
-		"date": "Sep 15, 2018",
-		"id": 13
-	}, {
-    "title": "be yourself",
-    "description": "舞台上真情的出演",
-    "route": "blog/notes/community-era",
-		"filename": "be-yourself",
-		"covername": "cover.png",
-		"date": "Sep 15, 2018",
-		"id": 14
 	}]
 }

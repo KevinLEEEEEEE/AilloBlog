@@ -2,22 +2,26 @@
   <div>
     <blog-header></blog-header>
 
-    <ul class="notes_container">
-      <note-poster v-for="note in notes" :key="note.id" class="notes_cell"
-        :title="note.title"
-        :description="note.description"
-        :route="note.route"
-        :filename="note.filename"
-        :covername="note.covername"
-        :date="note.date"
-      ></note-poster>
-    </ul>
+    <div class="notes">
+      <ul class="notes_container">
+        <li class="cell_container fadeandtranslatein" v-for="note in notes" :key="note.id">
+          <note-poster class="notes_cell"
+            :title="note.title"
+            :description="note.description"
+            :route="note.route"
+            :filename="note.filename"
+            :covername="note.covername"
+            :date="note.date"
+          ></note-poster>
+        </li>
+      </ul>
 
-    <page-number class="pagination"
-      route="/notes"
-      :count="pagesCount"
-      :current="currentPage"
-    ></page-number>
+      <page-number class="pagination"
+        route="/notes"
+        :count="pagesCount"
+        :current="currentPage"
+      ></page-number>
+    </div>
 
     <blog-footer></blog-footer>
   </div>
@@ -108,6 +112,12 @@ export default {
 </script>
 
 <style scoped>
+@import "../css/globalAnim.css";
+
+.notes {
+  min-height: 100vh;
+}
+
 .notes_container {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -134,13 +144,17 @@ export default {
   }
 }
 
-.notes_cell {
+.cell_container {
   min-width: 0;
   align-self: stretch;
   list-style: none;
 }
 
+.notes_cell {
+  height: 100%;
+}
+
 .pagination {
-  margin: 100px 18% 0 18%;
+  margin: 100px 18%;
 }
 </style>

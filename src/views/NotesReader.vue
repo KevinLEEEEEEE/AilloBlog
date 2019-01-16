@@ -2,7 +2,7 @@
   <div>
     <blog-header></blog-header>
 
-    <div class="reader_container">
+    <div class="reader_container fadeandtranslatein">
       <p @click="back">
         return
       </p>
@@ -50,10 +50,11 @@ export default {
 </script>
 
 <style scoped>
+@import "../css/globalAnim.css";
+
 .reader_container {
   margin: 0 18% 100px 18%;
   text-align: start;
-  animation: fadeIn 1s ease;
 }
 
 @media screen and (max-width: 1024px) and (min-width: 567px) {
@@ -68,15 +69,7 @@ export default {
   }
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.reader_content {
+  min-height: 100vh;
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <li class="poster bgscale_anim" @click="pagejump">
+  <div class="poster bgscale_anim" @click="pagejump">
     <div class="cover_container">
       <img :src="src" class="cover">
       <div class="imgloading"></div>
@@ -16,7 +16,7 @@
     <p class="description">
       {{ description }}
     </p>
-  </li>
+  </div>
 </template>
 
 <script>
@@ -75,9 +75,10 @@ export default {
 
 .poster {
   display: block;
-  font-size: 0.8vw;
+  font-size: 0.85vw;
   text-align: left;
   box-shadow: inset 0 -1px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
 }
 
 .poster:hover .cover {
@@ -86,19 +87,19 @@ export default {
 
 @media screen and (max-width: 1448px) and (min-width: 1024px) {
   .poster {
-    font-size: 1.1vw;
+    font-size: 1.2vw;
   }
 }
 
 @media screen and (max-width: 1024px) and (min-width: 567px) {
   .poster {
-    font-size: 1.4vw;
+    font-size: 1.5vw;
   }
 }
 
 @media screen and (max-width: 567px) {
   .poster {
-    font-size: 5vw;
+    font-size: 4.5vw;
   }
 }
 
@@ -113,7 +114,6 @@ export default {
 
 .cover {
   min-width: 100%;
-  min-height: 100%;
   transition: transform 0.2s ease;
 }
 
