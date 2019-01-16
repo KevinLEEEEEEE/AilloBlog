@@ -51,8 +51,9 @@ export default {
 
 <style scoped>
 .reader_container {
-  margin: 0 18%;
+  margin: 0 18% 100px 18%;
   text-align: start;
+  animation: fadeIn 1s ease;
 }
 
 @media screen and (max-width: 1024px) and (min-width: 567px) {
@@ -64,6 +65,18 @@ export default {
 @media screen and (max-width: 567px) {
   .reader_container {
     margin: 0 10%;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 </style>
