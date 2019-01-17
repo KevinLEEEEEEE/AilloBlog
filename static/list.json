@@ -79,5 +79,13 @@
 		"covername": "cover.png",
 		"date": "Jan 16, 2019",
 		"id": 10
+	}, {
+    "title": "生活和贪婪算法",
+    "description": "是的，我们需要更多的贪婪",
+    "route": "blog/notes/life-and-greedy-algorithm",
+		"filename": "life-and-greedy-algorithm",
+		"covername": "cover.png",
+		"date": "Jan 17, 2019",
+		"id": 11
 	}]
 }

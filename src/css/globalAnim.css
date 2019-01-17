@@ -22,7 +22,7 @@
 }
 
 .fadeandtranslatein {
-  animation: fadeAndTranslateIn 0.4s ease-in;
+  animation: fadeAndTranslateIn 0.5s ease-out;
 }
 
 @keyframes fadeAndTranslateIn {
@@ -38,7 +38,7 @@
 }
 
 .fadein {
-  animation: fadein 0.3s ease-out;
+  animation: fadein 0.4s ease-out;
 }
 
 @keyframes fadein {

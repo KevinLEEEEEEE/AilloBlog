@@ -77,7 +77,7 @@ export default {
   methods: {
     initNotesList(data) {
       if (this.isValidNotesList(data)) {
-        this.notesList = data.notes;
+        this.notesList = data.notes.reverse();
 
         this.updateNotesValue(1);
       }

@@ -10,10 +10,16 @@
       <p class="welcometext">JUST A TINY BLOG FOR AILLO <span>(￣︶￣)</span></p>
     </div>
 
-    <div class="selfintro">
-      <div>我是谁</div>
-      <div>我从哪里来</div>
-      <div>我要到哪里去</div>
+    <div class="info_container">
+      <div class="info_item mylove">
+        <p class="info_text">我所爱的</p>
+      </div>
+      <div class="info_item selfintro">
+        <p class="info_text">自我介绍</p>
+      </div>
+      <div class="info_item recommend">
+        <p class="info_text">好物推荐</p>
+      </div>
     </div>
 
     <blog-footer></blog-footer>
@@ -245,7 +251,7 @@ export default {
   vertical-align: top;
 }
 
-.selfintro {
+.info_container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 4px;
@@ -253,22 +259,56 @@ export default {
 }
 
 @media screen and (max-width: 1024px) {
-  .selfintro {
+  .info_container {
     grid-template-columns: 1fr;
   }
 }
 
-.selfintro div {
-  color: rgb(200, 200, 200);
-  font-size: 2rem;
-  font-weight: 900;
-  line-height: 18vmax;
-  background: rgb(240, 240, 240);
+.info_item {
+  background-size: cover;
 }
 
-@media screen and (max-width: 1024px) {
-  .selfintro div {
-    line-height: 25vmax;
+.info_item:hover .info_text{
+  filter: opacity(100%);
+}
+
+.info_text {
+  height: 100%;
+  margin: 0;
+  filter: opacity(0%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  letter-spacing: 0.8vw;
+  line-height: 18vw;
+  transition: filter ease 0.4s;
+}
+
+@media screen and (max-width: 1024px)and (min-width: 567px) {
+  .info_text {
+    filter: none;
+    line-height: 45vw;
+    letter-spacing: 1vw;
   }
+}
+
+@media screen and (max-width: 567px) {
+  .info_text {
+    filter: none;
+    line-height: 50vw;
+    font-size: 0.8rem;
+    letter-spacing: 2vw;
+  }
+}
+
+.selfintro {
+  background-image: url('../assets/selfintro.jpg');
+}
+
+.mylove {
+  background-image: url('../assets/mylove.jpg');
+}
+
+.recommend {
+  background-image: url('../assets/recommend.jpg');
 }
 </style>

@@ -52,7 +52,7 @@ nav {
   align-items: center;
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 1024px) and (min-width: 567px) {
   nav {
     margin: 5% 0;
   }
@@ -61,6 +61,7 @@ nav {
 @media screen and (max-width: 567px) {
   nav {
     flex-direction: column;
+    margin-top: 8%;
   }
 }
 
@@ -69,6 +70,18 @@ nav a {
   padding: 0.2rem 0.1rem;
   font-size: .85rem;
   letter-spacing: 1px;
+}
+
+@media screen and (max-width: 567px) {
+  nav a {
+    margin: 0;
+    padding: 0;
+    line-height: 15px;
+  }
+}
+
+nav a:last-of-type {
+  margin-right: 0;
 }
 
 a {
