@@ -19,7 +19,7 @@ export default new Router({
     {
       path: '/read/:route/:filename',
       name: 'read',
-      component: () => import('./views/NotesReader.vue'),
+      component: () => import('./views/Reader.vue'),
     },
   ],
 });

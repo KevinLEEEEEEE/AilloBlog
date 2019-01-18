@@ -3,9 +3,9 @@
     <blog-header></blog-header>
 
     <div class="reader_container fadeandtranslatein">
-      <md-reader
+      <md-parser
         :filename="filename"
-      ></md-reader>
+      ></md-parser>
       <div class="tool_container">
         <a @click="back" class="tool_btn return_btn">←</a>
         <a @click="top" class="tool_btn top_btn">↑</a>
@@ -17,13 +17,13 @@
 </template>
 
 <script>
-import MdReader from '@/components/MdReader.vue';
+import MdParser from '@/components/MdParser.vue';
 import BlogHeader from '@/components/BlogHeader.vue';
 import BlogFooter from '@/components/BlogFooter.vue';
 
 export default {
   name: 'notes-reader',
-  components: { MdReader, BlogHeader, BlogFooter },
+  components: { MdParser, BlogHeader, BlogFooter },
   data() {
     return {
       filename: '',
@@ -42,7 +42,7 @@ export default {
       });
     },
 
-    resetScrollPosition() {
+    resetScroll() {
       window.scrollTo({
         top: 0,
       });
@@ -54,7 +54,7 @@ export default {
 
     this.filename = `${route}/${filename}`;
 
-    this.resetScrollPosition();
+    this.resetScroll();
   },
 };
 </script>

@@ -8,7 +8,7 @@
           <note-poster class="notes_cell"
             :title="note.title"
             :description="note.description"
-            :route="note.route"
+            :route="`${notesPath}/${note.folder}`"
             :filename="note.filename"
             :covername="note.covername"
             :date="note.date"
@@ -19,7 +19,6 @@
       <page-number class="pagination"
         route="/notes"
         :count="pagesCount"
-        :current="currentPage"
       ></page-number>
     </div>
 
@@ -44,6 +43,7 @@ export default {
   data() {
     return {
       itemsPerPage: 12,
+      notesPath: '/',
       notesList: [],
       notes: [],
       style: {
@@ -60,16 +60,14 @@ export default {
     pagesCount() {
       return Math.ceil(this.notesCount / this.itemsPerPage);
     },
-
-    currentPage() {
-      return parseInt(this.$route.params.page, 10);
-    },
   },
 
   watch: {
     '$route.params.page': function callback(to, from) {
       if (to !== from) {
         this.updateNotesValue(parseInt(to, 10));
+
+        this.top();
       }
     },
   },
@@ -79,12 +77,14 @@ export default {
       if (this.isValidNotesList(data)) {
         this.notesList = data.notes.reverse();
 
+        this.notesPath = data.path;
+
         this.updateNotesValue(1);
       }
     },
 
     isValidNotesList(obj) {
-      return Reflect.has(obj, 'notes');
+      return Reflect.has(obj, 'notes') && Reflect.has(obj, 'path');
     },
 
     updateNotesValue(pageNumber) {
@@ -99,10 +99,17 @@ export default {
 
       this.notes = tmp;
     },
+
+    top() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      });
+    },
   },
 
   mounted() {
-    this.$http.get('list.json')
+    this.$http.get('blog/notes.json')
       .then((res) => {
         this.initNotesList(res.data);
       });

@@ -3,7 +3,7 @@
     <div class="link_container">
       <router-link v-for="index in count" :key="index"
         :to="`${route}/${index}`"
-        :class="[(index === current && count !== 1) ? 'page_current' : '', 'pagelink']"
+        :class="[index === currentPage ? 'page_current' : '', 'pagelink']"
       >{{ index }}</router-link>
     </div>
   </div>
@@ -15,7 +15,12 @@ export default {
   props: {
     route: String,
     count: Number,
-    current: Number,
+  },
+
+  computed: {
+    currentPage() {
+      return parseInt(this.$route.params.page, 10);
+    },
   },
 };
 </script>

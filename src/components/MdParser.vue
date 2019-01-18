@@ -5,7 +5,7 @@
 
 <script>
 export default {
-  name: 'md-reader',
+  name: 'md-parser',
   props: {
     filename: String,
   },
