@@ -136,5 +136,22 @@
 		"covername": "cover.png",
 		"date": "Jan 17, 2019",
 		"id": 17
+	}, {
+    "title": "《Anubis》项目纪要",
+    "description": "大创项目至今的资料总结",
+    "folder": "anubis-project",
+		"filename": "anubis-project-summary",
+		"covername": "cover.png",
+		"date": "Jan 20, 2019",
+		"id": 18
+  }
+  , {
+    "title": "《Anubis》阶段性报告",
+    "description": "暑期提交的项目阶段性报告",
+    "folder": "anubis-project",
+		"filename": "anubis-summer-report",
+		"covername": "cover.png",
+		"date": "Jan 20, 2019",
+		"id": 19
 	}]
 }

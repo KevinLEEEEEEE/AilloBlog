@@ -71,7 +71,8 @@ export default {
 }
 
 .homepage_cover {
-  width: stretch;
+  max-width: 100%;
+  height: auto;
 }
 
 .title {

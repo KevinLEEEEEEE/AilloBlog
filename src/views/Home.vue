@@ -100,12 +100,6 @@ export default {
   }
 }
 
-.ball {
-  position: absolute;
-  border-radius: 50%;
-  transition: transform 0.2s ease;
-}
-
 .welcometitle {
   margin: 0;
   font-size: 8em;

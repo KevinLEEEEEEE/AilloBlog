@@ -1,9 +1,9 @@
 {
   "path": "blog/homepage",
 	"homepages": [{
-    "title": "我所爱的",
-    "folder": "my-favourite",
-		"filename": "my-favourite",
+    "title": "此时此刻",
+    "folder": "this-moment",
+		"filename": "this-moment",
 		"covername": "cover.jpg",
 		"id": 1
 	}, {

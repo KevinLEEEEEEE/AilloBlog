@@ -1,7 +1,7 @@
 <template>
   <div class="catalog_poster bgscale_anim" @click="pagejump">
     <div class="cover_container imgload_container">
-      <img :src="src" class="poster_cover imageload_cover">
+      <img :src="src" class="poster_cover imageload_cover" ref="cover">
       <div class="imgload_text">loading</div>
     </div>
 
@@ -39,12 +39,20 @@ export default {
   methods: {
     updateBgImage() {
       const path = `${this.route}/${this.covername}`;
-      const setting = 'imageView2/0/q/75|imageslim';
+      const setting = 'imageView2/0/q/50|imageslim';
       const loader = process.env.NODE_ENV === 'production'
-        ? this.imageloader.loadImageFromCDN(path, setting)
-        : this.imageloader.loadImageFromLocal(path);
+        ? () => this.imageloader.loadImageFromCDN(path, setting)
+        : () => this.imageloader.loadImageFromLocal(path);
 
-      loader.then((res) => {
+      this.$refs.cover.onerror = () => {
+        if (process.env.NODE_ENV === 'production') {
+          this.imageloader.loadImageFromLocal(path).then((res) => {
+            this.src = res.result;
+          });
+        }
+      };
+
+      loader().then((res) => {
         this.src = res.result;
       });
     },
@@ -71,6 +79,7 @@ export default {
 @import '../css/imgloadAnim.css';
 
 .catalog_poster {
+  overflow: hidden;
   font-size: 0.85vw;
   text-align: left;
   box-shadow: inset 0 -1px rgba(0, 0, 0, 0.2);
@@ -104,7 +113,8 @@ export default {
 }
 
 .poster_cover {
-  width: stretch;
+  max-width: 100%;
+  height: auto;
   transition: transform 0.2s ease;
   transform-origin: center bottom;
 }

@@ -1,12 +1,12 @@
 {
   "path": "blog/informal-essays",
 	"list": [{
-    "title": "人物出场与变化",
-    "description": "精灵新生游戏人物的出场顺序与内心的变化",
-    "folder": "elf-rebirth",
-		"filename": "appearance-of-character",
+    "title": "实习第一天",
+    "description": "寒假的前端实习体验",
+    "folder": "first-day-of-internship",
+		"filename": "first-day-of-internship",
 		"covername": "cover.png",
-		"date": "Jul 28, 2018",
+		"date": "Jan 21, 2019",
 		"id": 1
 	}]
 }

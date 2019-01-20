@@ -1,17 +1,30 @@
 <template>
   <footer>
-    <div class="link_container">
-      <a class="link_item" href="https://github.com/KevinLEEEEEEE" target="_blank">
-        <img src="../assets/github.png" alt="github">
-      </a>
-      <a class="link_item" href="https://space.bilibili.com/5392441?" target="_blank">
-        <img src="../assets/bilibili.png" alt="bilibili">
-      </a>
-      <a class="link_item" href="https://music.163.com/#/user/home?id=14617530" target="_blank">
-        <img src="../assets/music.png" alt="music">
-      </a>
+    <div class="info_container">
+      <div class="info">
+        <p>LINKS</p>
+        <span><a href="https://music.163.com/#/user/home?id=14617530" target="_blank">NetEase Cloud Music</a></span>
+        <span><a href="http://tieba.baidu.com/home/main?un=Hiccup希卡普" target="_blank">Baidu Tieba</a></span>
+        <span><a href="https://space.bilibili.com/5392441?" target="_blank">Bilibili</a></span>
+      </div>
+      <div class="info">
+        <p>CONTACT ME</p>
+        <span>Email：<a href="https://mail.qq.com/" target="_blank">1069440019@qq.com</a></span>
+        <span>Discord：1160817830</span>
+      </div>
+      <div class="info">
+        <p>VISIT ME</p>
+        <span>The Door Of My Dormitory Always Open</span>
+        <span>At QING Court 77 - 514</span>
+      </div>
+      <div class="info">
+        <p>SITE CREDITS</p>
+        <span>Designed By Aillo</span>
+        <span>Developed By Aillo</span>
+        <span>Project On <a href="https://github.com/KevinLEEEEEEE/AilloBlog" target="_blank">Github</a></span>
+      </div>
     </div>
-    <a href="http://www.miibeian.gov.cn/">浙ICP备17041642号-1</a>
+    <a href="http://www.miibeian.gov.cn/" class="police_link">浙ICP备17041642号-1</a>
   </footer>
 </template>
 
@@ -26,46 +39,62 @@ export default {
 footer {
   clear: both;
   background-color: rgb(230, 230, 230);
+  --basiccolor: rgb(150, 150, 150);
+  --hovercolor: rgb(40, 40, 40);;
 }
 
 footer a {
-  color: gray;
   text-decoration: none;
-  font-size: 0.8rem;
+}
+
+.info_container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 1.3rem;
+  margin: 0 18% 30px 18%;
+  padding: 30px 0 50px 0;
+}
+
+@media screen and (max-width: 1024px) and (min-width: 567px) {
+  .info_container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 567px) {
+  .info_container {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+.info {
+  text-align: left;
+  color: var(--basiccolor);
+  font-size: 0.7rem;
+  line-height: 1.2rem;
+}
+
+.info p {
+  margin: 0 0 0.5rem 0;
+  color: var(--hovercolor);
+}
+
+.info span {
+  display: block;
+}
+
+.info a {
+  color: inherit;
+  transition: color 0.2s ease;
+}
+
+.info a:hover {
+  color: var(--hovercolor);
+}
+
+.police_link {
+  color: var(--basiccolor);
+  font-size: 0.7rem;
   line-height: 2rem;
-}
-
-.link_container {
-  padding: 60px 0 100px 0;
-}
-
-@media screen and (max-width: 567px) {
-  .link_container {
-    padding: 50px 0 80px 0;
-  }
-}
-
-.link_item {
-  display: inline-block;
-  width: 60px;
-  height: 60px;
-  filter: opacity(40%);
-  transform: scale(0.8);
-  transition: filter 0.2s ease;
-}
-
-.link_item:not(:first-of-type) {
-  margin-left: 25px;
-}
-
-@media screen and (max-width: 567px) {
-  .link_item {
-    display: block;
-    margin: 10px auto !important;
-  }
-}
-
-.link_item:hover {
-  filter: opacity(70%);
 }
 </style>

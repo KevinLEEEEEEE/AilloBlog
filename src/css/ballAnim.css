@@ -1,3 +1,9 @@
+.ball {
+  position: absolute;
+  border-radius: 50%;
+  transition: transform 0.2s ease;
+}
+
 .big {
   bottom: -35vmax;
   left: 5%;
