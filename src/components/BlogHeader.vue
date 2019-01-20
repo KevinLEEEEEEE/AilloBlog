@@ -5,11 +5,11 @@
     </h1>
 
     <nav>
-      <router-link class="bgscale_anim" to="/notes/1">札记</router-link> ·
-      <router-link class="bgscale_anim" to="/">编程作品集</router-link> ·
-      <router-link class="bgscale_anim" to="/">影像年鉴</router-link> ·
-      <router-link class="bgscale_anim" to="/">设计</router-link> ·
-      <router-link class="bgscale_anim" to="/">杂谈</router-link>
+      <router-link class="bgscale_anim link" to="/catalog/notes/1">札记</router-link> ·
+      <router-link class="bgscale_anim link" to="/catalog/informal-essays/1">随笔</router-link> ·
+      <a class="bgscale_anim link" href="https://github.com/KevinLEEEEEEE" target="_blank">编程作品集</a> ·
+      <router-link class="bgscale_anim link" to="/">影像年鉴</router-link> ·
+      <router-link class="bgscale_anim link" to="/">设计</router-link>
     </nav>
   </header>
 </template>
@@ -65,7 +65,7 @@ nav {
   }
 }
 
-nav a {
+.link {
   margin: 0 1rem;
   padding: 0.2rem 0.1rem;
   font-size: .85rem;
@@ -73,14 +73,14 @@ nav a {
 }
 
 @media screen and (max-width: 567px) {
-  nav a {
+  .link {
     margin: 0;
     padding: 0;
     line-height: 15px;
   }
 }
 
-nav a:last-of-type {
+.link:last-of-type {
   margin-right: 0;
 }
 

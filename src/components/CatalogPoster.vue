@@ -1,8 +1,8 @@
 <template>
-  <div class="poster bgscale_anim" @click="pagejump">
-    <div class="cover_container">
-      <img :src="src" class="cover">
-      <div class="imgloading"></div>
+  <div class="catalog_poster bgscale_anim" @click="pagejump">
+    <div class="cover_container imgload_container">
+      <img :src="src" class="poster_cover imageload_cover">
+      <div class="imgload_text">loading</div>
     </div>
 
     <p class="title">
@@ -21,7 +21,7 @@
 
 <script>
 export default {
-  name: 'note-poster',
+  name: 'catalog-poster',
   props: {
     title: String,
     description: String,
@@ -39,18 +39,14 @@ export default {
   methods: {
     updateBgImage() {
       const path = `${this.route}/${this.covername}`;
+      const setting = 'imageView2/0/q/75|imageslim';
+      const loader = process.env.NODE_ENV === 'production'
+        ? this.imageloader.loadImageFromCDN(path, setting)
+        : this.imageloader.loadImageFromLocal(path);
 
-      if (process.env.NODE_ENV === 'production') {
-        this.imageloader.loadImageFromCDN(path, 'imageView2/0/q/75|imageslim')
-          .then((res) => {
-            this.src = res;
-          });
-      } else {
-        this.imageloader.loadImageFromLocal(`${this.route}/${this.covername}`)
-          .then((res) => {
-            this.src = res.result;
-          });
-      }
+      loader.then((res) => {
+        this.src = res.result;
+      });
     },
 
     pagejump() {
@@ -72,100 +68,49 @@ export default {
 
 <style>
 @import '../css/globalAnim.css';
+@import '../css/imgloadAnim.css';
 
-.poster {
-  display: block;
+.catalog_poster {
   font-size: 0.85vw;
   text-align: left;
   box-shadow: inset 0 -1px rgba(0, 0, 0, 0.2);
   cursor: pointer;
 }
 
-.poster:hover .cover {
-  transform: scale(1.06);
+.catalog_poster:hover .poster_cover {
+  transform: scale(1.04);
 }
 
 @media screen and (max-width: 1448px) and (min-width: 1024px) {
-  .poster {
+  .catalog_poster {
     font-size: 1.2vw;
   }
 }
 
 @media screen and (max-width: 1024px) and (min-width: 567px) {
-  .poster {
+  .catalog_poster {
     font-size: 1.5vw;
   }
 }
 
 @media screen and (max-width: 567px) {
-  .poster {
+  .catalog_poster {
     font-size: 4.5vw;
   }
 }
 
 .cover_container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  height: 250px;
   overflow: hidden;
 }
 
-.cover {
-  min-width: 100%;
+.poster_cover {
+  width: stretch;
   transition: transform 0.2s ease;
+  transform-origin: center bottom;
 }
 
-.cover[src=''] + div {
-  display: block !important;
-}
-
-.imgloading {
-  display: none;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background-color: rgb(240, 240, 240);
-}
-
-.imgloading::after {
-  content: 'loading';
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 15px;
-  text-align: right;
-  font-size: 3em;
-  font-weight: 900;
-  color: rgba(0, 0, 0, 0.08);
-  animation: loading 2s linear infinite alternate;
-}
-
-@media screen and (max-width: 567px) {
-  .imgloading::after {
-    font-size: 1.8em;
-  }
-}
-
-@keyframes loading {
-  0% {
-    content: 'loading';
-  }
-
-  33% {
-    content: 'loading.';
-  }
-
-  66% {
-    content: 'loading..';
-  }
-
-  100% {
-    content: 'loading...';
-  }
+.poster_cover[src=''] {
+  height: 250px;
 }
 
 .title {

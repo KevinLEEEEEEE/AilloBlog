@@ -4,7 +4,7 @@
 
     <div class="reader_container fadeandtranslatein">
       <md-parser
-        :filename="filename"
+        :filename="completeFilename"
       ></md-parser>
       <div class="tool_container">
         <a @click="back" class="tool_btn return_btn">←</a>
@@ -22,12 +22,21 @@ import BlogHeader from '@/components/BlogHeader.vue';
 import BlogFooter from '@/components/BlogFooter.vue';
 
 export default {
-  name: 'notes-reader',
-  components: { MdParser, BlogHeader, BlogFooter },
-  data() {
-    return {
-      filename: '',
-    };
+  name: 'reader',
+  components: {
+    MdParser,
+    BlogHeader,
+    BlogFooter,
+  },
+  props: {
+    route: String,
+    filename: String,
+  },
+
+  computed: {
+    completeFilename() {
+      return `${this.route}/${this.filename}`;
+    },
   },
 
   methods: {
@@ -50,10 +59,6 @@ export default {
   },
 
   beforeMount() {
-    const { route, filename } = this.$route.params;
-
-    this.filename = `${route}/${filename}`;
-
     this.resetScroll();
   },
 };

@@ -1,6 +1,6 @@
 {
   "path": "blog/notes",
-	"notes": [{
+	"list": [{
     "title": "人物出场与变化",
     "description": "精灵新生游戏人物的出场顺序与内心的变化",
     "folder": "elf-rebirth",
@@ -136,21 +136,5 @@
 		"covername": "cover.png",
 		"date": "Jan 17, 2019",
 		"id": 17
-	}, {
-    "title": "生活和贪婪算法",
-    "description": "是的，我们需要更多的贪婪",
-    "folder": "life-and-greedy-algorithm",
-		"filename": "life-and-greedy-algorithm",
-		"covername": "cover.png",
-		"date": "Jan 17, 2019",
-		"id": 18
-	}, {
-    "title": "生活和贪婪算法",
-    "description": "是的，我们需要更多的贪婪",
-    "folder": "life-and-greedy-algorithm",
-		"filename": "life-and-greedy-algorithm",
-		"covername": "cover.png",
-		"date": "Jan 17, 2019",
-		"id": 19
 	}]
 }

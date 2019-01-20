@@ -6,7 +6,7 @@ export default {
 
     Vue.prototype.imageloader = {
       loadImageFromCDN(path, setting) {
-        return Promise.resolve(`${cdn}/${path}?${setting}`);
+        return Promise.resolve({ result: `${cdn}/${path}?${setting}` });
       },
 
       loadImageFromLocal(path) {

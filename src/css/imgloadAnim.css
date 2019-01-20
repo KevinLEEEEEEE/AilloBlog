@@ -1,0 +1,22 @@
+.imgload_container {
+  position: relative;
+}
+
+.imageload_cover[src=''] + div {
+  display: flex !important;
+}
+
+.imgload_text {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  font-size: 2em;
+  font-weight: 900;
+  color: rgba(0, 0, 0, 0.08);
+  background-color: rgb(240, 240, 240);
+}

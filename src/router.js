@@ -12,14 +12,16 @@ export default new Router({
       component: Home,
     },
     {
-      path: '/notes/:page',
-      name: 'notes',
-      component: () => import('./views/Notes.vue'),
+      path: '/catalog/:category/:page',
+      name: 'catalog',
+      component: () => import('./views/Catalog.vue'),
+      props: true,
     },
     {
       path: '/read/:route/:filename',
       name: 'read',
       component: () => import('./views/Reader.vue'),
+      props: true,
     },
   ],
 });

@@ -1,5 +1,5 @@
 <template>
-  <div v-html="rawHtml" class="reader"></div>
+  <div v-html="rawHtml" class="reader" ref="doc"></div>
 </template>
 
 
@@ -26,6 +26,8 @@ export default {
         this.highlightCodeInHtml();
 
         this.$lazyload(frag);
+
+        this.convertAnchor(frag);
       });
     },
 
@@ -36,13 +38,52 @@ export default {
         this.$highlight.highlightBlock(block);
       });
     },
+
+    convertAnchor(frag) {
+      frag.addEventListener('click', this.handleAnchorClick);
+
+      frag.querySelectorAll('a').forEach((tag) => {
+        tag.target = '_blank';
+      });
+    },
+
+    handleAnchorClick(e) {
+      if (this.isScrollAnchor(e.target)) {
+        e.preventDefault();
+
+        this.scrollToNode(e.target.getAttribute('href'));
+      }
+    },
+
+    isScrollAnchor(node) {
+      if (!node || node.nodeName !== 'A') {
+        return false;
+      }
+
+      const href = node.getAttribute('href');
+
+      if (href) {
+        return href[0] === '#';
+      }
+
+      return false;
+    },
+
+    scrollToNode(id) {
+      const node = this.$refs.doc.querySelector(id);
+
+      if (node !== null) {
+        window.scrollTo({
+          top: node.offsetTop,
+          behavior: 'smooth',
+        });
+      }
+    },
   },
 
   mounted() {
     this.$axios.get(`${this.filename}.md`)
       .then((res) => {
-        console.log(`md-reader receive file: ${this.route}/${this.filename}.md.`);
-
         this.updateHtmlByMd(res.data);
       });
   },
