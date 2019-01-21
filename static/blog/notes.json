@@ -1,5 +1,10 @@
 {
   "path": "blog/notes",
+  "routeName": "read",
+  "itemsPerPage": 12,
+  "itemsPerLine": 4,
+  "posterDefaultWidth": 400,
+  "posterDefaultHeight": 300,
 	"list": [{
     "title": "人物出场与变化",
     "description": "精灵新生游戏人物的出场顺序与内心的变化",

@@ -1,7 +1,10 @@
 <template>
   <div class="catalog_poster bgscale_anim" @click="pagejump">
     <div class="cover_container imgload_container">
-      <img width="400" height="300" class="poster_cover imageload_cover" :src="src" ref="cover">
+      <img class="poster_cover imageload_cover" ref="cover"
+        :width="posterDefaultWidth"
+        :height="posterDefaultheight"
+        :src="src">
       <div class="imgload_text">loading</div>
     </div>
 
@@ -29,6 +32,9 @@ export default {
     filename: String,
     covername: String,
     date: String,
+    routeName: String,
+    posterDefaultWidth: Number,
+    posterDefaultheight: Number,
   },
   data() {
     return {
@@ -58,8 +64,9 @@ export default {
     },
 
     pagejump() {
+      console.log(this.routeName);
       this.$router.push({
-        name: 'read',
+        name: this.routeName,
         params: {
           route: this.route,
           filename: this.filename,
@@ -152,13 +159,13 @@ export default {
 
 @media screen and (max-width: 1448px) and (min-width: 1024px) {
   .info {
-    font-size: 0.75em;
+    font-size: 0.7em;
   }
 }
 
 @media screen and (max-width: 1024px) and (min-width: 567px) {
   .info {
-    font-size: 0.75em;
+    font-size: 0.7em;
   }
 }
 

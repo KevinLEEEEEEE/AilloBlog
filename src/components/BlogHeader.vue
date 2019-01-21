@@ -8,7 +8,7 @@
       <router-link class="bgscale_anim link" to="/catalog/notes/1">札记</router-link> ·
       <router-link class="bgscale_anim link" to="/catalog/informal-essays/1">随笔</router-link> ·
       <a class="bgscale_anim link" href="https://github.com/KevinLEEEEEEE" target="_blank">编程作品集</a> ·
-      <router-link class="bgscale_anim link" to="/">影像年鉴</router-link> ·
+      <router-link class="bgscale_anim link" to="/catalog/photographs/1">影像年鉴</router-link> ·
       <router-link class="bgscale_anim link" to="/">设计</router-link>
     </nav>
   </header>

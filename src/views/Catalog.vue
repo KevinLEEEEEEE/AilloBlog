@@ -3,7 +3,7 @@
     <blog-header></blog-header>
 
     <div class="catalog">
-      <ul class="catalog_container">
+      <ul :class="['catalog_container', isSmallContainer ? 'container_small' : 'container_large']">
         <li class="item_container fadeandtranslatein" v-for="item in currList" :key="item.id">
           <catalog-poster class="item"
             :title="item.title"
@@ -12,6 +12,9 @@
             :filename="item.filename"
             :covername="item.covername"
             :date="item.date"
+            :routeName="routeName"
+            :posterDefaultWidth="posterDefaultWidth"
+            :posterDefaultheight="posterDefaultHeight"
           ></catalog-poster>
         </li>
       </ul>
@@ -49,7 +52,11 @@ export default {
   },
   data() {
     return {
+      routeName: '',
       itemsPerPage: 12,
+      itemsPerLine: 4,
+      posterDefaulrWidth: 0,
+      posterDefaultHeight: 0,
       path: '/',
       list: [],
       currList: [],
@@ -57,6 +64,10 @@ export default {
   },
 
   computed: {
+    isSmallContainer() {
+      return this.itemsPerLine >= 4;
+    },
+
     itemsCount() {
       return this.list.length;
     },
@@ -101,6 +112,16 @@ export default {
   methods: {
     initCatalog(data) {
       if (this.isValidCatalog(data)) {
+        this.routeName = data.routeName || 'read';
+
+        this.itemsPerPage = data.itemsPerPage || 12;
+
+        this.itemsPerLine = data.itemsPerLine || 4;
+
+        this.posterDefaultWidth = data.posterDefaultWidth || 400;
+
+        this.posterDefaultHeight = data.posterDefaultHeight || 300;
+
         this.list = data.list.reverse(); // must put before calc page number
 
         this.path = data.path;
@@ -139,7 +160,6 @@ export default {
   },
 
   mounted() {
-    console.log(this.category);
     this.updateCategoryList(this.category);
   },
 };
@@ -154,26 +174,45 @@ export default {
 
 .catalog_container {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
   grid-gap: 1.3rem;
   margin: 0 18%;
   padding: 0;
 }
 
+.container_small {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.container_large {
+  grid-template-columns: repeat(2, 1fr);
+}
+
 @media screen and (max-width: 1448px) and (min-width: 1024px) {
-  .catalog_container {
+  .container_small {
     grid-template-columns: repeat(3, 1fr);
   }
 }
 
-@media screen and (max-width: 1024px) and (min-width: 567px) {
-  .catalog_container {
+@media screen and (max-width: 1448px) and (min-width: 1024px) {
+  .container_large {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
+@media screen and (max-width: 1024px) and (min-width: 567px) {
+  .container_small {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 1024px) and (min-width: 567px) {
+  .container_large {
+    grid-template-columns: 1fr;
+  }
+}
+
 @media screen and (max-width: 567px) {
-  .catalog_container {
+  .container_small, .container_large {
     grid-template-columns: 1fr;
   }
 }
