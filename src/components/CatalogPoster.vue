@@ -1,7 +1,7 @@
 <template>
   <div class="catalog_poster bgscale_anim" @click="pagejump">
     <div class="cover_container imgload_container">
-      <img :src="src" class="poster_cover imageload_cover" ref="cover">
+      <img width="400" height="300" class="poster_cover imageload_cover" :src="src" ref="cover">
       <div class="imgload_text">loading</div>
     </div>
 

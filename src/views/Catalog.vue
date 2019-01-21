@@ -139,6 +139,7 @@ export default {
   },
 
   mounted() {
+    console.log(this.category);
     this.updateCategoryList(this.category);
   },
 };
