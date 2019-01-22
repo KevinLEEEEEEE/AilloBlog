@@ -1,7 +1,6 @@
 <template>
-  <div v-html="rawHtml" class="reader" ref="doc"></div>
+  <div v-html="rawHtml" class="md-reader" ref="doc"></div>
 </template>
-
 
 <script>
 export default {
@@ -90,62 +89,61 @@ export default {
 };
 </script>
 
-
 <style scoped>
-.reader {
+.md-reader {
   letter-spacing: 0.05rem;
   --fontcolor: rgb(40, 40, 40);
 }
 
-.reader >>> hr {
+.md-reader >>> hr {
   border: none;
   border-bottom: 1px solid rgb(210, 210, 210);
 }
 
-.reader >>> h1, .reader >>> h2, .reader >>> h3,
-.reader >>> h4, .reader >>> h5, .reader >>> h6 {
+.md-reader >>> h1, .md-reader >>> h2, .md-reader >>> h3,
+.md-reader >>> h4, .md-reader >>> h5, .md-reader >>> h6 {
   color: var(--fontcolor);
   line-height: 3rem;
 }
 
-.reader >>> h1:first-of-type {
+.md-reader >>> h1:first-of-type {
   text-align: center;
 }
 
-.reader >>> p {
+.md-reader >>> p {
   color: var(--fontcolor);
   font-size: 0.9rem;
   line-height: 1.5rem;
 }
 
-.reader >>> li {
+.md-reader >>> li {
   font-size: 0.8rem;
   line-height: 1.5rem;
 }
 
-.reader >>> pre {
+.md-reader >>> pre {
   padding: 20px 30px;
   overflow-x: auto;
   font-size: 0.9rem;
   line-height: 1.3rem;
 }
 
-.reader >>> a {
+.md-reader >>> a {
   color: rgb(30, 143, 172);
   text-decoration: none;
 }
 
-.reader >>> a:hover {
+.md-reader >>> a:hover {
   text-decoration: underline;
 }
 
-.reader >>> blockquote {
+.md-reader >>> blockquote {
   margin: 0;
   padding: 1rem 2rem;
   background: linear-gradient(to right, rgb(170, 170, 170) 4px, rgb(240, 240, 240) 4px);
 }
 
-.reader >>> img {
+.md-reader >>> img {
   max-width: 100%;
 }
 </style>

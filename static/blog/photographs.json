@@ -2,9 +2,8 @@
   "path": "blog/photographs",
   "routeName": "view",
   "itemsPerPage": 6,
-  "itemsPerLine": 2,
-  "posterDefaultWidth": 900,
-  "posterDefaultHeight": 600,
+  "posterDefaultWidth": 600,
+  "posterDefaultHeight": 400,
 	"list": [{
     "title": "江南雪景 - 广角",
     "folder": "jiangnan-snow-widelens",
@@ -12,5 +11,26 @@
 		"covername": "cover.jpg",
 		"date": "Jul 28, 2018",
 		"id": 1
+	}, {
+    "title": "江南雪景 - 广角",
+    "folder": "jiangnan-snow-widelens",
+		"filename": "appearance-of-character",
+		"covername": "cover.jpg",
+		"date": "Jul 28, 2018",
+		"id": 2
+	}, {
+    "title": "江南雪景 - 广角",
+    "folder": "jiangnan-snow-widelens",
+		"filename": "appearance-of-character",
+		"covername": "cover.jpg",
+		"date": "Jul 28, 2018",
+		"id": 3
+	}, {
+    "title": "江南雪景 - 广角",
+    "folder": "jiangnan-snow-widelens",
+		"filename": "appearance-of-character",
+		"covername": "cover.jpg",
+		"date": "Jul 28, 2018",
+		"id": 4
 	}]
 }

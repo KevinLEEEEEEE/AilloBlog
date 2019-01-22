@@ -3,7 +3,7 @@
 }
 
 .bgscale_anim {
-  background-image: linear-gradient(to top, black 1px, transparent 1px);
+  background-image: linear-gradient(to top, var(--bgscale-color) 1px, transparent 1px);
   background-repeat: no-repeat;
   background-size: 0 100%;
   animation-duration: 0.2s;

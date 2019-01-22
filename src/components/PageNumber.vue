@@ -1,9 +1,9 @@
 <template>
-  <div class="pagination">
-    <div class="link_container">
+  <div :class="[theme === 'day' ? 'pagenumber-day-theme' : 'pagenumber-night-theme', 'pagination']">
+    <div class="pagelink-container">
       <router-link v-for="index in count" :key="index"
         :to="`${route}/${index}`"
-        :class="[index === currentPage ? 'page_current' : '', 'pagelink']"
+        :class="[index === currentPage ? 'page-current' : '', 'pagelink']"
       >{{ index }}</router-link>
     </div>
   </div>
@@ -15,6 +15,10 @@ export default {
   props: {
     route: String,
     count: Number,
+    theme: {
+      type: String,
+      default: 'day',
+    },
   },
 
   computed: {
@@ -25,43 +29,51 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
+.pagenumber-night-theme {
+  --text-color: rgb(200, 200, 200);
+  --border-color: var(--text-color);
+  --background-color: rgb(18, 18, 18);
+}
+
+.pagenumber-day-theme {
+  --text-color: black;
+  --border-color: black;
+  --background-color: white;
+}
+
 .pagination {
-  height: 35px;
-  margin: 50px 18%;
+  --side-length: 35px;
+  --side-length-hover: 40px;
   background-image: linear-gradient(transparent calc(50%),
-                                  black calc(50%),
-                                  black calc(50% + 1px),
+                                    var(--border-color) calc(50%),
+                                    var(--border-color) calc(50% + 1px),
                                     transparent calc(50% + 1px));
 }
 
-.link_container {
+.pagelink-container {
   display: inline-flex;
   flex-direction: row;
   justify-content: center;
-  background-color: white;
+  background-color: var(--background-color);
 }
 
 .pagelink {
   display: block;
-  width: 35px;
-  height: 35px;
+  width: var(--side-length);
+  height: var(--side-length);
   margin: 0 5px;
-  border: 1px solid black;
+  border: 1px solid var(--border-color);
   box-sizing: border-box;
-  color: black;
   font-size: 0.8rem;
-  line-height: 35px;
+  color: var(--text-color);
+  line-height: var(--side-length);
   text-align: center;
   align-content: center;
   transition: all ease 0.07s;
 }
 
-.page_current {
-  height: 40px;
-}
-
-.pagelink:hover {
-  height: 40px;
+.pagelink-current, .pagelink:hover {
+  height: var(--side-length-hover);
 }
 </style>

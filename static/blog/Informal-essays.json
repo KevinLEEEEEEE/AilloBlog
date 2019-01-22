@@ -2,7 +2,6 @@
   "path": "blog/informal-essays",
   "routeName": "read",
   "itemsPerPage": 12,
-  "itemsPerLine": 4,
   "posterDefaultWidth": 400,
   "posterDefaultHeight": 300,
 	"list": [{

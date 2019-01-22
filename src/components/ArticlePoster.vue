@@ -1,5 +1,5 @@
 <template>
-  <div class="catalog_poster bgscale_anim" @click="pagejump">
+  <div class="article_poster bgscale_anim" @click="pagejump">
     <div class="cover_container imgload_container">
       <img class="poster_cover imageload_cover" ref="cover"
         :width="posterDefaultWidth"
@@ -24,7 +24,7 @@
 
 <script>
 export default {
-  name: 'catalog-poster',
+  name: 'article-poster',
   props: {
     title: String,
     description: String,
@@ -64,7 +64,6 @@ export default {
     },
 
     pagejump() {
-      console.log(this.routeName);
       this.$router.push({
         name: this.routeName,
         params: {
@@ -85,7 +84,7 @@ export default {
 @import '../css/globalAnim.css';
 @import '../css/imgloadAnim.css';
 
-.catalog_poster {
+.article_poster {
   overflow: hidden;
   font-size: 0.85vw;
   text-align: left;
@@ -93,24 +92,24 @@ export default {
   cursor: pointer;
 }
 
-.catalog_poster:hover .poster_cover {
+.article_poster:hover .poster_cover {
   transform: scale(1.04);
 }
 
 @media screen and (max-width: 1448px) and (min-width: 1024px) {
-  .catalog_poster {
+  .article_poster {
     font-size: 1.2vw;
   }
 }
 
 @media screen and (max-width: 1024px) and (min-width: 567px) {
-  .catalog_poster {
+  .article_poster {
     font-size: 1.5vw;
   }
 }
 
 @media screen and (max-width: 567px) {
-  .catalog_poster {
+  .article_poster {
     font-size: 4.5vw;
   }
 }
