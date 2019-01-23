@@ -1,11 +1,11 @@
 <template>
-  <div>
+  <div :class="[theme === 'day' ? 'catalog-day-theme' : 'catalog-night-theme']">
     <blog-header :theme="theme"></blog-header>
 
-    <div class="catalog"  :class="[theme === 'day' ? 'day-theme' : 'night-theme']">
-      <ul class="catalog_container">
-        <li class="item_container fadeandtranslatein" v-for="item in currList" :key="item.id">
-          <div is="article-poster" class="item"
+    <div class="catalog">
+      <ul class="catalog-container">
+        <li class="item-container fadeandtranslatein" v-for="item in currList" :key="item.id">
+          <div :is="posterName" class="item"
             :title="item.title"
             :description="item.description"
             :route="`${path}/${item.folder}`"
@@ -13,8 +13,7 @@
             :covername="item.covername"
             :date="item.date"
             :routeName="routeName"
-            :posterDefaultWidth="posterDefaultWidth"
-            :posterDefaultheight="posterDefaultHeight"
+            :theme="theme"
           ></div>
         </li>
       </ul>
@@ -42,38 +41,26 @@ export default {
   components: {
     BlogHeader,
     BlogFooter,
-    PageNumber,
     ImagePoster,
     ArticlePoster,
+    PageNumber,
   },
   props: {
     category: String,
-    page: {
-      type: String,
-      default: '1',
-    },
-    theme: {
-      type: String,
-      default: 'night',
-    },
+    page: String,
   },
   data() {
     return {
-      routeName: '',
-      itemsPerPage: 12,
-      posterDefaulrWidth: 0,
-      posterDefaultHeight: 0,
       path: '/',
       list: [],
       currList: [],
+      routeName: '',
+      posterName: '',
+      itemsPerPage: 12,
     };
   },
 
   computed: {
-    itemsCount() {
-      return this.list.length;
-    },
-
     pagesCount() {
       return Math.ceil(this.list.length / this.itemsPerPage);
     },
@@ -88,6 +75,10 @@ export default {
       }
 
       return pageNumber;
+    },
+
+    theme() {
+      return this.$store.state.theme;
     },
   },
 
@@ -118,9 +109,7 @@ export default {
 
         this.itemsPerPage = data.itemsPerPage || 12;
 
-        this.posterDefaultWidth = data.posterDefaultWidth || 400;
-
-        this.posterDefaultHeight = data.posterDefaultHeight || 300;
+        this.posterName = data.posterName || 'article-poster';
 
         this.list = data.list.reverse(); // must put before calc page number
 
@@ -136,10 +125,11 @@ export default {
 
     updateCurrList() {
       const start = (this.currentPage - 1) * this.itemsPerPage;
+      const total = this.list.length;
 
       this.currList = [];
 
-      for (let i = 0; i < this.itemsPerPage && (start + i) < this.itemsCount; i += 1) {
+      for (let i = 0; i < this.itemsPerPage && (start + i) < total; i += 1) {
         this.currList.push(this.list[start + i]);
       }
     },
@@ -166,13 +156,13 @@ export default {
 </script>
 
 
-<style scoped>
+<style>
 
-.night-theme {
+.catalog-night-theme {
   background-color: rgb(18, 18, 18);
 }
 
-.day-theme {
+.catalog-day-theme {
   background-color: white;
 }
 
@@ -181,34 +171,33 @@ export default {
   padding-bottom: 5vh;
 }
 
-.catalog_container {
+.catalog-container {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-gap: 1.3rem;
+  grid-gap: 1.5rem;
   margin: 0 18%;
   padding: 0;
 }
 
-
 @media screen and (max-width: 1448px) and (min-width: 1024px) {
-  .catalog_container {
+  .catalog-container {
     grid-template-columns: repeat(3, 1fr);
   }
 }
 
 @media screen and (max-width: 1024px) and (min-width: 567px) {
-  .catalog_container {
+  .catalog-container {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media screen and (max-width: 567px) {
-  .catalog_container {
+  .catalog-container {
     grid-template-columns: 1fr;
   }
 }
 
-.item_container {
+.item-container {
   min-width: 0;
   align-self: stretch;
   list-style: none;

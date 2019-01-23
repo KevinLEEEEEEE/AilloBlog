@@ -1,9 +1,8 @@
 {
   "path": "blog/informal-essays",
   "routeName": "read",
+  "posterName": "article-poster",
   "itemsPerPage": 12,
-  "posterDefaultWidth": 400,
-  "posterDefaultHeight": 300,
 	"list": [{
     "title": "实习第一天",
     "description": "寒假的前端实习体验",
@@ -11,6 +10,6 @@
 		"filename": "first-day-of-internship",
 		"covername": "cover.png",
 		"date": "Jan 21, 2019",
-		"id": 1
+		"id": "I1"
 	}]
 }

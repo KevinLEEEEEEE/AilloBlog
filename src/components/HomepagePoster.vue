@@ -1,7 +1,7 @@
 <template>
   <div class="homepage_poster" @click="pagejump">
     <div class="cover_container">
-      <img :src="src" class="homepage_cover">
+      <img class="homepage_cover" ref="cover">
     </div>
 
     <a class="title">
@@ -18,29 +18,23 @@ export default {
     route: String,
     filename: String,
     covername: String,
-  },
-  data() {
-    return {
-      src: '',
-    };
+    routeName: String,
   },
 
   methods: {
     updateBgImage() {
       const path = `${this.route}/${this.covername}`;
-      const setting = 'imageView2/0/q/75|imageslim';
-      const loader = process.env.NODE_ENV === 'production'
-        ? this.imageloader.loadImageFromCDN(path, setting)
-        : this.imageloader.loadImageFromLocal(path);
+      const setting = 'imageView2/0/q/50|imageslim';
 
-      loader.then((res) => {
-        this.src = res.result;
-      });
+      this.$imageloader.loadImageAuto(path, setting)
+        .then((res) => {
+          this.$refs.cover.setAttribute('src', res);
+        });
     },
 
     pagejump() {
       this.$router.push({
-        name: 'read',
+        name: this.routeName,
         params: {
           route: this.route,
           filename: this.filename,

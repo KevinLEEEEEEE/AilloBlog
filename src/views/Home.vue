@@ -1,27 +1,30 @@
 <template>
   <div class="home">
-    <blog-header class="head"></blog-header>
+    <blog-header :theme="theme" class="head"></blog-header>
 
-    <div class="welcome fadein">
-      <div class="big ball"></div>
-      <div class="middle ball"></div>
-      <div class="small ball"></div>
-      <p class="welcometitle">Welcome!</p>
-      <p class="welcometext">JUST A TINY BLOG FOR AILLO <span>(￣︶￣)</span></p>
+    <div :class="[theme === 'day' ? 'home-day-theme' : 'home-night-theme']">
+      <div class="welcome fadein">
+        <div class="big ball"></div>
+        <div class="middle ball"></div>
+        <div class="small ball"></div>
+        <p class="welcome-title">Welcome!</p>
+        <p class="welcome-text">JUST A TINY BLOG FOR AILLO <span>(￣︶￣)</span></p>
+      </div>
+
+      <ul class="info-container">
+        <li class="item-container" v-for="homepage in homepageList" :key="homepage.id">
+          <homepage-poster
+            :title="homepage.title"
+            :route="`${homepagePath}/${homepage.folder}`"
+            :filename="homepage.filename"
+            :covername="homepage.covername"
+            :routeName="routeName"
+          ></homepage-poster>
+        </li>
+      </ul>
     </div>
 
-    <ul class="info_container">
-      <li class="item_container" v-for="homepage in homepageList" :key="homepage.id">
-        <homepage-poster class="item"
-          :title="homepage.title"
-          :route="`${homepagePath}/${homepage.folder}`"
-          :filename="homepage.filename"
-          :covername="homepage.covername"
-        ></homepage-poster>
-      </li>
-    </ul>
-
-    <blog-footer></blog-footer>
+    <blog-footer :theme="theme"></blog-footer>
   </div>
 </template>
 
@@ -41,20 +44,30 @@ export default {
     return {
       homepagePath: '/',
       homepageList: [],
+      homepageRouteName: '',
     };
+  },
+
+  computed: {
+    theme() {
+      // return this.$store.state.theme;
+      return 'night';
+    },
   },
 
   methods: {
     initHomePage(data) {
       if (this.isValidHomePage(data)) {
-        this.homepageList = data.homepages;
+        this.homepageRouteName = data.routeName || 'read';
+
+        this.homepageList = data.list;
 
         this.homepagePath = data.path;
       }
     },
 
     isValidHomePage(obj) {
-      return Reflect.has(obj, 'homepages') && Reflect.has(obj, 'path');
+      return Reflect.has(obj, 'list') && Reflect.has(obj, 'path');
     },
   },
 
@@ -67,9 +80,33 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 @import '../css/globalAnim.css';
 @import '../css/ballAnim.css';
+
+.home-day-theme {
+  --title-color: rgba(0, 0, 0, 0.8);
+  --text-color: rgba(0, 0, 0, 0.5);
+  --background-color: transparent;
+  --ball-big-start-color: rgba(0, 0, 0, 0.01);
+  --ball-big-end-color: rgba(0, 0, 0, 0.05);
+  --ball-middle-start-color: rgba(0, 0, 0, 0.03);
+  --ball-middle-end-color: rgba(0, 0, 0, 0.1);
+  --ball-small-start-color: rgba(0, 0, 0, 0.06);
+  --ball-small-end-color: rgba(0, 0, 0, 0.15);
+}
+
+.home-night-theme {
+  --title-color: rgba(255, 255, 255, 0.9);
+  --text-color: rgba(255, 255, 255, 0.6);
+  --background-color: rgb(18, 18, 18);
+  --ball-big-start-color: rgba(255, 255, 255, 0.01);
+  --ball-big-end-color: rgba(255, 255, 255, 0.09);
+  --ball-middle-start-color: rgba(255, 255, 255, 0.05);
+  --ball-middle-end-color: rgba(255, 255, 255, 0.12);
+  --ball-small-start-color: rgba(255, 255, 255, 0.07);
+  --ball-small-end-color: rgba(255, 255, 255, 0.17);
+}
 
 .head {
   position: absolute;
@@ -85,69 +122,76 @@ export default {
   position: relative;
   height: 100vh;
   overflow: hidden;
-  font-size: 1vw;
+  font-size: 1rem;
+  background-color: var(--background-color);
+}
+
+@media screen and (max-width: 1448px) and (min-width: 1024px) {
+  .welcome {
+    font-size: 1.2rem;
+  }
 }
 
 @media screen and (max-width: 1024px) and (min-width: 567px) {
   .welcome {
-    font-size: 1.5vw;
+    font-size: 0.8rem;
   }
 }
 
 @media screen and (max-width: 567px) {
   .welcome {
-    font-size: 2vw;
+    font-size: 0.5rem;
   }
 }
 
-.welcometitle {
+.welcome-title {
   margin: 0;
-  font-size: 8em;
+  font-size: 7em;
   font-weight: 900;
-  color: rgba(0, 0, 0, 0.8);
+  color: var(--title-color);
 }
 
-.welcometext {
+.welcome-text {
   margin: 0;
   font-size: 1.1em;
   font-weight: 700;
-  color: rgba(0, 0, 0, 0.5);
+  color: var(--text-color);
 }
 
 @media screen and (max-width: 1024px) and (min-width: 567px) {
-  .welcometext {
+  .welcome-text {
     font-size: 1.3em;
   }
 }
 
 @media screen and (max-width: 567px) {
-  .welcometext {
+  .welcome-text {
     font-size: 1.5em;
   }
 }
 
-.welcometext span {
+.welcome-text span {
   font-size: 0.8em;
   vertical-align: top;
 }
 
-.info_container {
+.info-container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 4px;
-  margin: 4px 0;
-  padding: 0;
+  margin: 0;
+  padding: 4px 0;
+  background-color: var(--background-color);
 }
 
 @media screen and (max-width: 1024px) {
-  .info_container {
+  .info-container {
     grid-template-columns: 1fr;
   }
 }
 
-.item_container {
+.item-container {
   min-width: 0;
   list-style: none;
 }
-
 </style>

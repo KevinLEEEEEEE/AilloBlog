@@ -3,7 +3,7 @@
     <div class="pagelink-container">
       <router-link v-for="index in count" :key="index"
         :to="`${route}/${index}`"
-        :class="[index === currentPage ? 'page-current' : '', 'pagelink']"
+        :class="[index === currentPage ? 'pagelink-current' : '', 'pagelink']"
       >{{ index }}</router-link>
     </div>
   </div>
@@ -45,6 +45,7 @@ export default {
 .pagination {
   --side-length: 35px;
   --side-length-hover: 40px;
+  height: var(--side-length);
   background-image: linear-gradient(transparent calc(50%),
                                     var(--border-color) calc(50%),
                                     var(--border-color) calc(50% + 1px),

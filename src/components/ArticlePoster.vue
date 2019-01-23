@@ -1,22 +1,19 @@
 <template>
-  <div class="article_poster bgscale_anim" @click="pagejump">
-    <div class="cover_container imgload_container">
-      <img class="poster_cover imageload_cover" ref="cover"
-        :width="posterDefaultWidth"
-        :height="posterDefaultheight"
-        :src="src">
-      <div class="imgload_text">loading</div>
+  <div @click="pagejump" class="article-poster bgscale_anim"
+    :class="[theme === 'day' ? 'article-day-theme' : 'article-night-theme']">
+    <div class="article-cover-container">
+      <img src="../img/imgloading.png" class="article-cover" ref="cover">
     </div>
 
-    <p class="title">
+    <p class="article-title">
       {{ title }}
     </p>
 
-    <p class="info">
+    <p class="article-info">
       Posted：{{ date }}
     </p>
 
-    <p class="description">
+    <p class="article-description">
       {{ description }}
     </p>
   </div>
@@ -33,34 +30,18 @@ export default {
     covername: String,
     date: String,
     routeName: String,
-    posterDefaultWidth: Number,
-    posterDefaultheight: Number,
-  },
-  data() {
-    return {
-      src: '',
-    };
+    theme: String,
   },
 
   methods: {
     updateBgImage() {
       const path = `${this.route}/${this.covername}`;
       const setting = 'imageView2/0/q/50|imageslim';
-      const loader = process.env.NODE_ENV === 'production'
-        ? () => this.imageloader.loadImageFromCDN(path, setting)
-        : () => this.imageloader.loadImageFromLocal(path);
 
-      this.$refs.cover.onerror = () => {
-        if (process.env.NODE_ENV === 'production') {
-          this.imageloader.loadImageFromLocal(path).then((res) => {
-            this.src = res.result;
-          });
-        }
-      };
-
-      loader().then((res) => {
-        this.src = res.result;
-      });
+      this.$imageloader.loadImageAuto(path, setting)
+        .then((res) => {
+          this.$refs.cover.setAttribute('src', res);
+        });
     },
 
     pagejump() {
@@ -82,120 +63,69 @@ export default {
 
 <style>
 @import '../css/globalAnim.css';
-@import '../css/imgloadAnim.css';
 
-.article_poster {
-  overflow: hidden;
-  font-size: 0.85vw;
+.article-day-theme {
+  --title-color: black;
+  --info-color: rgb(180, 180, 180);
+  --description-color: rgb(80, 80, 80);
+  --bgscale-shadow-color: rgba(0, 0, 0, 0.2);
+  --bgscale-color: black;
+}
+
+.article-night-theme {
+  --title-color: white;
+  --info-color: rgb(180, 180, 180);
+  --description-color: rgb(140, 140, 140);
+  --bgscale-shadow-color: rgba(255, 255, 255, 0.3);
+  --bgscale-color: rgb(180, 180, 180);
+}
+
+.article-poster {
+  font-size: 1rem;
   text-align: left;
-  box-shadow: inset 0 -1px rgba(0, 0, 0, 0.2);
+  box-shadow: inset 0 -1px var(--bgscale-shadow-color);
   cursor: pointer;
 }
 
-.article_poster:hover .poster_cover {
-  transform: scale(1.04);
+.article-poster:hover .article-cover {
+  transform: scale(1.02);
 }
 
-@media screen and (max-width: 1448px) and (min-width: 1024px) {
-  .article_poster {
-    font-size: 1.2vw;
-  }
-}
-
-@media screen and (max-width: 1024px) and (min-width: 567px) {
-  .article_poster {
-    font-size: 1.5vw;
-  }
-}
-
-@media screen and (max-width: 567px) {
-  .article_poster {
-    font-size: 4.5vw;
-  }
-}
-
-.cover_container {
+.article-cover-container {
   overflow: hidden;
 }
 
-.poster_cover {
-  max-width: 100%;
-  height: auto;
+.article-cover {
+  width: 100%;
   transition: transform 0.2s ease;
   transform-origin: center bottom;
 }
 
-.poster_cover[src=''] {
-  height: 250px;
-}
-
-.title {
-  margin: 20px 0 0 0;
-  overflow: hidden;
-  color: black;
+.article-title {
+  margin: 1.3em 0 0 0;
+  color: var(--title-color);
   font-size: 1.2em;
-  text-transform: capitalize;
   text-overflow: ellipsis;
   white-space: nowrap;
-}
-
-@media screen and (max-width: 1024px) and (min-width: 567px) {
-  .title {
-    font-size: 1.4em;
-  }
+  overflow: hidden;
 }
 
 @media screen and (max-width: 567px) {
-  .title {
+  .article-title {
     white-space: normal;
   }
 }
 
-.info {
-  color: rgb(180, 180, 180);
+.article-info {
+  color: var(--info-color);
   font-size: 0.65em;
 }
 
-@media screen and (max-width: 1448px) and (min-width: 1024px) {
-  .info {
-    font-size: 0.7em;
-  }
-}
-
-@media screen and (max-width: 1024px) and (min-width: 567px) {
-  .info {
-    font-size: 0.7em;
-  }
-}
-
-.description {
+.article-description {
   margin: 1.5em 0 5em 0;
-  padding-right: 1rem;
-  color: rgb(80, 80, 80);
-  font-size: 0.8em;
+  color: var(--description-color);
+  font-size: 0.75em;
   word-wrap: break-word;
   letter-spacing: 1px;
-}
-
-@media screen and (max-width: 1448px) and (min-width: 1024px) {
-  .description {
-    font-size: 0.9em;
-  }
-}
-
-@media screen and (max-width: 1024px) and (min-width: 567px) {
-  .description {
-    font-size: 0.9em;
-  }
-}
-
-@media screen and (max-width: 567px) {
-  .description {
-    font-size: 0.7em;
-  }
-}
-
-a {
-  text-decoration: none;
 }
 </style>

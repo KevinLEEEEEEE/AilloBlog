@@ -1,22 +1,23 @@
 {
   "path": "blog/homepage",
-	"homepages": [{
+  "routeName": "read",
+	"list": [{
     "title": "此时此刻",
     "folder": "this-moment",
 		"filename": "this-moment",
 		"covername": "cover.jpg",
-		"id": 1
+		"id": "H1"
 	}, {
     "title": "自我介绍",
     "folder": "self-introduction",
 		"filename": "self-introduction",
 		"covername": "cover.jpg",
-		"id": 2
+		"id": "H2"
 	}, {
     "title": "好物推荐",
     "folder": "recommend",
 		"filename": "recommend",
 		"covername": "cover.jpg",
-		"id": 3
+		"id": "H3"
 	}]
 }

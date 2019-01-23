@@ -9,7 +9,7 @@
       <router-link class="bgscale_anim nav-link" to="/catalog/informal-essays/1">随笔</router-link> ·
       <a class="bgscale_anim nav-link" href="https://github.com/KevinLEEEEEEE" target="_blank">编程作品集</a> ·
       <router-link class="bgscale_anim nav-link" to="/catalog/photographs/1">影像年鉴</router-link> ·
-      <router-link class="bgscale_anim nav-link" to="/">设计</router-link>
+      <router-link class="bgscale_anim nav-link" to="/catalog/designs/1">设计</router-link>
     </nav>
   </header>
 </template>
@@ -33,14 +33,12 @@ export default {
   --nav-color: white;
   --bgscale-color: white;
   --title-color: rgb(240, 240, 240);
-  --background-color: rgb(18, 18, 18);
 }
 
 .header-day-theme {
   --nav-color: black;
   --bgscale-color: black;
   --title-color: rgb(30, 30, 30);
-  --background-color: transparent;
 }
 
 header {
@@ -48,7 +46,6 @@ header {
   flex-direction: row;
   justify-content: space-between;
   padding: 2rem 18% 3rem 18%;
-  background-color: var(--background-color);
 }
 
 @media screen and (max-width: 1024px) {
