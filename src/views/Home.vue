@@ -12,10 +12,10 @@
       </div>
 
       <ul class="info-container">
-        <li class="item-container" v-for="homepage in homepageList" :key="homepage.id">
+        <li class="item-container" v-for="homepage in list" :key="homepage.id">
           <homepage-poster
             :title="homepage.title"
-            :route="`${homepagePath}/${homepage.folder}`"
+            :route="`${path}/${homepage.folder}`"
             :filename="homepage.filename"
             :covername="homepage.covername"
             :routeName="routeName"
@@ -42,27 +42,26 @@ export default {
   },
   data() {
     return {
-      homepagePath: '/',
-      homepageList: [],
-      homepageRouteName: '',
+      path: '/',
+      list: [],
+      routeName: '',
     };
   },
 
   computed: {
     theme() {
-      // return this.$store.state.theme;
-      return 'night';
+      return this.$store.state.theme;
     },
   },
 
   methods: {
     initHomePage(data) {
       if (this.isValidHomePage(data)) {
-        this.homepageRouteName = data.routeName || 'read';
+        this.routeName = data.routeName || 'read';
 
-        this.homepageList = data.list;
+        this.list = data.list;
 
-        this.homepagePath = data.path;
+        this.path = data.path;
       }
     },
 
@@ -81,7 +80,6 @@ export default {
 </script>
 
 <style>
-@import '../css/globalAnim.css';
 @import '../css/ballAnim.css';
 
 .home-day-theme {
@@ -101,11 +99,11 @@ export default {
   --text-color: rgba(255, 255, 255, 0.6);
   --background-color: rgb(18, 18, 18);
   --ball-big-start-color: rgba(255, 255, 255, 0.01);
-  --ball-big-end-color: rgba(255, 255, 255, 0.09);
-  --ball-middle-start-color: rgba(255, 255, 255, 0.05);
-  --ball-middle-end-color: rgba(255, 255, 255, 0.12);
-  --ball-small-start-color: rgba(255, 255, 255, 0.07);
-  --ball-small-end-color: rgba(255, 255, 255, 0.17);
+  --ball-big-end-color: rgba(255, 255, 255, 0.08);
+  --ball-middle-start-color: rgba(255, 255, 255, 0.03);
+  --ball-middle-end-color: rgba(255, 255, 255, 0.1);
+  --ball-small-start-color: rgba(255, 255, 255, 0.06);
+  --ball-small-end-color: rgba(255, 255, 255, 0.15);
 }
 
 .head {
@@ -122,7 +120,7 @@ export default {
   position: relative;
   height: 100vh;
   overflow: hidden;
-  font-size: 1rem;
+  font-size: 1.5rem;
   background-color: var(--background-color);
 }
 

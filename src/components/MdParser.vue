@@ -1,5 +1,5 @@
 <template>
-  <div v-html="rawHtml" class="md-reader" ref="doc"></div>
+  <div v-html="rawHtml" :class="[`md-reader-${theme}-theme`, 'md-reader']" ref="doc"></div>
 </template>
 
 <script>
@@ -7,6 +7,10 @@ export default {
   name: 'md-parser',
   props: {
     filename: String,
+    theme: {
+      type: String,
+      default: 'day',
+    },
   },
   data() {
     return {
@@ -16,7 +20,7 @@ export default {
 
   methods: {
     updateHtmlByMd(data) {
-      const frag = document.getElementsByClassName('reader')[0];
+      const frag = this.$refs.doc;
       const html = this.$md2html(data);
 
       this.rawHtml = this.$transTextForLazyload(html);
@@ -90,14 +94,27 @@ export default {
 </script>
 
 <style scoped>
+.md-reader-day-theme {
+  --fontcolor: rgb(40, 40, 40);
+  --hr-color: rgb(210, 210, 210);
+  --quote-start-color: rgb(170, 170, 170);
+  --quote-end-color: rgb(240, 240, 240);
+}
+
+.md-reader-night-theme {
+  --fontcolor: rgb(220, 220, 220);
+  --hr-color: rgb(100, 100, 100);
+  --quote-start-color: rgb(100, 100, 100);
+  --quote-end-color: rgb(30, 30, 30);
+}
+
 .md-reader {
   letter-spacing: 0.05rem;
-  --fontcolor: rgb(40, 40, 40);
 }
 
 .md-reader >>> hr {
   border: none;
-  border-bottom: 1px solid rgb(210, 210, 210);
+  border-bottom: 1px solid var(--hr-color);
 }
 
 .md-reader >>> h1, .md-reader >>> h2, .md-reader >>> h3,
@@ -129,7 +146,7 @@ export default {
 }
 
 .md-reader >>> a {
-  color: rgb(30, 143, 172);
+  color: rgb(30, 150, 180);
   text-decoration: none;
 }
 
@@ -140,7 +157,7 @@ export default {
 .md-reader >>> blockquote {
   margin: 0;
   padding: 1rem 2rem;
-  background: linear-gradient(to right, rgb(170, 170, 170) 4px, rgb(240, 240, 240) 4px);
+  background: linear-gradient(to right, var(--quote-start-color) 4px, var(--quote-end-color) 4px);
 }
 
 .md-reader >>> img {

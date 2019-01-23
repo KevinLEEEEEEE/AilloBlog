@@ -27,8 +27,6 @@ export default {
 </script>
 
 <style>
-@import "../css/globalAnim.css";
-
 .header-night-theme {
   --nav-color: white;
   --bgscale-color: white;

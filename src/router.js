@@ -23,5 +23,11 @@ export default new Router({
       component: () => import('./views/Reader.vue'),
       props: true,
     },
+    {
+      path: '/view/:route/:filename',
+      name: 'view',
+      component: () => import('./views/Viewer.vue'),
+      props: true,
+    },
   ],
 });

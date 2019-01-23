@@ -49,7 +49,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 .homepage_poster {
   position: relative;
   cursor: pointer;

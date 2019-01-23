@@ -11,11 +11,18 @@
         <p>CONTACT ME</p>
         <span>Email：<a href="https://mail.qq.com/" target="_blank">1069440019@qq.com</a></span>
         <span>Discord：1160817830</span>
+        <span>Door Of 77-514 Always Opens</span>
       </div>
       <div class="footer-info">
-        <p>VISIT ME</p>
-        <span>The Door Of My Dormitory Always Open</span>
-        <span>At QING Court 77 - 514</span>
+        <p>SITE SETTING</p>
+        <span>
+          <img src="../assets/day-theme.png" alt="day-theme-icon" width="12" height="12">
+          <a @click="themeToDay"> Day-theme</a>
+        </span>
+        <span class="theme-btn">
+          <img src="../assets/night-theme.png" alt="day-theme-icon" width="11" height="11">
+          <a @click="themeToNight"> Night-theme</a>
+        </span>
       </div>
       <div class="footer-info">
         <p>SITE CREDITS</p>
@@ -35,6 +42,16 @@ export default {
     theme: {
       type: String,
       default: 'day',
+    },
+  },
+
+  methods: {
+    themeToDay() {
+      this.$store.commit('themeToDay');
+    },
+
+    themeToNight() {
+      this.$store.commit('themeToNight');
     },
   },
 };
@@ -98,6 +115,7 @@ footer {
 .footer-info a {
   color: inherit;
   transition: color 0.2s ease;
+  cursor: pointer;
 }
 
 .footer-info a:hover {
@@ -108,9 +126,5 @@ footer {
   color: var(--text-color);
   font-size: 0.7rem;
   line-height: 2rem;
-}
-
-a {
-  text-decoration: none;
 }
 </style>

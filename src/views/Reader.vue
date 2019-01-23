@@ -1,18 +1,19 @@
 <template>
-  <div>
-    <blog-header></blog-header>
+  <div :class="[theme === 'day' ? 'reader-day-theme' : 'reader-night-theme']">
+    <blog-header :theme="theme"></blog-header>
 
-    <div class="reader_container fadeandtranslatein">
+    <div class="reader-container fadeandtranslatein">
       <md-parser
         :filename="completeFilename"
+        :theme="theme"
       ></md-parser>
-      <div class="tool_container">
-        <a @click="back" class="tool_btn return_btn">←</a>
-        <a @click="top" class="tool_btn top_btn">↑</a>
+      <div class="tool-container">
+        <a @click="back" class="tool-btn return-btn">←</a>
+        <a @click="top" class="tool-btn top-btn">↑</a>
       </div>
     </div>
 
-    <blog-footer></blog-footer>
+    <blog-footer :theme="theme"></blog-footer>
   </div>
 </template>
 
@@ -36,6 +37,10 @@ export default {
   computed: {
     completeFilename() {
       return `${this.route}/${this.filename}`;
+    },
+
+    theme() {
+      return this.$store.state.theme;
     },
   },
 
@@ -64,39 +69,46 @@ export default {
 };
 </script>
 
-<style scoped>
-@import "../css/globalAnim.css";
+<style>
+.reader-day-theme {
+  --tool-color: rgb(40, 40, 40);
+}
 
-.reader_container {
+.reader-night-theme {
+  --tool-color: rgb(220, 220, 220);
+  background-color: rgb(18, 18, 18);
+}
+
+.reader-container {
   min-height: calc(100vh - 100px);
   margin: 0 18% 100px 18%;
   text-align: start;
 }
 
 @media screen and (max-width: 1024px) and (min-width: 567px) {
-  .reader_container {
+  .reader-container {
     margin: 0 14% 100px 14%;
   }
 }
 
 @media screen and (max-width: 567px) {
-  .reader_container {
+  .reader-container {
     margin: 0 10% 50px 10%;
   }
 }
 
-.tool_container {
+.tool-container {
   margin-top: 60px;
   text-align: right;
 }
 
-.tool_btn {
+.tool-btn {
   display: inline-block;
   width: 40px;
   height: 40px;
   margin-right: 20px;
-  color: rgb(40, 40, 40);
-  border: 2px rgb(40, 40, 40) solid;
+  color: var(--tool-color);
+  border: 1.6px var(--tool-color) solid;
   border-radius: 50%;
   transition: transform 0.2s ease;
   line-height: 40px;
@@ -105,11 +117,11 @@ export default {
   user-select: none;
 }
 
-.return_btn:hover {
+.return-btn:hover {
   transform: translateX(-5px);
 }
 
-.top_btn:hover {
+.top-btn:hover {
   transform: translateY(-5px);
 }
 </style>

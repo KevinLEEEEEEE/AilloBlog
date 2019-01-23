@@ -9,6 +9,8 @@ export default {
 </script>
 
 <style>
+@import './css/globalAnim.css';
+
 #app {
   font-family: 'Microsoft YaHei', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

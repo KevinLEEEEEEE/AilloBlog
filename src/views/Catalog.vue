@@ -155,9 +155,7 @@ export default {
 };
 </script>
 
-
 <style>
-
 .catalog-night-theme {
   background-color: rgb(18, 18, 18);
 }

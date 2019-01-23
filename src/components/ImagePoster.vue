@@ -2,7 +2,7 @@
   <div class="image-poster" @click="pagejump"
     :class="[theme === 'day' ? 'image-day-theme' : 'image-night-theme']">
     <div class="image-cover-container">
-      <img src="../img/imgloading.png" class="image-cover"  ref="cover">
+      <img src="../assets/imgloading_400_400.png" class="image-cover"  ref="cover">
     </div>
 
     <p class="image-title">
@@ -26,7 +26,10 @@ export default {
     covername: String,
     date: String,
     routeName: String,
-    theme: String,
+    theme: {
+      type: String,
+      default: 'day',
+    },
   },
 
   methods: {
@@ -58,15 +61,13 @@ export default {
 </script>
 
 <style>
-@import '../css/globalAnim.css';
-
 .image-day-theme {
   --title-color: black;
   --info-color: rgb(180, 180, 180);
 }
 
 .image-night-theme {
-  --title-color: white;
+  --title-color: rgb(230, 230, 230);
   --info-color: rgb(180, 180, 180);
 }
 
@@ -75,6 +76,12 @@ export default {
   overflow: hidden;
   font-size: 1rem;
   cursor: pointer;
+}
+
+@media screen and (max-width: 1448px) {
+  .image-poster {
+    font-size: 0.9rem;
+  }
 }
 
 .image-poster:hover .image-cover-container {

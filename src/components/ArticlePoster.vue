@@ -2,7 +2,7 @@
   <div @click="pagejump" class="article-poster bgscale_anim"
     :class="[theme === 'day' ? 'article-day-theme' : 'article-night-theme']">
     <div class="article-cover-container">
-      <img src="../img/imgloading.png" class="article-cover" ref="cover">
+      <img src="../assets/imgloading_400_300.png" class="article-cover" ref="cover">
     </div>
 
     <p class="article-title">
@@ -62,8 +62,6 @@ export default {
 </script>
 
 <style>
-@import '../css/globalAnim.css';
-
 .article-day-theme {
   --title-color: black;
   --info-color: rgb(180, 180, 180);
