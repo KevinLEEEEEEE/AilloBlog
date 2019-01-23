@@ -8,7 +8,7 @@
     "description": "精灵新生游戏人物的出场顺序与内心的变化",
     "folder": "elf-rebirth",
 		"filename": "appearance-of-character",
-		"covername": "cover.png",
+		"covername": "cover1.png",
 		"date": "Jul 28, 2018",
 		"id": "N1"
 	}, {
@@ -16,7 +16,7 @@
     "description": "精灵新生角色们所面临的内心矛盾",
     "folder": "elf-rebirth",
 		"filename": "inner-conflict",
-		"covername": "cover.png",
+		"covername": "cover1.png",
 		"date": "Aug 2, 2018",
 		"id": "N2"
 	}, {
@@ -24,7 +24,7 @@
     "description": "精灵新生与游戏男主人公声烦的故事",
     "folder": "elf-rebirth",
 		"filename": "novel-shengfan",
-		"covername": "cover.png",
+		"covername": "cover1.png",
 		"date": "Aug 4, 2018",
 		"id": "N3"
 	}, {
@@ -32,7 +32,7 @@
     "description": "精灵新生所想表达的核心内容",
     "folder": "elf-rebirth",
 		"filename": "theme-of-game",
-		"covername": "cover.png",
+		"covername": "cover1.png",
 		"date": "Aug 8, 2018",
 		"id": "N4"
 	}, {
