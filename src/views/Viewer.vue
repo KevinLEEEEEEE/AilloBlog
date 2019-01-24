@@ -2,7 +2,7 @@
   <div :class="`viewer-${theme}-theme`">
     <blog-header :theme="theme"></blog-header>
 
-    <div class="viewer_container fadeandtranslatein">
+    <div class="viewer-container fadeandtranslatein">
       <image-parser
         :filename="completeFilename"
         :theme="theme"

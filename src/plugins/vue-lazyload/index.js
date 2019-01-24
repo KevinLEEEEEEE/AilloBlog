@@ -3,15 +3,26 @@ const diaplayImageAndDetachObserver = (io, change) => {
     return;
   }
 
+  console.log('load');
+
   const { target } = change;
 
   const src = target.getAttribute('data-src');
 
   target.setAttribute('src', src);
-  target.setAttribute('data-src', '');
 
   io.unobserve(target);
 };
+
+let io = null;
+
+function callback(changes) {
+  changes.forEach((change) => {
+    diaplayImageAndDetachObserver(io, change);
+  });
+}
+
+io = new IntersectionObserver(callback);
 
 
 export default {
@@ -20,16 +31,7 @@ export default {
      * @param {DocumentFragment} frag
      */
     Vue.prototype.$lazyload = (frag) => {
-      let io = null;
       const imgs = frag.querySelectorAll('img.lazyload');
-
-      function callback(changes) {
-        changes.forEach((change) => {
-          diaplayImageAndDetachObserver(io, change);
-        });
-      }
-
-      io = new IntersectionObserver(callback);
 
       imgs.forEach((img) => {
         io.observe(img);
@@ -37,7 +39,7 @@ export default {
     };
 
     /**
-     * @param {string} text
+     * @param {String} text
      */
     Vue.prototype.$transTextForLazyload = (text) => {
       const regexp = /<img src\s*=\s*"(.+?)"/g; // <img src="$1" ... >

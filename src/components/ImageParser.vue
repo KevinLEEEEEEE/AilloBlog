@@ -1,13 +1,18 @@
 <template>
-  <div>
-    <div v-html="rawHtml" :class="[`image-viewer-${theme}-theme`, 'image-viewer']" ref="doc"></div>
+  <div :class="`image-parser-${theme}-theme`" ref="doc">
+    <image-content v-for="item in list" :key="item.id"
+      :src="item.src"
+      :description="item.description"
+    ></image-content>
   </div>
 </template>
 
-
 <script>
+import ImageContent from './ImageContent.vue';
+
 export default {
   name: 'image-parser',
+  components: { ImageContent },
   props: {
     filename: String,
     theme: {
@@ -18,35 +23,26 @@ export default {
   data() {
     return {
       rawHtml: '',
+      list: [],
     };
   },
 
   methods: {
-    updateHtmlByJSON(data) { // 每此nextTick载入新的图片链接
-      // const frag = this.$refs.doc;
+    updateHtmlByJSON(data) {
+      if (this.isValidJSON(data)) {
+        this.list = data.list;
 
-      // if (this.isValidJSON(data)) {
-      //   data.list.forEach(({ src, description }) => {
-      //     this.rawHtml += this.generateImageBlock(src, description);
-      //   });
-
-      //   this.$nextTick(() => {
-      //     this.$lazyload(frag);
-      //   });
+        // setTimeout(() => {
+        this.$nextTick(() => {
+          console.log('next tick');
+          this.$lazyload(this.$refs.doc);
+        });
+        // }, 50);
       }
     },
 
     isValidJSON(obj) {
       return Reflect.has(obj, 'list');
-    },
-
-    generateImageBlock(src, description = '') {
-      return `
-        <div class="image-block">
-          <img data-src="${src}" class="lazyload image-content">
-          <p class="image-description">${description}</p>
-        </div>
-      `;
     },
   },
 
@@ -60,5 +56,11 @@ export default {
 </script>
 
 <style>
+.image-parser-day-theme {
+  --fontcolor: rgb(40, 40, 40);
+}
 
+.image-parser-night-theme {
+  --fontcolor: rgb(220, 220, 220);
+}
 </style>
