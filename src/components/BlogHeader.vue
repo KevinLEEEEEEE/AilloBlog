@@ -1,5 +1,5 @@
 <template>
-  <header :class="[theme === 'day' ? 'header-day-theme' : 'header-night-theme']">
+  <header :class="`header-${theme}-theme`">
     <h1>
       <router-link class="title-link" to="/">Aillo's Blog</router-link>
     </h1>

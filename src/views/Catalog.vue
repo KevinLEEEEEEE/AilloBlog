@@ -1,5 +1,5 @@
 <template>
-  <div :class="[theme === 'day' ? 'catalog-day-theme' : 'catalog-night-theme']">
+  <div :class="`catalog-${theme}-theme`">
     <blog-header :theme="theme"></blog-header>
 
     <div class="catalog">

@@ -1,5 +1,5 @@
 <template>
-  <div :class="[theme === 'day' ? 'pagenumber-day-theme' : 'pagenumber-night-theme', 'pagination']">
+  <div :class="[`pagenumber-${theme}-theme`, 'pagination']">
     <div class="pagelink-container">
       <router-link v-for="index in count" :key="index"
         :to="`${route}/${index}`"

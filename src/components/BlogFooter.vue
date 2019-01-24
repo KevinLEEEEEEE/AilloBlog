@@ -1,5 +1,5 @@
 <template>
-  <footer :class="[theme === 'day' ? 'footer-day-theme' : 'footer-night-theme']">
+  <footer :class="`footer-${theme}-theme`">
     <div class="footer-info-container">
       <div class="footer-info">
         <p>LINKS</p>

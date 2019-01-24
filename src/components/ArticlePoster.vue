@@ -1,6 +1,5 @@
 <template>
-  <div @click="pagejump" class="article-poster bgscale_anim"
-    :class="[theme === 'day' ? 'article-day-theme' : 'article-night-theme']">
+  <div @click="pagejump" :class="[`article-${theme}-theme`, 'article-poster', 'bgscale_anim']">
     <div class="article-cover-container">
       <img src="../assets/imgloading_400_300.png" class="article-cover" ref="cover">
     </div>

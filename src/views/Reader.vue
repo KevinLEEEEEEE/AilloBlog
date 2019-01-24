@@ -1,5 +1,5 @@
 <template>
-  <div :class="[theme === 'day' ? 'reader-day-theme' : 'reader-night-theme']">
+  <div :class="`reader-${theme}-theme`">
     <blog-header :theme="theme"></blog-header>
 
     <div class="reader-container fadeandtranslatein">

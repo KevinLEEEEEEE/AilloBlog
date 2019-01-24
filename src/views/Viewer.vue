@@ -1,9 +1,12 @@
 <template>
-  <div :class="[theme === 'day' ? 'viewer-day-theme' : 'viewer-night-theme']">
+  <div :class="`viewer-${theme}-theme`">
     <blog-header :theme="theme"></blog-header>
 
     <div class="viewer_container fadeandtranslatein">
-      hiiiiii
+      <image-parser
+        :filename="completeFilename"
+        :theme="theme"
+      ></image-parser>
       <div class="tool-container">
         <a @click="back" class="tool-btn return-btn">←</a>
         <a @click="top" class="tool-btn top-btn">↑</a>
@@ -15,6 +18,7 @@
 </template>
 
 <script>
+import ImageParser from '@/components/ImageParser.vue';
 import BlogHeader from '@/components/BlogHeader.vue';
 import BlogFooter from '@/components/BlogFooter.vue';
 
@@ -23,6 +27,7 @@ export default {
   components: {
     BlogHeader,
     BlogFooter,
+    ImageParser,
   },
   props: {
     route: String,
@@ -65,32 +70,32 @@ export default {
 </script>
 
 <style>
-/* .reader-day-theme {
+.viewer-day-theme {
   --tool-color: rgb(40, 40, 40);
 }
 
-.reader-night-theme {
+.viewer-night-theme {
   --tool-color: rgb(220, 220, 220);
   background-color: rgb(18, 18, 18);
 }
 
-.reader-container {
+.viewer-container {
   min-height: calc(100vh - 100px);
   margin: 0 18% 100px 18%;
   text-align: start;
 }
 
 @media screen and (max-width: 1024px) and (min-width: 567px) {
-  .reader-container {
+  .viewer-container {
     margin: 0 14% 100px 14%;
   }
 }
 
 @media screen and (max-width: 567px) {
-  .reader-container {
+  .viewer-container {
     margin: 0 10% 50px 10%;
   }
-} */
+}
 
 .tool-container {
   margin-top: 60px;

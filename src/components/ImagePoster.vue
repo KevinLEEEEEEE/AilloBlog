@@ -1,6 +1,6 @@
 <template>
   <div class="image-poster" @click="pagejump"
-    :class="[theme === 'day' ? 'image-day-theme' : 'image-night-theme']">
+    :class="`image-${theme}-theme`">
     <div class="image-cover-container">
       <img src="../assets/imgloading_400_400.png" class="image-cover"  ref="cover">
     </div>

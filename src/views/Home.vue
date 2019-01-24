@@ -2,7 +2,7 @@
   <div class="home">
     <blog-header :theme="theme" class="head"></blog-header>
 
-    <div :class="[theme === 'day' ? 'home-day-theme' : 'home-night-theme']">
+    <div :class="`home-${theme}-theme`">
       <div class="welcome fadein">
         <div class="big ball"></div>
         <div class="middle ball"></div>
