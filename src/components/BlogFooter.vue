@@ -3,13 +3,13 @@
     <div class="footer-info-container">
       <div class="footer-info">
         <p>LINKS</p>
-        <span><a href="https://music.163.com/#/user/home?id=14617530" target="_blank">NetEase Cloud Music</a></span>
-        <span><a href="http://tieba.baidu.com/home/main?un=Hiccup希卡普" target="_blank">Baidu Tieba</a></span>
-        <span><a href="https://space.bilibili.com/5392441?" target="_blank">Bilibili</a></span>
+        <span><a href="https://music.163.com/#/user/home?id=14617530" target="_blank"  rel="noopener">NetEase Cloud Music</a></span>
+        <span><a href="http://tieba.baidu.com/home/main?un=Hiccup希卡普" target="_blank"  rel="noopener">Baidu Tieba</a></span>
+        <span><a href="https://space.bilibili.com/5392441?" target="_blank"  rel="noopener">Bilibili</a></span>
       </div>
       <div class="footer-info">
         <p>CONTACT ME</p>
-        <span>Email：<a href="https://mail.qq.com/" target="_blank">1069440019@qq.com</a></span>
+        <span>Email：<a href="https://mail.qq.com/" target="_blank"  rel="noopener">1069440019@qq.com</a></span>
         <span>Discord：1160817830</span>
         <span>Door Of 77-514 Always Opens</span>
       </div>
@@ -28,10 +28,10 @@
         <p>SITE CREDITS</p>
         <span>Designed By Aillo</span>
         <span>Developed By Aillo</span>
-        <span>Project On <a href="https://github.com/KevinLEEEEEEE/AilloBlog" target="_blank">Github</a></span>
+        <span>Project On <a href="https://github.com/KevinLEEEEEEE/AilloBlog" target="_blank"  rel="noopener">Github</a></span>
       </div>
     </div>
-    <a href="http://www.miibeian.gov.cn/" class="police-link">浙ICP备17041642号-1</a>
+    <a href="http://www.miibeian.gov.cn/" class="police-link"  rel="noopener">浙ICP备17041642号-1</a>
   </footer>
 </template>
 
@@ -99,7 +99,7 @@ footer {
 .footer-info {
   text-align: left;
   color: var(--text-color);
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   line-height: 1.2rem;
 }
 

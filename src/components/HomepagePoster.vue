@@ -1,7 +1,7 @@
 <template>
   <div class="homepage_poster" @click="pagejump">
     <div class="cover_container">
-      <img class="homepage_cover" ref="cover">
+      <img class="homepage_cover" ref="cover" alt="homepage image">
     </div>
 
     <a class="title">

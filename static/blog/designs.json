@@ -1,0 +1,15 @@
+{
+  "path": "blog/designs",
+  "routeName": "view",
+  "posterName": "image-poster",
+  "itemsPerPage": 12,
+	"list": [{
+    "title": "江南雪景 - 广角",
+    "description": "",
+    "folder": "jiangnan-snow-widelens",
+		"filename": "appearance-of-character",
+		"covername": "cover.png",
+		"date": "Jul 28, 2018",
+		"id": "D1"
+	}]
+}
