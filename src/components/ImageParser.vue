@@ -1,7 +1,8 @@
 <template>
-  <div :class="`image-parser-${theme}-theme`" ref="doc">
+  <div :class="[`image-parser-${theme}-theme`,,'image-parser']" ref="doc">
     <image-content v-for="item in list" :key="item.id"
       :src="item.src"
+      :srcfull="item.src_full"
       :description="item.description"
     ></image-content>
   </div>
@@ -59,5 +60,9 @@ export default {
 
 .image-parser-night-theme {
   --fontcolor: rgb(220, 220, 220);
+}
+
+.image-parser {
+  margin-top: 50px;
 }
 </style>

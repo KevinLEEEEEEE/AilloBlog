@@ -6,7 +6,7 @@
       @click="fullScreenToggle">
     <p class="image-description">{{ description }}</p>
     <div class="full-screen-viewer" v-if="isFullScreen">
-      <img :src="src" :alt="description" class="full-screen-image-content">
+      <img :src="srcfull" :alt="description" class="full-screen-image-content">
       <button class="full-screen-btn" @click="fullScreenToggle"></button>
     </div>
   </div>
@@ -17,6 +17,7 @@ export default {
   name: 'image-content',
   props: {
     src: String,
+    srcfull: String,
     description: {
       type: String,
       default: '',
@@ -42,10 +43,11 @@ export default {
 <style>
 .image-block {
   margin-bottom: 150px;
+  text-align: center;
 }
 
 .image-content {
-  width: 100%;
+  max-width: 100%;
   cursor: pointer;
 }
 
@@ -60,13 +62,14 @@ export default {
   position: fixed;
   left: 0;
   top: 0;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   z-index: 10;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(0, 0, 0, 0.85);
+  font-size: 0;
+  background-color: rgba(0, 0, 0, 0.95);
 }
 
 .full-screen-image-content {
@@ -76,7 +79,7 @@ export default {
 
 .full-screen-btn {
   position: absolute;
-  right: 2%;
+  right: 1%;
   top: 2%;
   width: 40px;
   height: 40px;

@@ -74,22 +74,22 @@ export default {
 .image-poster {
   position: relative;
   overflow: hidden;
-  font-size: 1rem;
+  font-size: 0.9rem;
   cursor: pointer;
 }
 
 @media screen and (max-width: 1448px) {
   .image-poster {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
   }
 }
 
 .image-poster:hover .image-cover-container {
-  padding: 8%;
+  padding: 12%;
 }
 
 .image-cover-container {
-  padding: 9%;
+  padding: 13%;
   transition: padding 0.2s ease;
 }
 
@@ -107,6 +107,6 @@ export default {
 
 .image-info {
   color: var(--info-color);
-  font-size: 0.6em;
+  font-size: 0.65em;
 }
 </style>
