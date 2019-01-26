@@ -29,9 +29,9 @@
 </template>
 
 <script>
-import BlogHeader from '@/components/BlogHeader.vue';
-import BlogFooter from '@/components/BlogFooter.vue';
-import HomepagePoster from '@/components/HomepagePoster.vue';
+import BlogHeader from '../components/BlogHeader.vue';
+import BlogFooter from '../components/BlogFooter.vue';
+import HomepagePoster from '../components/HomepagePoster.vue';
 
 export default {
   name: 'home',

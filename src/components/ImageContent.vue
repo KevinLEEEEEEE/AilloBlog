@@ -1,8 +1,14 @@
 <template>
   <div class="image-block" ref="docs">
-    <img src="../assets/imgloading_1500_1000.png" :data-src="src" class="lazyload image-content">
-    <button class="view-origin-btn">查看原图</button>
+    <img src="../assets/imgloading_1500_1000.png"  class="lazyload image-content"
+      :data-src="src"
+      :alt="description"
+      @click="fullScreenToggle">
     <p class="image-description">{{ description }}</p>
+    <div class="full-screen-viewer" v-if="isFullScreen">
+      <img :src="src" :alt="description" class="full-screen-image-content">
+      <button class="full-screen-btn" @click="fullScreenToggle"></button>
+    </div>
   </div>
 </template>
 
@@ -16,6 +22,17 @@ export default {
       default: '',
     },
   },
+  data() {
+    return {
+      isFullScreen: false,
+    };
+  },
+
+  methods: {
+    fullScreenToggle() {
+      this.isFullScreen = !this.isFullScreen;
+    },
+  },
 
   mounted() {
   },
@@ -24,28 +41,12 @@ export default {
 
 <style>
 .image-block {
-  position: relative;
   margin-bottom: 150px;
-}
-
-.view-origin-btn {
-  display: none;
-  position: absolute;
-  right: 5px;
-  top: 5px;
-  padding: 10px 30px;
-  background-color: rgba(200, 200, 200, 0.8);
-  border: none;
-  border-radius: 5px;
-  outline: none;
-}
-
-.image-block:hover .view-origin-btn {
-  display: block;
 }
 
 .image-content {
   width: 100%;
+  cursor: pointer;
 }
 
 .image-description {
@@ -53,5 +54,45 @@ export default {
   color: var(--fontcolor);
   font-size: 0.8rem;
   text-align: center;
+}
+
+.full-screen-viewer {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.85);
+}
+
+.full-screen-image-content {
+  max-width: 96%;
+  max-height: 96%;
+}
+
+.full-screen-btn {
+  position: absolute;
+  right: 2%;
+  top: 2%;
+  width: 40px;
+  height: 40px;
+  background: url('../assets/close.png') no-repeat center center
+              rgba(0, 0, 0, 0.7);
+  background-size: 12px;
+  border: none;
+  border-radius: 20px;
+  outline: none;
+  opacity: 0.7;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.full-screen-btn:hover {
+  opacity: 1;
+  transform: rotate(-90deg);
 }
 </style>

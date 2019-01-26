@@ -18,9 +18,9 @@
 </template>
 
 <script>
-import ImageParser from '@/components/ImageParser.vue';
-import BlogHeader from '@/components/BlogHeader.vue';
-import BlogFooter from '@/components/BlogFooter.vue';
+import ImageParser from '../components/ImageParser.vue';
+import BlogHeader from '../components/BlogHeader.vue';
+import BlogFooter from '../components/BlogFooter.vue';
 
 export default {
   name: 'reader',

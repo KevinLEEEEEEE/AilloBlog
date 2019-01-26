@@ -4,6 +4,7 @@ module.exports = {
   publicPath: './',
   productionSourceMap: false,
   devServer: {
+    // https: true,
     port: 8080,
     open: true,
   },

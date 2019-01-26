@@ -30,11 +30,11 @@
 </template>
 
 <script>
-import BlogHeader from '@/components/BlogHeader.vue';
-import BlogFooter from '@/components/BlogFooter.vue';
-import ImagePoster from '@/components/ImagePoster.vue';
-import ArticlePoster from '@/components/ArticlePoster.vue';
-import PageNumber from '@/components/PageNumber.vue';
+import BlogHeader from '../components/BlogHeader.vue';
+import BlogFooter from '../components/BlogFooter.vue';
+import ImagePoster from '../components/ImagePoster.vue';
+import ArticlePoster from '../components/ArticlePoster.vue';
+import PageNumber from '../components/PageNumber.vue';
 
 export default {
   name: 'catalog',

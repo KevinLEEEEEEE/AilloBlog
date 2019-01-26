@@ -32,12 +32,9 @@ export default {
       if (this.isValidJSON(data)) {
         this.list = data.list;
 
-        // setTimeout(() => {
-        this.$nextTick(() => {
-          console.log('next tick');
-          this.$lazyload(this.$refs.doc);
-        });
-        // }, 50);
+        setTimeout(() => {
+          this.$lazyload(this.$refs.doc); // why?
+        }, 50);
       }
     },
 

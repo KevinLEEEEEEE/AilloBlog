@@ -78,6 +78,7 @@ export default {
 }
 
 .article-poster {
+  overflow: hidden;
   font-size: 1rem;
   text-align: left;
   box-shadow: inset 0 -1px var(--bgscale-shadow-color);

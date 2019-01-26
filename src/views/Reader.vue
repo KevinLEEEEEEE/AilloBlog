@@ -18,9 +18,9 @@
 </template>
 
 <script>
-import MdParser from '@/components/MdParser.vue';
-import BlogHeader from '@/components/BlogHeader.vue';
-import BlogFooter from '@/components/BlogFooter.vue';
+import MdParser from '../components/MdParser.vue';
+import BlogHeader from '../components/BlogHeader.vue';
+import BlogFooter from '../components/BlogFooter.vue';
 
 export default {
   name: 'reader',
