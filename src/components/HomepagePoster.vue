@@ -15,15 +15,15 @@ export default {
   name: 'homepage-poster',
   props: {
     title: String,
-    route: String,
+    absolutepath: String,
     filename: String,
     covername: String,
-    routeName: String,
+    routename: String,
   },
 
   methods: {
     updateBgImage() {
-      const path = `${this.route}/${this.covername}`;
+      const path = `${this.absolutepath}/${this.covername}`;
       const setting = 'imageView2/0/q/50|imageslim';
 
       this.$imageloader.loadImageAuto(path, setting)
@@ -34,9 +34,9 @@ export default {
 
     pagejump() {
       this.$router.push({
-        name: this.routeName,
+        name: this.routename,
         params: {
-          route: this.route,
+          route: this.absolutepath,
           filename: this.filename,
         },
       });

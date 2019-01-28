@@ -4,15 +4,15 @@
 
     <div class="catalog">
       <ul class="catalog-container">
-        <li class="item-container fadeandtranslatein" v-for="item in currList" :key="item.id">
-          <div :is="posterName" class="item"
+        <li class="item-container fadeandtranslatein" v-for="item in list" :key="item.objectId">
+          <div :is="poster" class="item"
             :title="item.title"
             :description="item.description"
             :route="`${path}/${item.folder}`"
             :filename="item.filename"
             :covername="item.covername"
             :date="item.date"
-            :routeName="routeName"
+            :routeName="item.routename"
             :theme="theme"
           ></div>
         </li>
@@ -32,18 +32,19 @@
 <script>
 import BlogHeader from '../components/BlogHeader.vue';
 import BlogFooter from '../components/BlogFooter.vue';
+import PageNumber from '../components/PageNumber.vue';
 import ImagePoster from '../components/ImagePoster.vue';
 import ArticlePoster from '../components/ArticlePoster.vue';
-import PageNumber from '../components/PageNumber.vue';
+import api from '../api/api';
 
 export default {
   name: 'catalog',
   components: {
     BlogHeader,
     BlogFooter,
-    ImagePoster,
-    ArticlePoster,
     PageNumber,
+    ArticlePoster,
+    ImagePoster,
   },
   props: {
     category: String,
@@ -51,30 +52,17 @@ export default {
   },
   data() {
     return {
-      path: '/',
       list: [],
-      currList: [],
-      routeName: '',
-      posterName: '',
+      path: '',
+      poster: '',
       itemsPerPage: 12,
+      itemsAmount: 0,
     };
   },
 
   computed: {
     pagesCount() {
-      return Math.ceil(this.list.length / this.itemsPerPage);
-    },
-
-    currentPage() {
-      const pageNumber = parseInt(this.page, 10);
-
-      if (pageNumber < 1) {
-        return 1;
-      } if (pageNumber > this.pagesCount) {
-        return this.pagesCount;
-      }
-
-      return pageNumber;
+      return Math.ceil(this.itemsAmount / this.itemsPerPage);
     },
 
     theme() {
@@ -85,72 +73,86 @@ export default {
   watch: {
     '$route.params.page': function callback(to, from) {
       if (to !== from) {
-        this.updateCurrList();
-
-        this.top();
+        this.updateCategoryList();
       }
     },
 
     '$route.params.category': function callback(to, from) {
       if (to !== from) {
-        this.updateCategoryList(to);
+        this.updateCategoryInfo();
 
-        this.updateCurrList();
-
-        this.top();
+        this.updateCategoryList();
       }
     },
   },
 
   methods: {
-    initCatalog(data) {
-      if (this.isValidCatalog(data)) {
-        this.routeName = data.routeName || 'read';
+    updateCategoryInfo() {
+      switch (this.category) {
+        case 'notes': {
+          this.path = 'blog/notes';
 
-        this.itemsPerPage = data.itemsPerPage || 12;
+          this.poster = 'article-poster';
 
-        this.posterName = data.posterName || 'article-poster';
+          api.notes.getCount()
+            .then((res) => {
+              this.itemsAmount = res;
+            });
 
-        this.list = data.list.reverse(); // must put before calc page number
+          break;
+        }
 
-        this.path = data.path;
+        case 'informal-essays': {
+          this.path = 'blog/informal-essays';
 
-        this.updateCurrList();
+          this.poster = 'article-poster';
+
+          api.informalEssays.getCount()
+            .then((res) => {
+              console.log(res);
+              this.itemsAmount = res;
+            });
+
+          break;
+        }
+
+        default:
+          console.error(`no such category: ${this.category}`);
       }
     },
 
-    isValidCatalog(obj) {
-      return Reflect.has(obj, 'list') && Reflect.has(obj, 'path');
-    },
+    updateCategoryList() {
+      const page = parseInt(this.page, 10);
 
-    updateCurrList() {
-      const start = (this.currentPage - 1) * this.itemsPerPage;
-      const total = this.list.length;
+      switch (this.category) {
+        case 'notes': {
+          api.notes.getListByPage(this.itemsPerPage, page)
+            .then((res) => {
+              this.list = res;
+            });
 
-      this.currList = [];
+          break;
+        }
 
-      for (let i = 0; i < this.itemsPerPage && (start + i) < total; i += 1) {
-        this.currList.push(this.list[start + i]);
+        case 'informal-essays': {
+          api.informalEssays.getListByPage(this.itemsPerPage, page)
+            .then((res) => {
+              this.list = res;
+            });
+
+          break;
+        }
+
+        default:
+          console.error(`no such category: ${this.category}`);
       }
-    },
-
-    top() {
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth',
-      });
-    },
-
-    updateCategoryList(name) {
-      this.$http.get(`blog/${name}.json`)
-        .then((res) => {
-          this.initCatalog(res.data);
-        });
     },
   },
 
-  mounted() {
-    this.updateCategoryList(this.category);
+  created() {
+    this.updateCategoryInfo();
+
+    this.updateCategoryList();
   },
 };
 </script>
@@ -161,19 +163,19 @@ export default {
 }
 
 .catalog-day-theme {
-  background-color: white;
+  background-color: transparent;
 }
 
 .catalog {
-  min-height: 95vh;
-  padding-bottom: 5vh;
+  min-height: 90vh;
+  padding: 0 18% 5vh 18%;
 }
 
 .catalog-container {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 1.5rem;
-  margin: 0 18%;
+  margin: 0;
   padding: 0;
 }
 
@@ -206,6 +208,6 @@ export default {
 }
 
 .pagination {
-  margin: 100px 18% 0 18%;
+  margin-top: 5vh;
 }
 </style>

@@ -2,7 +2,7 @@
   <div :class="[`pagenumber-${theme}-theme`, 'pagination']">
     <div class="pagelink-container">
       <router-link v-for="index in count" :key="index"
-        :to="`${route}/${index}`"
+        :to="getUrl(index)"
         :class="[index === currentPage ? 'pagelink-current' : '', 'pagelink']"
       >{{ index }}</router-link>
     </div>
@@ -24,6 +24,21 @@ export default {
   computed: {
     currentPage() {
       return parseInt(this.$route.params.page, 10);
+    },
+  },
+
+  methods: {
+    mergeParams(params) {
+      return Object.assign({}, this.$route.params, params);
+    },
+
+    getUrl(index) {
+      const page = index.toString();
+
+      return {
+        name: this.$route.name,
+        params: this.mergeParams({ page }),
+      };
     },
   },
 };

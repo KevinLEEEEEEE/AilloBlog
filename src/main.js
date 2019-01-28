@@ -14,6 +14,9 @@ import vueMd2html from './plugins/vue-md2html/index';
 import vueHighlight from './plugins/vue-highlight/index';
 import vueLazyload from './plugins/vue-lazyload/index';
 import vueImageLoader from './plugins/vue-imgloader/index';
+import BmobUtils from './api/Bmob';
+
+BmobUtils.initialize('39547066d4ccdb3c861811b8deb5fb58', '52a732feb4cc614a6de161b2aba98e89');
 
 Vue.use(vueLazyload);
 

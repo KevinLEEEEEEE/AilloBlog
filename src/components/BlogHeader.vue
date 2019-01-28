@@ -5,11 +5,11 @@
     </h1>
 
     <nav>
-      <router-link class="bgscale_anim nav-link" to="/catalog/notes/1">札记</router-link> ·
-      <router-link class="bgscale_anim nav-link" to="/catalog/informal-essays/1">随笔</router-link> ·
+      <router-link class="bgscale_anim nav-link" :to="getUrl('notes')">札记</router-link> ·
+      <router-link class="bgscale_anim nav-link" :to="getUrl('informal-essays')">随笔</router-link> ·
       <a class="bgscale_anim nav-link" href="https://github.com/KevinLEEEEEEE" target="_blank" rel="noopener">编程作品集</a> ·
-      <router-link class="bgscale_anim nav-link" to="/catalog/photographs/1">影像年鉴</router-link> ·
-      <router-link class="bgscale_anim nav-link" to="/catalog/designs/1">设计</router-link>
+      <router-link class="bgscale_anim nav-link" :to="getUrl('photographs')">影像年鉴</router-link> ·
+      <router-link class="bgscale_anim nav-link" :to="getUrl('designs')">设计</router-link>
     </nav>
   </header>
 </template>
@@ -21,6 +21,28 @@ export default {
     theme: {
       type: String,
       default: 'day',
+    },
+  },
+
+  methods: {
+    getUrl(category) {
+      return {
+        name: 'catalog',
+        params: {
+          category,
+          page: '1',
+        },
+      };
+    },
+
+    jumpTo(category) {
+      this.$router.push({
+        name: 'catalog',
+        params: {
+          category,
+          page: 1,
+        },
+      });
     },
   },
 };

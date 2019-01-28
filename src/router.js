@@ -6,6 +6,13 @@ if (process.env.NODE_ENV === 'development') {
   Vue.use(Router);
 }
 
+const scrollToTopSmoothly = () => {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth',
+  });
+};
+
 export default new Router({
   routes: [
     {
@@ -14,7 +21,7 @@ export default new Router({
       component: Home,
     },
     {
-      path: '/catalog/:category/:page',
+      path: '/:category/:page',
       name: 'catalog',
       component: () => import('./views/Catalog.vue'),
       props: true,
@@ -32,4 +39,10 @@ export default new Router({
       props: true,
     },
   ],
+
+  scrollBehavior() {
+    scrollToTopSmoothly();
+
+    return false;
+  },
 });

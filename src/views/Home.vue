@@ -12,13 +12,13 @@
       </div>
 
       <ul class="info-container">
-        <li class="item-container" v-for="homepage in list" :key="homepage.id">
+        <li class="item-container" v-for="homepage in list" :key="homepage.objectId">
           <homepage-poster
             :title="homepage.title"
-            :route="`${path}/${homepage.folder}`"
+            :absolutepath="`${path}/${homepage.folder}`"
             :filename="homepage.filename"
             :covername="homepage.covername"
-            :routeName="routeName"
+            :routename="homepage.routename"
           ></homepage-poster>
         </li>
       </ul>
@@ -32,6 +32,7 @@
 import BlogHeader from '../components/BlogHeader.vue';
 import BlogFooter from '../components/BlogFooter.vue';
 import HomepagePoster from '../components/HomepagePoster.vue';
+import api from '../api/api';
 
 export default {
   name: 'home',
@@ -44,7 +45,6 @@ export default {
     return {
       path: '/',
       list: [],
-      routeName: '',
     };
   },
 
@@ -56,24 +56,16 @@ export default {
 
   methods: {
     initHomePage(data) {
-      if (this.isValidHomePage(data)) {
-        this.routeName = data.routeName || 'read';
+      this.list = data;
 
-        this.list = data.list;
-
-        this.path = data.path;
-      }
-    },
-
-    isValidHomePage(obj) {
-      return Reflect.has(obj, 'list') && Reflect.has(obj, 'path');
+      this.path = 'blog/homepage';
     },
   },
 
-  mounted() {
-    this.$http.get('blog/homepage.json')
+  created() {
+    api.homepage.getList()
       .then((res) => {
-        this.initHomePage(res.data);
+        this.initHomePage(res);
       });
   },
 };
