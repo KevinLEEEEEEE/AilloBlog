@@ -65,7 +65,7 @@ header {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding: 2rem 18% 3rem 18%;
+  margin: 2rem 18% 3rem 18%;
 }
 
 @media screen and (max-width: 1024px) {

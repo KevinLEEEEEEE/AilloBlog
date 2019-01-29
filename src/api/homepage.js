@@ -8,11 +8,10 @@ const getCount = async () => BmobUtils.getQueryCount(query);
 
 const getList = () => BmobUtils.queryFind(query, 0, 0, 'order');
 
-const homepage = {
+const Homepage = {
   getQuery,
   getCount,
   getList,
 };
 
-
-export default homepage;
+export default Homepage;

@@ -12,7 +12,7 @@
             :filename="item.filename"
             :covername="item.covername"
             :date="item.date"
-            :routeName="item.routename"
+            :routename="item.routename"
             :theme="theme"
           ></div>
         </li>
@@ -96,6 +96,7 @@ export default {
 
           api.notes.getCount()
             .then((res) => {
+              console.log(res);
               this.itemsAmount = res;
             });
 
@@ -152,7 +153,7 @@ export default {
   created() {
     this.updateCategoryInfo();
 
-    this.updateCategoryList();
+    // this.updateCategoryList();
   },
 };
 </script>

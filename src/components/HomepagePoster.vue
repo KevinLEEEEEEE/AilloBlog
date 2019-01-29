@@ -1,7 +1,12 @@
 <template>
   <div class="homepage_poster" @click="pagejump">
     <div class="cover_container">
-      <img class="homepage_cover" ref="cover" alt="homepage image">
+      <smart-img
+        :path="path"
+        :width="width"
+        :height="height"
+        :alt="title"
+      ></smart-img>
     </div>
 
     <a class="title">
@@ -11,40 +16,36 @@
 </template>
 
 <script>
+import SmartImg from './SmartImg/SmartImg.vue';
+
 export default {
   name: 'homepage-poster',
+  components: { SmartImg },
   props: {
     title: String,
-    absolutepath: String,
+    route: String,
     filename: String,
     covername: String,
     routename: String,
   },
+  data() {
+    return {
+      path: `${this.route}/${this.covername}`,
+      width: 1000,
+      height: 563,
+    };
+  },
 
   methods: {
-    updateBgImage() {
-      const path = `${this.absolutepath}/${this.covername}`;
-      const setting = 'imageView2/0/q/50|imageslim';
-
-      this.$imageloader.loadImageAuto(path, setting)
-        .then((res) => {
-          this.$refs.cover.setAttribute('src', res);
-        });
-    },
-
     pagejump() {
       this.$router.push({
         name: this.routename,
         params: {
-          route: this.absolutepath,
+          route: this.route,
           filename: this.filename,
         },
       });
     },
-  },
-
-  mounted() {
-    this.updateBgImage();
   },
 };
 </script>
@@ -57,16 +58,6 @@ export default {
 
 .homepage_poster:hover .title {
   filter: opacity(100%);
-}
-
-.cover_container {
-  overflow: hidden;
-  font-size: 0;
-}
-
-.homepage_cover {
-  max-width: 100%;
-  height: auto;
 }
 
 .title {

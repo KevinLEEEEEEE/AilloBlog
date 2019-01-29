@@ -21,11 +21,11 @@ export default {
   props: {
     title: String,
     description: String,
-    route: String,
+    absolutepath: String,
     filename: String,
     covername: String,
     date: String,
-    routeName: String,
+    routename: String,
     theme: {
       type: String,
       default: 'day',
@@ -34,20 +34,20 @@ export default {
 
   methods: {
     updateBgImage() {
-      const path = `${this.route}/${this.covername}`;
+      const path = `${this.absolutepath}/${this.covername}`;
       const setting = 'imageView2/0/q/50|imageslim';
 
       this.$imageloader.loadImageAuto(path, setting)
         .then((res) => {
-          this.$refs.cover.setAttribute('src', res);
+          this.$refs.cover.setAttribute('src', res.data);
         });
     },
 
     pagejump() {
       this.$router.push({
-        name: this.routeName,
+        name: this.routename,
         params: {
-          route: this.route,
+          route: this.absolutepath,
           filename: this.filename,
         },
       });

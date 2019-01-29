@@ -3,8 +3,6 @@ const diaplayImageAndDetachObserver = (io, change) => {
     return;
   }
 
-  console.log('load');
-
   const { target } = change;
 
   const src = target.getAttribute('data-src');
@@ -14,15 +12,11 @@ const diaplayImageAndDetachObserver = (io, change) => {
   io.unobserve(target);
 };
 
-let io = null;
-
-function callback(changes) {
+const io = new IntersectionObserver((changes) => {
   changes.forEach((change) => {
     diaplayImageAndDetachObserver(io, change);
   });
-}
-
-io = new IntersectionObserver(callback);
+});
 
 
 export default {

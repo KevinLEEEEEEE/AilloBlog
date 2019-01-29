@@ -5,31 +5,46 @@ export default {
     }
 
     const loader = {
-      loadImageFromCDN(path, setting) {
-        return this.loadImageByUrl(`${cdn}/${path}?${setting}`);
+      loadImageFromCDN(path, setting, callback) {
+        return this.loadImageByUrl(`${cdn}/${path}?${setting}`, callback);
       },
 
-      loadImageFromLocal(path) {
-        return this.loadImageByUrl(path);
+      loadImageFromLocal(path, callback) {
+        return this.loadImageByUrl(path, callback);
       },
 
-      loadImageAuto(path, setting = '') {
+      loadImageAuto(path, setting) {
+        return this.loadImageAutoWithProgress(path, setting, null);
+      },
+
+      loadImageAutoWithProgress(path, setting = '', callback) {
         return process.env.NODE_ENV === 'production'
-          ? loader.loadImageFromCDN(path, setting)
-          : loader.loadImageFromLocal(path);
+          ? loader.loadImageFromCDN(path, setting, callback)
+          : loader.loadImageFromLocal(path, callback);
       },
 
-      loadImageByUrl(url) {
+      loadImageByUrl(url, callback) {
+        const config = callback ? {
+          responseType: 'blob',
+          onDownloadProgress: callback,
+        } : { responseType: 'blob' };
+
         return new Promise((resolve, reject) => {
-          axios.get(url, { responseType: 'blob' })
+          axios.get(url, config)
             .then((res) => {
               const reader = new FileReader();
 
               reader.onload = (e) => {
-                resolve(e.target.result);
+                resolve({
+                  data: e.target.result,
+                  size: res.data.size,
+                  duration: res.duration,
+                });
               };
 
               reader.onerror = (err) => {
+                reader.abort();
+
                 reject(err);
               };
 

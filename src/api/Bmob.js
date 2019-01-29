@@ -1,12 +1,18 @@
 import Bmob from 'hydrogen-js-sdk';
 
 const BmobUtils = {
+  id: '',
+  key: '',
+
   /**
    * @param {String} id
    * @param {String} key
    */
   initialize(id, key) {
     Bmob.initialize(id, key);
+
+    this.id = id;
+    this.key = key;
   },
 
   /**

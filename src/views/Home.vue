@@ -15,7 +15,7 @@
         <li class="item-container" v-for="homepage in list" :key="homepage.objectId">
           <homepage-poster
             :title="homepage.title"
-            :absolutepath="`${path}/${homepage.folder}`"
+            :route="`${path}/${homepage.folder}`"
             :filename="homepage.filename"
             :covername="homepage.covername"
             :routename="homepage.routename"
@@ -29,10 +29,18 @@
 </template>
 
 <script>
+// import Mock from 'mockjs';
 import BlogHeader from '../components/BlogHeader.vue';
 import BlogFooter from '../components/BlogFooter.vue';
 import HomepagePoster from '../components/HomepagePoster.vue';
 import api from '../api/api';
+
+// Mock.mock(/https:\/\/api.bmobcloud.com\/1\/classes\/Homepage/, {
+//   'list|1-10': [{
+//     'id|+1': 1,
+//     email: '@EMAIL',
+//   }],
+// });
 
 export default {
   name: 'home',
@@ -66,6 +74,20 @@ export default {
     api.homepage.getList()
       .then((res) => {
         this.initHomePage(res);
+      });
+
+    this.$axios.get('https://api.bmobcloud.com/1/classes/Notes?count=1&limit=0', {
+      headers: {
+        'X-Bmob-Application-Id': '39547066d4ccdb3c861811b8deb5fb58',
+        'X-Bmob-REST-API-Key': '52a732feb4cc614a6de161b2aba98e89',
+      },
+      params: {
+        limit: 100,
+        order: 'order',
+      },
+    })
+      .then((res) => {
+        console.log(res);
       });
   },
 };

@@ -1,7 +1,12 @@
 <template>
   <div @click="pagejump" :class="[`article-${theme}-theme`, 'article-poster', 'bgscale_anim']">
     <div class="article-cover-container">
-      <img src="../assets/imgloading_400_300.png" class="article-cover" ref="cover">
+      <smart-img class="article-cover"
+        :path="path"
+        :width="width"
+        :height="height"
+        :alt="title"
+      ></smart-img>
     </div>
 
     <p class="article-title">
@@ -19,8 +24,11 @@
 </template>
 
 <script>
+import SmartImg from './SmartImg/SmartImg.vue';
+
 export default {
   name: 'article-poster',
+  components: { SmartImg },
   props: {
     title: String,
     description: String,
@@ -28,34 +36,27 @@ export default {
     filename: String,
     covername: String,
     date: String,
-    routeName: String,
+    routename: String,
     theme: String,
+  },
+  data() {
+    return {
+      path: `${this.route}/${this.covername}`,
+      width: 400,
+      height: 300,
+    };
   },
 
   methods: {
-    updateBgImage() {
-      const path = `${this.route}/${this.covername}`;
-      const setting = 'imageView2/0/q/50|imageslim';
-
-      this.$imageloader.loadImageAuto(path, setting)
-        .then((res) => {
-          this.$refs.cover.setAttribute('src', res);
-        });
-    },
-
     pagejump() {
       this.$router.push({
-        name: this.routeName,
+        name: this.routename,
         params: {
           route: this.route,
           filename: this.filename,
         },
       });
     },
-  },
-
-  mounted() {
-    this.updateBgImage();
   },
 };
 </script>
@@ -94,7 +95,6 @@ export default {
 }
 
 .article-cover {
-  width: 100%;
   transition: transform 0.2s ease;
   transform-origin: center bottom;
 }
