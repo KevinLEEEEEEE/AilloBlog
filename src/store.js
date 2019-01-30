@@ -8,6 +8,10 @@ if (process.env.NODE_ENV === 'development') {
 const theme = {
   day: 'day',
   night: 'night',
+  source: {
+    token: null,
+    cancel: null,
+  },
 };
 
 export default new Vuex.Store({

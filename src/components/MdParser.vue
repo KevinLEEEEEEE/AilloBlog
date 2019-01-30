@@ -3,6 +3,18 @@
 </template>
 
 <script>
+import Showdown from 'showdown';
+import hljs from 'highlight.js/lib/highlight';
+import javascript from 'highlight.js/lib/languages/javascript';
+import css from 'highlight.js/lib/languages/css';
+import html from 'highlight.js/lib/languages/htmlbars';
+
+const converter = new Showdown.Converter();
+
+hljs.registerLanguage('javascript', javascript);
+hljs.registerLanguage('css', css);
+hljs.registerLanguage('html', html);
+
 export default {
   name: 'md-parser',
   props: {
@@ -21,9 +33,9 @@ export default {
   methods: {
     updateHtmlByMd(data) {
       const frag = this.$refs.doc;
-      const html = this.$md2html(data);
+      const htmlData = converter.makeHtml(data);
 
-      this.rawHtml = this.$transTextForLazyload(html);
+      this.rawHtml = this.$transTextForLazyload(htmlData);
 
       this.$nextTick(() => {
         this.highlightCodeInHtml();
@@ -38,7 +50,7 @@ export default {
       const blocks = document.querySelectorAll('pre');
 
       blocks.forEach((block) => {
-        this.$highlight.highlightBlock(block);
+        hljs.highlightBlock(block);
       });
     },
 

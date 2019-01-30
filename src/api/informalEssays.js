@@ -1,17 +1,14 @@
-import BmobUtils from './Bmob';
+import Bmob from './utils/Bmob';
 
-const query = BmobUtils.generateQuery('InformalEssays');
+const NotesBmob = new Bmob('InformalEssays');
 
-const getQuery = () => query;
+const getCount = async () => NotesBmob.getCount();
 
-const getCount = async () => BmobUtils.getQueryCount(query);
+const getList = async () => NotesBmob.getList('-order');
 
-const getList = async () => BmobUtils.queryFind(query, 0, 0, '-order');
-
-const getListByPage = async (itemsPerPage, pageNumber) => BmobUtils.queryFind(query, itemsPerPage, itemsPerPage * (pageNumber - 1), '-order');
+const getListByPage = async (itemsPerPage, pageNumber) => NotesBmob.getListByPage(itemsPerPage, pageNumber, '-order');
 
 const InformalEssays = {
-  getQuery,
   getCount,
   getList,
   getListByPage,

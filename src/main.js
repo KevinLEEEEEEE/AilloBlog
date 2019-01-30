@@ -1,51 +1,21 @@
 import Vue from 'vue';
-import axios from 'axios';
-import Showdown from 'showdown';
-import hljs from 'highlight.js/lib/highlight';
-import javascript from 'highlight.js/lib/languages/javascript';
-import css from 'highlight.js/lib/languages/css';
-import html from 'highlight.js/lib/languages/htmlbars';
-import VueLazyload from 'vue-lazyload';
 import App from './App.vue';
 import router from './router';
 import store from './store';
 import vueAxios from './plugins/vue-axios/index';
-import vueMd2html from './plugins/vue-md2html/index';
-import vueHighlight from './plugins/vue-highlight/index';
 import vueLazyload from './plugins/vue-lazyload/index';
 import vueImageLoader from './plugins/vue-imgloader/index';
-import BmobUtils from './api/Bmob';
-
-BmobUtils.initialize('39547066d4ccdb3c861811b8deb5fb58', '52a732feb4cc614a6de161b2aba98e89');
-
-Vue.use(vueLazyload);
-
-Vue.use(vueAxios, axios);
-
-Vue.use(vueImageLoader, axios, {
-  cdn: 'http://cdn.lucario.cn',
-});
-
-Vue.use(vueMd2html, Showdown);
-
-Vue.use(vueHighlight, hljs);
-
-Vue.use(VueLazyload, {
-  preLoad: 1.3,
-  attempt: 1,
-});
+// import './api/mock/mock';
 
 Vue.config.productionTip = false;
 
-axios.defaults.baseURL = process.env.NODE_ENV === 'production'
-  ? 'http://www.lucario.cn:80/assets'
-  : 'http://localhost:80';
+Vue.use(vueLazyload);
 
-hljs.registerLanguage('javascript', javascript);
+Vue.use(vueAxios);
 
-hljs.registerLanguage('css', css);
-
-hljs.registerLanguage('html', html);
+Vue.use(vueImageLoader, {
+  cdn: 'http://cdn.lucario.cn',
+});
 
 new Vue({
   router,

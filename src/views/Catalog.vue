@@ -96,7 +96,6 @@ export default {
 
           api.notes.getCount()
             .then((res) => {
-              console.log(res);
               this.itemsAmount = res;
             });
 
@@ -110,7 +109,6 @@ export default {
 
           api.informalEssays.getCount()
             .then((res) => {
-              console.log(res);
               this.itemsAmount = res;
             });
 
@@ -153,7 +151,7 @@ export default {
   created() {
     this.updateCategoryInfo();
 
-    // this.updateCategoryList();
+    this.updateCategoryList();
   },
 };
 </script>

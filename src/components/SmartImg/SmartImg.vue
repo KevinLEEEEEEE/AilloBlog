@@ -40,6 +40,7 @@ export default {
       displayWidth: 0,
       displayHeight: 0,
       loadPercentage: 0,
+      thumbnailScaleRatio: 25,
     };
   },
 
@@ -54,6 +55,14 @@ export default {
     isProgressBarVisible() {
       return this.progress && this.src !== '';
     },
+
+    thumbnailWidth() {
+      return this.displayWidth / this.thumbnailScaleRatio;
+    },
+
+    thumbnailHeight() {
+      return this.displayHeight / this.thumbnailScaleRatio;
+    },
   },
 
   methods: {
@@ -63,32 +72,38 @@ export default {
       const width = scaleRatio >= 1 ? this.width : clientWidth;
       const height = scaleRatio >= 1 ? this.height : this.height * scaleRatio;
 
-      this.displayWidth = Math.ceil(width / 50) * 50;
-      this.displayHeight = Math.ceil(height / 50) * 50;
+      this.displayWidth = Math.ceil(width / this.thumbnailScaleRatio) * this.thumbnailScaleRatio;
+      this.displayHeight = Math.ceil(height / this.thumbnailScaleRatio) * this.thumbnailScaleRatio;
     },
 
     loadThumbnail() {
-      const setting = `imageView2/1/w/${this.displayWidth / 50}/h/${this.displayHeight / 50}/q/50|imageslim`;
+      const setting = `imageView2/1/w/${this.thumbnailWidth}/h/${this.thumbnailHeight}/q/75|imageslim`;
 
-      this.$imageloader.loadImageAuto(this.path, setting)
+      this.$imageloader.loadImageAuto(`${this.path}?${setting}`)
         .then((res) => {
           this.src = res.data;
 
           this.registerLazyLload();
+        }, (err) => {
+          console.log(err);
         });
     },
 
     loadFullImage() {
       const quality = smartImg.network.getImageQuality();
       const setting = `imageView2/1/w/${this.displayWidth}/h/${this.displayHeight}/q/${quality}|imageslim`;
-      const loader = this.progress
-        ? this.$imageloader.loadImageAutoWithProgress(this.path, setting, this.updateProgress)
-        : this.$imageloader.loadImageAuto(this.path, setting);
+
+      const loader = this.$imageloader.loadImageAuto(
+        `${this.path}?${setting}`,
+        this.progress ? this.updateProgress : null,
+      );
 
       loader.then((res) => {
         this.src = res.data;
 
         smartImg.network.addNetworkInfo(res.size, res.duration);
+      }, (err) => {
+        console.log(err);
       });
     },
 
@@ -97,9 +112,7 @@ export default {
     },
 
     registerLazyLload() {
-      this.$refs.container.addEventListener('loadFullImage', () => {
-        this.loadFullImage();
-      });
+      this.$refs.container.addEventListener('loadFullImage', this.loadFullImage);
 
       smartImg.lazyload.register(this.$refs.container);
     },
@@ -131,7 +144,7 @@ export default {
   width: 25px;
   height: 25px;
   border: 2px black solid;
-  border-radius: 50%;
+  border-radius: 100%;
   background: linear-gradient(to top, black var(--position, 0%), white var(--position, 0%));
   transition: all ease 1s;
 }

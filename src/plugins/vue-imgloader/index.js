@@ -1,58 +1,40 @@
+import axios from 'axios';
+
 export default {
-  install(Vue, axios, { cdn }) {
+  install(Vue, { cdn }) {
     if (!axios) {
       return;
     }
 
     const loader = {
-      loadImageFromCDN(path, setting, callback) {
-        return this.loadImageByUrl(`${cdn}/${path}?${setting}`, callback);
-      },
-
-      loadImageFromLocal(path, callback) {
-        return this.loadImageByUrl(path, callback);
-      },
-
-      loadImageAuto(path, setting) {
-        return this.loadImageAutoWithProgress(path, setting, null);
-      },
-
-      loadImageAutoWithProgress(path, setting = '', callback) {
-        return process.env.NODE_ENV === 'production'
-          ? loader.loadImageFromCDN(path, setting, callback)
-          : loader.loadImageFromLocal(path, callback);
-      },
-
-      loadImageByUrl(url, callback) {
-        const config = callback ? {
-          responseType: 'blob',
+      loadImageAuto(url, callback = null) {
+        return this.loadImage(url, callback ? {} : {
           onDownloadProgress: callback,
-        } : { responseType: 'blob' };
-
-        return new Promise((resolve, reject) => {
-          axios.get(url, config)
-            .then((res) => {
-              const reader = new FileReader();
-
-              reader.onload = (e) => {
-                resolve({
-                  data: e.target.result,
-                  size: res.data.size,
-                  duration: res.duration,
-                });
-              };
-
-              reader.onerror = (err) => {
-                reader.abort();
-
-                reject(err);
-              };
-
-              reader.readAsDataURL(res.data);
-            }, (err) => {
-              reject(err);
-            });
         });
+      },
+
+      async loadImage(url, config) {
+        const res = await this.getBlobByUrl(`${cdn}/${url}`, config);
+        const data = typeof res.data === 'string' ? res.data : URL.createObjectURL(res.data);
+
+        return {
+          data,
+          size: res.data.size || Infinity,
+          duration: res.duration,
+        };
+      },
+
+      getBlobByUrl(url, config = {}) {
+        return axios.get(url, Object.assign({
+          responseType: 'blob',
+        }, config), {
+          timeout: 6000,
+        })
+          .catch((thrown) => {
+            if (axios.isCancel(thrown)) {
+              console.log('Request canceled', thrown);
+            }
+          });
       },
     };
 

@@ -1,17 +1,14 @@
-import BmobUtils from './Bmob';
+import Bmob from './utils/Bmob';
 
-const query = BmobUtils.generateQuery('Homepage');
+const HomepageBmob = new Bmob('Homepage');
 
-const getQuery = () => query;
+const getCount = async () => HomepageBmob.getCount();
 
-const getCount = async () => BmobUtils.getQueryCount(query);
+const getList = async () => HomepageBmob.getList('order');
 
-const getList = () => BmobUtils.queryFind(query, 0, 0, 'order');
-
-const Homepage = {
-  getQuery,
+const homepage = {
   getCount,
   getList,
 };
 
-export default Homepage;
+export default homepage;
