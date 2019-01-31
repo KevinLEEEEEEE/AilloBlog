@@ -4,7 +4,7 @@
 
     <div class="reader-container fadeandtranslatein">
       <md-parser
-        :filename="completeFilename"
+        :filename="`${this.route}/${this.filename}`"
         :theme="theme"
       ></md-parser>
       <div class="tool-container">
@@ -35,10 +35,6 @@ export default {
   },
 
   computed: {
-    completeFilename() {
-      return `${this.route}/${this.filename}`;
-    },
-
     theme() {
       return this.$store.state.theme;
     },
@@ -55,16 +51,6 @@ export default {
         behavior: 'smooth',
       });
     },
-
-    resetScroll() {
-      window.scrollTo({
-        top: 0,
-      });
-    },
-  },
-
-  beforeMount() {
-    this.resetScroll();
   },
 };
 </script>

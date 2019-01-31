@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-let source = null;
+let source = axios.CancelToken.source();
 
 axios.interceptors.request.use((config) => {
   config.metadata = { startTime: new Date() };
@@ -15,14 +15,7 @@ axios.interceptors.response.use((response) => {
   response.duration = response.config.metadata.endTime - response.config.metadata.startTime;
 
   return response;
-}, (err) => {
-  // err.config.metadata.endTime = Infinity;
-  // err.duration = Infinity;
-
-  console.log(err);
-
-  return Promise.reject(err);
-});
+}, err => Promise.reject(err));
 
 const updateToken = () => {
   source = axios.CancelToken.source();
@@ -37,8 +30,6 @@ axios.cancelAllRequest = () => {
 
   updateToken();
 };
-
-updateToken();
 
 export default {
   install(Vue) {

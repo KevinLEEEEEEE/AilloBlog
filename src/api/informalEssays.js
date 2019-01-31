@@ -8,10 +8,10 @@ const getList = async () => NotesBmob.getList('-order');
 
 const getListByPage = async (itemsPerPage, pageNumber) => NotesBmob.getListByPage(itemsPerPage, pageNumber, '-order');
 
-const InformalEssays = {
+const informalEssays = {
   getCount,
   getList,
   getListByPage,
 };
 
-export default InformalEssays;
+export default informalEssays;

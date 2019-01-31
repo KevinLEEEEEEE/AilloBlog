@@ -4,7 +4,8 @@
 
     <div class="viewer-container fadeandtranslatein">
       <image-parser
-        :filename="completeFilename"
+        :route="route"
+        :name="filename"
         :theme="theme"
       ></image-parser>
       <div class="tool-container">
@@ -35,10 +36,6 @@ export default {
   },
 
   computed: {
-    completeFilename() {
-      return `${this.route}/${this.filename}`;
-    },
-
     theme() {
       return this.$store.state.theme;
     },
@@ -55,16 +52,6 @@ export default {
         behavior: 'smooth',
       });
     },
-
-    resetScroll() {
-      window.scrollTo({
-        top: 0,
-      });
-    },
-  },
-
-  beforeMount() {
-    this.resetScroll();
   },
 };
 </script>

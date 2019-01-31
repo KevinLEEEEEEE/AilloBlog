@@ -1,21 +1,37 @@
 <template>
-  <div :class="[`image-parser-${theme}-theme`,,'image-parser']" ref="doc">
-    <image-content v-for="item in list" :key="item.id"
-      :src="item.src"
-      :srcfull="item.src_full"
-      :description="item.description"
-    ></image-content>
+  <div :class="[`image-parser-${theme}-theme`,'image-parser']">
+    <div v-for="item in list" :key="item.filename" class="image-parser-container">
+      <smart-rect
+        :path="`${route}/${item.filename}`"
+        :raw-width="item.width"
+        :raw-height="item.height"
+        :h-divide-w="0.8"
+        @click.native="fullScreenToggle(`${route}/${item.filename}`)"
+      ></smart-rect>
+
+      <p class="image-description">{{ item.description }}</p>
+    </div>
+
+    <smart-hd v-if="isFullScreen"
+      :path="fullScreenPath"
+    ></smart-hd>
   </div>
 </template>
 
 <script>
-import ImageContent from './ImageContent.vue';
+import SmartRect from './Smart/SmartRect.vue';
+import SmartHd from './Smart/SmartHD.vue';
+import api from '../api/api';
 
 export default {
   name: 'image-parser',
-  components: { ImageContent },
+  components: {
+    SmartRect,
+    SmartHd,
+  },
   props: {
-    filename: String,
+    route: String,
+    name: String,
     theme: {
       type: String,
       default: 'day',
@@ -23,31 +39,24 @@ export default {
   },
   data() {
     return {
-      rawHtml: '',
       list: [],
+      isFullScreen: false,
+      fullScreenPath: '',
     };
   },
 
   methods: {
-    updateHtmlByJSON(data) {
-      if (this.isValidJSON(data)) {
-        this.list = data.list;
+    fullScreenToggle(path) {
+      this.fullScreenPath = path;
 
-        setTimeout(() => {
-          this.$lazyload(this.$refs.doc); // why?
-        }, 50);
-      }
-    },
-
-    isValidJSON(obj) {
-      return Reflect.has(obj, 'list');
+      this.isFullScreen = true;
     },
   },
 
-  beforeMount() {
-    this.$axios.get(`${this.filename}.json`)
+  created() {
+    api.photoContents.queryItemByProperty(this.name)
       .then((res) => {
-        this.updateHtmlByJSON(res.data);
+        this.list = res[0].contents;
       });
   },
 };
@@ -63,6 +72,17 @@ export default {
 }
 
 .image-parser {
-  margin-top: 50px;
+  margin-top: 100px;
+}
+
+.image-parser-container {
+  margin-bottom: 80px;
+  text-align: center;
+}
+
+.image-description {
+  margin: 20px 0 0 0;
+  color: var(--fontcolor, black);
+  font-size: 0.8rem;
 }
 </style>

@@ -1,13 +1,10 @@
 <template>
-  <div class="homepage_poster" @click="pagejump">
-    <div class="cover_container">
-      <smart-img
-        :path="path"
-        :width="width"
-        :height="height"
-        :alt="title"
-      ></smart-img>
-    </div>
+  <div class="homepage-poster" @click="pagejump">
+    <smart-cover
+      :path="path"
+      :raw-width="width"
+      :raw-height="height"
+    ></smart-cover>
 
     <a class="title">
       {{ title }}
@@ -16,11 +13,11 @@
 </template>
 
 <script>
-import SmartImg from './SmartImg/SmartImg.vue';
+import SmartCover from './Smart/SmartCover.vue';
 
 export default {
   name: 'homepage-poster',
-  components: { SmartImg },
+  components: { SmartCover },
   props: {
     title: String,
     route: String,
@@ -51,12 +48,12 @@ export default {
 </script>
 
 <style>
-.homepage_poster {
+.homepage-poster {
   position: relative;
   cursor: pointer;
 }
 
-.homepage_poster:hover .title {
+.homepage-poster:hover .title {
   filter: opacity(100%);
 }
 

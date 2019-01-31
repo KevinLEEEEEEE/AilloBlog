@@ -50,6 +50,14 @@ class Bmob {
     return data.results;
   }
 
+  async queryItemByProperty(property, value) {
+    const data = await this.sendBmobRequest({
+      [property]: value,
+    });
+
+    return data.results;
+  }
+
   async sendBmobRequest(params = {}) {
     if (this.cache.hasCache(params)) {
       return Promise.resolve(this.cache.getCache(params));

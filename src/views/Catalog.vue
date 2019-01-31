@@ -5,7 +5,7 @@
     <div class="catalog">
       <ul class="catalog-container">
         <li class="item-container fadeandtranslatein" v-for="item in list" :key="item.objectId">
-          <div :is="poster" class="item"
+          <catalog-poster class="item"
             :title="item.title"
             :description="item.description"
             :route="`${path}/${item.folder}`"
@@ -14,7 +14,7 @@
             :date="item.date"
             :routename="item.routename"
             :theme="theme"
-          ></div>
+          ></catalog-poster>
         </li>
       </ul>
 
@@ -32,9 +32,8 @@
 <script>
 import BlogHeader from '../components/BlogHeader.vue';
 import BlogFooter from '../components/BlogFooter.vue';
+import CatalogPoster from '../components/CatalogPoster.vue';
 import PageNumber from '../components/PageNumber.vue';
-import ImagePoster from '../components/ImagePoster.vue';
-import ArticlePoster from '../components/ArticlePoster.vue';
 import api from '../api/api';
 
 export default {
@@ -42,9 +41,8 @@ export default {
   components: {
     BlogHeader,
     BlogFooter,
+    CatalogPoster,
     PageNumber,
-    ArticlePoster,
-    ImagePoster,
   },
   props: {
     category: String,
@@ -54,7 +52,6 @@ export default {
     return {
       list: [],
       path: '',
-      poster: '',
       itemsPerPage: 12,
       itemsAmount: 0,
     };
@@ -88,16 +85,13 @@ export default {
 
   methods: {
     updateCategoryInfo() {
+      let infoApi = null;
+
       switch (this.category) {
         case 'notes': {
           this.path = 'blog/notes';
 
-          this.poster = 'article-poster';
-
-          api.notes.getCount()
-            .then((res) => {
-              this.itemsAmount = res;
-            });
+          infoApi = api.notes.getCount();
 
           break;
         }
@@ -105,12 +99,15 @@ export default {
         case 'informal-essays': {
           this.path = 'blog/informal-essays';
 
-          this.poster = 'article-poster';
+          infoApi = api.informalEssays.getCount();
 
-          api.informalEssays.getCount()
-            .then((res) => {
-              this.itemsAmount = res;
-            });
+          break;
+        }
+
+        case 'photographs': {
+          this.path = 'blog/photographs';
+
+          infoApi = api.photographs.getCount();
 
           break;
         }
@@ -118,33 +115,52 @@ export default {
         default:
           console.error(`no such category: ${this.category}`);
       }
+
+      infoApi.then((res) => {
+        this.itemsAmount = res;
+      })
+        .catch(() => {
+          console.log('request failed');
+        });
     },
 
     updateCategoryList() {
       const page = parseInt(this.page, 10);
+      let listApi = null;
 
       switch (this.category) {
         case 'notes': {
-          api.notes.getListByPage(this.itemsPerPage, page)
-            .then((res) => {
-              this.list = res;
-            });
+          listApi = api.notes.getListByPage(this.itemsPerPage, page);
 
           break;
         }
 
         case 'informal-essays': {
-          api.informalEssays.getListByPage(this.itemsPerPage, page)
-            .then((res) => {
-              this.list = res;
-            });
+          listApi = api.informalEssays.getListByPage(this.itemsPerPage, page);
 
+          break;
+        }
+
+        case 'photographs': {
+          listApi = api.photographs.getListByPage(this.itemsPerPage, page);
+
+          break;
+        }
+
+        case 'designs': {
           break;
         }
 
         default:
           console.error(`no such category: ${this.category}`);
       }
+
+      listApi.then((res) => {
+        this.list = res;
+      })
+        .catch(() => {
+          console.log('request failed');
+        });
     },
   },
 

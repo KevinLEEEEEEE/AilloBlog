@@ -8,9 +8,8 @@ export default {
 
     const loader = {
       loadImageAuto(url, callback = null) {
-        return this.loadImage(url, callback ? {} : {
-          onDownloadProgress: callback,
-        });
+        return this.loadImage(url, typeof callback !== 'function'
+          ? {} : { onDownloadProgress: callback });
       },
 
       async loadImage(url, config) {
