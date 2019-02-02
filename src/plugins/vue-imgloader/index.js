@@ -7,13 +7,22 @@ export default {
     }
 
     const loader = {
-      loadImageAuto(url, callback = null) {
-        return this.loadImage(url, typeof callback !== 'function'
-          ? {} : { onDownloadProgress: callback });
-      },
-
-      async loadImage(url, config) {
+      /**
+       * @param {String} url the url will auto add the cdn path
+       * @param {Object} config
+       * @returns {Object} data
+       */
+      async loadImage(url, config = {}) {
         const res = await this.getBlobByUrl(`${cdn}/${url}`, config);
+
+        if (!res) {
+          return {
+            data: '',
+            size: Infinity,
+            duration: Infinity,
+          };
+        }
+
         const data = typeof res.data === 'string' ? res.data : URL.createObjectURL(res.data);
 
         return {
@@ -23,7 +32,12 @@ export default {
         };
       },
 
-      getBlobByUrl(url, config = {}) {
+      /**
+       * @param {String} url the url will auto add the cdn path
+       * @param {Object} config
+       * @returns {Blob}
+       */
+      getBlobByUrl(url, config) {
         return axios.get(url, Object.assign({
           responseType: 'blob',
         }, config), {

@@ -65,7 +65,6 @@ export default {
   created() {
     api.homepage.getList()
       .then((res) => {
-        console.log(res);
         this.initHomePage(res);
       });
   },

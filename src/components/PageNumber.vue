@@ -3,7 +3,7 @@
     <div class="pagelink-container">
       <router-link v-for="index in count" :key="index"
         :to="getUrl(index)"
-        :class="[index === currentPage ? 'pagelink-current' : '', 'pagelink']"
+        :class="[index === current ? 'pagelink-current' : '', 'pagelink']"
       >{{ index }}</router-link>
     </div>
   </div>
@@ -15,15 +15,10 @@ export default {
   props: {
     route: String,
     count: Number,
+    current: Number,
     theme: {
       type: String,
       default: 'day',
-    },
-  },
-
-  computed: {
-    currentPage() {
-      return parseInt(this.$route.params.page, 10);
     },
   },
 
@@ -65,6 +60,7 @@ export default {
                                     var(--border-color) calc(50%),
                                     var(--border-color) calc(50% + 1px),
                                     transparent calc(50% + 1px));
+  text-align: center;
 }
 
 .pagelink-container {

@@ -1,4 +1,7 @@
+const path = require('path');
 const CompressionPlugin = require('compression-webpack-plugin');
+
+const isProduction = process.env.NODE_ENV === 'production';
 
 module.exports = {
   publicPath: './',
@@ -9,7 +12,7 @@ module.exports = {
     open: true,
   },
   chainWebpack: (config) => {
-    const name = process.env.NODE_ENV === 'production' ? 'prod' : 'dev';
+    const name = isProduction ? 'prod' : 'dev';
 
     config
       .plugin('html')
@@ -19,7 +22,7 @@ module.exports = {
       });
   },
   configureWebpack: (config) => {
-    if (process.env.NODE_ENV === 'production') {
+    if (isProduction) {
       config.plugins.push(
         new CompressionPlugin({
           filename: '[path].gz[query]',
@@ -35,6 +38,15 @@ module.exports = {
         vuex: 'Vuex',
         'vue-router': 'VueRouter',
       };
+    } else {
+      config.devtool = '#eval-source-map';
     }
+
+    config.resolve = {
+      extensions: ['.js', '.vue'],
+      alias: {
+        '@': path.resolve('src'),
+      },
+    };
   },
 };

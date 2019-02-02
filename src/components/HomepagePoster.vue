@@ -4,6 +4,8 @@
       :path="path"
       :raw-width="width"
       :raw-height="height"
+      :size-lock="true"
+      cancel-request="onRouteChange"
     ></smart-cover>
 
     <a class="title">

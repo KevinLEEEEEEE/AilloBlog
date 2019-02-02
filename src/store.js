@@ -8,15 +8,12 @@ if (process.env.NODE_ENV === 'development') {
 const theme = {
   day: 'day',
   night: 'night',
-  source: {
-    token: null,
-    cancel: null,
-  },
 };
 
 export default new Vuex.Store({
   state: {
     theme: theme.day,
+    bodyScroll: true,
   },
   mutations: {
     themeToDay() {
@@ -25,6 +22,14 @@ export default new Vuex.Store({
 
     themeToNight() {
       this.state.theme = theme.night;
+    },
+
+    resetBodyScroll() {
+      this.state.bodyScroll = true;
+    },
+
+    preventBodyScroll() {
+      this.state.bodyScroll = false;
     },
   },
   actions: {

@@ -69,7 +69,7 @@ function mockSwitch(key, value) {
     return;
   }
 
-  console.log(`open: ${key}`);
+  console.log(`mock: ${key}`);
 
   switch (key) {
     case 'Homepage':

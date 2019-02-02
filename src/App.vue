@@ -5,6 +5,16 @@
 <script>
 export default {
   name: 'app',
+
+  watch: {
+    '$store.state.bodyScroll': function callback(to) {
+      if (to) {
+        document.body.classList.remove('preventScroll');
+      } else {
+        document.body.classList.add('preventScroll');
+      }
+    },
+  },
 };
 </script>
 
@@ -15,10 +25,13 @@ export default {
   font-family: 'Microsoft YaHei', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
 }
 
 a {
   text-decoration: none;
+}
+
+.preventScroll {
+  overflow: hidden;
 }
 </style>

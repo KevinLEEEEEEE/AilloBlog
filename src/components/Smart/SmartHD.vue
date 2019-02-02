@@ -1,12 +1,8 @@
 <template>
   <div class="smart-hd-container">
-    <img class="smart-hd-content" alt="cover" :src="src"/>
+    <img class="smart-hd-content" alt="cover" :src="src" :style="imgStyle"/>
 
-    <button class="full-screen-btn" @click="fullScreenToggle"></button>
-
-    <div class="smart-hd-progress-bar" v-if="progress"
-     :style="barStyle"
-    ></div>
+    <div class="smart-hd-progress-bar" v-if="progress" :style="barStyle"></div>
   </div>
 </template>
 
@@ -17,6 +13,10 @@ export default {
   name: 'smart-hd',
   props: {
     path: String,
+    cancelRequest: {
+      type: String,
+      default: 'off',
+    },
     progress: {
       type: Boolean,
       default: true,
@@ -25,55 +25,102 @@ export default {
   data() {
     return {
       src: '',
-      loaded: 0,
+      source: null,
+      cancelToken: null,
+      loadedPercentage: 0,
     };
   },
 
   computed: {
     barStyle() {
       return {
-        opacity: this.loaded < 100 ? 100 : 0,
-        '--position': `${this.loaded}%`,
+        display: this.loadedPercentage < 100 ? 'block' : 'none',
+        '--position': `${this.loadedPercentage}%`,
+      };
+    },
+
+    imgStyle() {
+      return {
+        opacity: this.src === '' ? 0 : 100,
       };
     },
   },
 
   methods: {
     loadFullImage() {
-      const callback = this.progress ? this.updateProgress : null;
+      const config = Object.assign({
+        onDownloadProgress: this.updateProgress,
+      }, this.cancelToken);
 
-      this.$imageloader.loadImageAuto(this.path, callback)
+      this.$imageloader.loadImage(this.path, config)
         .then((res) => {
           this.src = res.data;
 
           smart.network.addNetworkInfo(res.size, res.duration);
         }, () => {
-          console.log('image loading failed');
+          // handle request fail
         });
     },
 
-    fullScreenToggle() {
-
+    updateProgress(e) {
+      this.loadedPercentage = (e.loaded / e.total) * 100;
     },
 
-    updateProgress(e) {
-      this.loaded = (e.loaded / e.total) * 100;
+    registerCancelToken() {
+      switch (this.cancelRequest) {
+        case 'off':
+          this.source = {};
+          this.cancelToken = {
+            cancelToken: null,
+          };
+          break;
+        case 'onDestory':
+          this.source = smart.network.generateCancelSource();
+          this.cancelToken = {
+            cancelToken: this.source.token,
+          };
+          break;
+        case 'onRouteChange':
+          break;
+        default:
+      }
+    },
+
+    handleCancelToken() {
+      switch (this.cancelRequest) {
+        case 'off':
+          break;
+        case 'onDestory':
+          if (this.src === '') {
+            this.source.cancel();
+          }
+          break;
+        case 'onRouteChange':
+          break;
+        default:
+      }
     },
   },
 
   mounted() {
+    this.registerCancelToken();
+
     this.loadFullImage();
+  },
+
+  beforeDestroy() {
+    this.handleCancelToken();
   },
 };
 </script>
 
 <style>
 .smart-hd-container {
-  position: fixed;
+  position: absolute;
   left: 0;
+  right: 0;
   top: 0;
-  width: 100%;
-  height: 100%;
+  bottom: 0;
   z-index: 10;
   display: flex;
   justify-content: center;
@@ -85,39 +132,16 @@ export default {
 .smart-hd-content {
   max-width: 96%;
   max-height: 96%;
+  transition: opacity ease 0.6s;
 }
 
 .smart-hd-progress-bar {
   position: absolute;
-  right: 10px;
-  top: 10px;
-  width: 25px;
-  height: 25px;
-  border: 2px black solid;
-  border-radius: 100%;
-  background: linear-gradient(to top, black var(--position, 0%), white var(--position, 0%));
-  transition: all ease 1s;
-}
-
-.full-screen-btn {
-  position: absolute;
-  right: 1%;
-  top: 2%;
+  left: calc(50% - 20px);
+  top: calc(50% - 20px);
   width: 40px;
   height: 40px;
-  background: url('../../assets/close.png') no-repeat center center
-              rgba(0, 0, 0, 0.7);
-  background-size: 12px;
-  border: none;
-  border-radius: 20px;
-  outline: none;
-  opacity: 0.7;
-  transition: all 0.2s ease;
-  cursor: pointer;
-}
-
-.full-screen-btn:hover {
-  opacity: 1;
-  transform: rotate(-90deg);
+  border-radius: 50%;
+  background: linear-gradient(to top, white var(--position, 0%), transparent var(--position, 0%));
 }
 </style>

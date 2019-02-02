@@ -21,12 +21,19 @@ export default {
       type: Number,
       default: 1,
     },
+    cancelRequest: {
+      type: String,
+      default: 'off',
+    },
   },
   data() {
     return {
       src: '',
       width: 0,
       height: 0,
+      source: null,
+      cancelToken: null,
+      isImageLoading: false,
     };
   },
 
@@ -58,7 +65,7 @@ export default {
     loadThumbnail() {
       const setting = `imageView2/1/w/${this.width}/h/${this.height}/q/1|imageslim`;
 
-      this.$imageloader.loadImageAuto(`${this.path}?${setting}`)
+      this.$imageloader.loadImage(`${this.path}?${setting}`)
         .then((res) => {
           this.src = res.data;
 
@@ -72,13 +79,17 @@ export default {
       const quality = smart.network.getImageQuality();
       const setting = `imageView2/1/w/${this.width}/h/${this.height}/q/${quality}`;
 
-      this.$imageloader.loadImageAuto(`${this.path}?${setting}`)
+      this.isImageLoading = true;
+
+      this.$imageloader.loadImage(`${this.path}?${setting}`, this.cancelToken)
         .then((res) => {
+          this.isImageLoading = false;
+
           this.src = res.data;
 
           smart.network.addNetworkInfo(res.size, res.duration);
         }, () => {
-          console.log('image loading failed');
+          // handle request fail
         });
     },
 
@@ -87,12 +98,53 @@ export default {
 
       smart.lazyload.register(this.$refs.container);
     },
+
+    registerCancelToken() {
+      switch (this.cancelRequest) {
+        case 'off':
+          this.source = null;
+          this.cancelToken = {
+            cancelToken: null,
+          };
+          break;
+        case 'onDestory':
+          this.source = smart.network.generateCancelSource();
+          this.cancelToken = {
+            cancelToken: this.source.token,
+          };
+          break;
+        case 'onRouteChange':
+          break;
+        default:
+      }
+    },
+
+    handleCancelToken() {
+      switch (this.cancelRequest) {
+        case 'off':
+          break;
+        case 'onDestory':
+          if (this.src === '') {
+            this.source.cancel();
+          }
+          break;
+        case 'onRouteChange':
+          break;
+        default:
+      }
+    },
   },
 
   mounted() {
+    this.registerCancelToken();
+
     this.initSizeInfo();
 
     this.loadThumbnail();
+  },
+
+  beforeDestroy() {
+    this.handleCancelToken();
   },
 };
 </script>

@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 const network = (() => {
   const poolUtils = {
     pool: [],
@@ -13,14 +15,14 @@ const network = (() => {
     },
 
     calculate() {
-      const sum = this.pool.reduce((prev, curr) => ({
-        size: prev.size + curr.size,
-        duration: prev.duration + curr.duration,
-      }), { size: 0, duration: 0 });
+      // const sum = this.pool.reduce((prev, curr) => ({
+      //   size: prev.size + curr.size,
+      //   duration: prev.duration + curr.duration,
+      // }), { size: 0, duration: 0 });
 
-      const ratio = sum.size / sum.duration;
+      // const ratio = sum.size / sum.duration;
 
-      console.log(`network ratio: ${ratio}`);
+      // console.log(`network ratio: ${ratio}`);
     },
   };
 
@@ -31,6 +33,10 @@ const network = (() => {
 
     getImageQuality() {
       return poolUtils.imageQuality;
+    },
+
+    generateCancelSource() {
+      return axios.CancelToken.source();
     },
   };
 })();

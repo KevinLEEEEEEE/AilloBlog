@@ -1,5 +1,5 @@
 <template>
-  <div ref="container" class="smart-cover-container">
+  <div ref="container" class="smart-cover-container" :style="sizeLockStyle">
     <img class="smart-cover-content" alt="cover"
       :src="src"
       :width="width"
@@ -18,22 +18,38 @@ export default {
     path: String,
     rawWidth: Number,
     rawHeight: Number,
+    cancelRequest: {
+      type: String,
+      default: 'off',
+    },
+    sizeLock: {
+      type: Boolean,
+      default: false,
+    },
   },
   data() {
     return {
       src: '',
       width: 0,
       height: 0,
+      source: null,
+      cancelToken: null,
+      isThumbnailOnShow: false,
     };
   },
 
   computed: {
-    thumbnailWidth() {
-      return Math.round(this.width / config.thumbnailScaleRatio);
+    thumbnail() {
+      return {
+        width: Math.round(this.width / config.thumbnailScaleRatio),
+        height: Math.round(this.height / config.thumbnailScaleRatio),
+      };
     },
 
-    thumbnailHeight() {
-      return Math.round(this.height / config.thumbnailScaleRatio);
+    sizeLockStyle() {
+      return this.sizeLock && this.isThumbnailOnShow
+        ? { width: `${this.width}px`, height: `${this.height}px` }
+        : {};
     },
   },
 
@@ -47,29 +63,35 @@ export default {
     },
 
     loadThumbnail() {
-      const setting = `imageView2/1/w/${this.thumbnailWidth}/h/${this.thumbnailHeight}/q/25`;
+      const setting = `imageView2/1/w/${this.thumbnail.width}/h/${this.thumbnail.height}/q/25|imageslim`;
 
-      this.$imageloader.loadImageAuto(`${this.path}?${setting}`)
+      this.$imageloader.loadImage(`${this.path}?${setting}`)
         .then((res) => {
           this.src = res.data;
+
+          this.isThumbnailOnShow = true;
 
           this.registerLazyLload();
         }, () => {
           this.registerLazyLload();
+
+          // handle request fail
         });
     },
 
     loadFullImage() {
       const quality = smart.network.getImageQuality();
-      const setting = `imageView2/1/w/${this.width}/h/${this.height}/q/${quality}`;
+      const setting = `imageView2/1/w/${this.width}/h/${this.height}/q/${quality}|imageslim`;
 
-      this.$imageloader.loadImageAuto(`${this.path}?${setting}`)
+      this.$imageloader.loadImage(`${this.path}?${setting}`)
         .then((res) => {
           this.src = res.data;
 
+          this.isThumbnailOnShow = false;
+
           smart.network.addNetworkInfo(res.size, res.duration);
         }, () => {
-          console.log('image loading failed');
+          // handle request fail
         });
     },
 
@@ -78,18 +100,60 @@ export default {
 
       smart.lazyload.register(this.$refs.container);
     },
+
+    registerCancelToken() {
+      switch (this.cancelRequest) {
+        case 'off':
+          this.source = {};
+          this.cancelToken = {
+            cancelToken: null,
+          };
+          break;
+        case 'onDestory':
+          this.source = smart.network.generateCancelSource();
+          this.cancelToken = {
+            cancelToken: this.source.token,
+          };
+          break;
+        case 'onRouteChange':
+          break;
+        default:
+      }
+    },
+
+    handleCancelToken() {
+      switch (this.cancelRequest) {
+        case 'off':
+          break;
+        case 'onDestory':
+          if (this.src === '') {
+            this.source.cancel();
+          }
+          break;
+        case 'onRouteChange':
+          break;
+        default:
+      }
+    },
   },
 
   mounted() {
+    this.registerCancelToken();
+
     this.initSizeInfo();
 
     this.loadThumbnail();
+  },
+
+  beforeDestroy() {
+    this.handleCancelToken();
   },
 };
 </script>
 
 <style>
 .smart-cover-container {
+  overflow: hidden;
   font-size: 0;
 }
 

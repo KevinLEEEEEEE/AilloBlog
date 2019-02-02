@@ -1,6 +1,8 @@
 import axios from 'axios';
 import BmobCache from './BmobCache';
 
+const cache = new BmobCache();
+
 class Bmob {
   id = '39547066d4ccdb3c861811b8deb5fb58';
 
@@ -8,19 +10,19 @@ class Bmob {
 
   tableName;
 
-  cache;
+  // cache;
 
   constructor(tableName) {
     this.tableName = tableName;
 
-    this.cache = new BmobCache(tableName);
+    // this.cache = new BmobCache(tableName);
   }
 
   /**
    * @returns {Number}
    */
   async getCount() {
-    const data = await this.sendBmobRequest({
+    const data = await this.getQueryData({
       count: 1,
       limit: 0,
     });
@@ -41,7 +43,7 @@ class Bmob {
    * @param {String} order
    */
   async getListByPage(itemsPerPage = 100, pageNumber = 1, order = '') {
-    const data = await this.sendBmobRequest({
+    const data = await this.getQueryData({
       limit: itemsPerPage,
       skip: (pageNumber - 1) * itemsPerPage,
       order,
@@ -51,29 +53,42 @@ class Bmob {
   }
 
   async queryItemByProperty(property, value) {
-    const data = await this.sendBmobRequest({
-      [property]: value,
-    });
+    const data = await this.getQueryData();
 
-    return data.results;
+    return data.results.filter(item => item[property] === value);
   }
 
-  async sendBmobRequest(params = {}) {
-    if (this.cache.hasCache(params)) {
-      return Promise.resolve(this.cache.getCache(params));
+  async getQueryData(params = {}) {
+    if (cache.hasCache(this.tableName, params)) {
+      console.log(`read from cache: ${this.tableName}`);
+
+      return Promise.resolve(cache.getCache(this.tableName, params));
     }
 
-    const res = await axios.get(`https://api.bmobcloud.com/1/classes/${this.tableName}`, {
+    return this.sendBmobRequest(params)
+      .then((res) => {
+        cache.setCache(this.tableName, params, res.data);
+
+        return res.data;
+      })
+      .catch(() => {
+        console.error('Bmob request failed');
+
+        return {
+          results: [],
+          count: 0,
+        };
+      });
+  }
+
+  sendBmobRequest(params) {
+    return axios.get(`https://api.bmobcloud.com/1/classes/${this.tableName}`, {
       headers: {
         'X-Bmob-Application-Id': this.id,
         'X-Bmob-REST-API-Key': this.key,
       },
       params,
     });
-
-    this.cache.setCache(params, res.data);
-
-    return res.data;
   }
 }
 

@@ -5,7 +5,9 @@ let source = axios.CancelToken.source();
 axios.interceptors.request.use((config) => {
   config.metadata = { startTime: new Date() };
 
-  config.cancelToken = source.token;
+  if (!Reflect.has(config, 'cancelToken')) {
+    config.cancelToken = source.token;
+  }
 
   return config;
 }, err => Promise.reject(err));

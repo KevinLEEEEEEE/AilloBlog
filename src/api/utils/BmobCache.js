@@ -1,30 +1,28 @@
 
-const cache = [];
-
 const getValidKey = key => JSON.stringify(key);
 
 class BmobCache {
-  tableName;
+  cache = {};
 
-  constructor(tableName) {
-    this.tableName = tableName;
+  hasCache(tableName, key) {
+    return Reflect.has(this.cache, tableName)
+      && Reflect.has(this.cache[tableName], getValidKey(key));
   }
 
-  hasCache(key) {
-    return Reflect.has(cache, this.tableName)
-    && Reflect.has(cache[this.tableName], getValidKey(key));
+  getCache(tableName, key) {
+    return this.cache[tableName][getValidKey(key)];
   }
 
-  getCache(key) {
-    return cache[this.tableName][getValidKey(key)];
-  }
-
-  setCache(key, value) {
-    if (!Reflect.has(cache, this.tableName)) {
-      cache[this.tableName] = {};
+  setCache(tableName, key, value) {
+    if (!Reflect.has(this.cache, tableName)) {
+      this.createNewItem(tableName);
     }
 
-    cache[this.tableName][getValidKey(key)] = value;
+    this.cache[tableName][getValidKey(key)] = value;
+  }
+
+  createNewItem(tableName) {
+    this.cache[tableName] = {};
   }
 }
 

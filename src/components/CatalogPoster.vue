@@ -6,6 +6,8 @@
         :path="path"
         :raw-width="width"
         :raw-height="height"
+        :size-lock="false"
+        cancel-request="onRouteChange"
       ></smart-cover>
     </div>
 
@@ -82,6 +84,7 @@ export default {
 
 .catalog-poster {
   position: relative;
+  text-align: center;
   overflow: hidden;
   cursor: pointer;
 }

@@ -74,6 +74,7 @@ export default {
 
 footer {
   padding: 0 18%;
+  text-align: center;
   background-color: var(--background-color);
 }
 

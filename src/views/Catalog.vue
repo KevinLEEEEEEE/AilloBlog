@@ -21,6 +21,7 @@
       <page-number class="pagination"
         :route="`/catalog/${category}`"
         :count="pagesCount"
+        :current="currentPage"
         :theme="theme"
       ></page-number>
     </div>
@@ -62,6 +63,14 @@ export default {
       return Math.ceil(this.itemsAmount / this.itemsPerPage);
     },
 
+    currentPage() {
+      return parseInt(this.page, 10);
+    },
+
+    apiName() {
+      return this.capitalize(this.category);
+    },
+
     theme() {
       return this.$store.state.theme;
     },
@@ -85,86 +94,29 @@ export default {
 
   methods: {
     updateCategoryInfo() {
-      let infoApi = null;
+      this.path = `blog/${this.category}`;
 
-      switch (this.category) {
-        case 'notes': {
-          this.path = 'blog/notes';
-
-          infoApi = api.notes.getCount();
-
-          break;
-        }
-
-        case 'informal-essays': {
-          this.path = 'blog/informal-essays';
-
-          infoApi = api.informalEssays.getCount();
-
-          break;
-        }
-
-        case 'photographs': {
-          this.path = 'blog/photographs';
-
-          infoApi = api.photographs.getCount();
-
-          break;
-        }
-
-        default:
-          console.error(`no such category: ${this.category}`);
-      }
-
-      infoApi.then((res) => {
-        this.itemsAmount = res;
-      })
-        .catch(() => {
-          console.log('request failed');
+      api[this.apiName].getCount()
+        .then((res) => {
+          this.itemsAmount = res;
         });
     },
 
     updateCategoryList() {
-      const page = parseInt(this.page, 10);
-      let listApi = null;
-
-      switch (this.category) {
-        case 'notes': {
-          listApi = api.notes.getListByPage(this.itemsPerPage, page);
-
-          break;
-        }
-
-        case 'informal-essays': {
-          listApi = api.informalEssays.getListByPage(this.itemsPerPage, page);
-
-          break;
-        }
-
-        case 'photographs': {
-          listApi = api.photographs.getListByPage(this.itemsPerPage, page);
-
-          break;
-        }
-
-        case 'designs': {
-          break;
-        }
-
-        default:
-          console.error(`no such category: ${this.category}`);
-      }
-
-      listApi.then((res) => {
-        this.list = res;
-      })
-        .catch(() => {
-          console.log('request failed');
+      api[this.apiName].getListByPage(this.itemsPerPage, this.currentPage)
+        .then((res) => {
+          this.list = res;
         });
+    },
+
+    capitalize(value) {
+      const [first, ...rest] = value.split('-');
+
+      return first + (rest ? rest.map(v => v.charAt(0).toUpperCase() + v.slice(1)).join('') : '');
     },
   },
 
-  created() {
+  mounted() {
     this.updateCategoryInfo();
 
     this.updateCategoryList();
@@ -183,7 +135,7 @@ export default {
 
 .catalog {
   min-height: 90vh;
-  padding: 0 18% 5vh 18%;
+  padding: 0 18% 90px 18%;
 }
 
 .catalog-container {
@@ -223,6 +175,6 @@ export default {
 }
 
 .pagination {
-  margin-top: 5vh;
+  margin-top: 60px;
 }
 </style>
