@@ -2,7 +2,7 @@ import Mock from 'mockjs';
 import mdMock from './mdMock';
 
 const imageMock = (options) => {
-  const size = options.url.match(/w\/([0-9]*)\/h\/([0-9]*)/i);
+  const size = options.url.match(/w\/([0-9]*)\/h\/([0-9]*)/i) || [0, '2000', '1225'];
   const width = parseInt(size[1], 10);
   const height = parseInt(size[2], 10);
 
@@ -101,7 +101,11 @@ function mockSwitch(key, value) {
 }
 
 export default function mock(config) {
+  console.log('********** Mock Settings **********', '\n');
+
   Object.keys(config).forEach((key) => {
     mockSwitch(key, config[key]);
   });
+
+  console.log('***********************************', '\n');
 }

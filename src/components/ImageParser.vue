@@ -1,13 +1,12 @@
 <template>
   <div :class="[`image-parser-${theme}-theme`,'image-parser']">
-    <div class="image-parser-container" ref="container">
+    <div class="image-parser-container">
       <div v-for="item in list" :key="item.filename" class="image-parser-content">
         <smart-rect
           :path="`${route}/${item.filename}`"
           :raw-width="item.width"
           :raw-height="item.height"
           :h-divide-w="hDivideW"
-          cancel-request="onRouteChange"
           @click.native="fullScreenToggle(`${route}/${item.filename}`)"
         ></smart-rect>
 
@@ -20,7 +19,7 @@
     <div class="image-parser-full-screen" v-if="isFullScreen">
       <smart-hd
         :path="fullScreenPath"
-        cancel-request="onDestory"
+        :progress="true"
       ></smart-hd>
 
       <button class="full-screen-close" @click="fullScreenToggle"></button>
@@ -50,24 +49,10 @@ export default {
   data() {
     return {
       list: [],
-      // isSnap: true,
       isFullScreen: false,
       fullScreenPath: '',
       hDivideW: 0.8,
-      // containerWidth: 0,
     };
-  },
-
-  computed: {
-    // containerStyle() {
-    //   return this.isSnap ? {
-    //     '--height': `${this.containerWidth}px`,
-    //     'scroll-snap-type': 'y mandatory',
-    //     'scroll-snap-points-y': `repeat(${this.containerWidth}px)`,
-    //   } : {
-    //     '--height': `${this.containerWidth}px`,
-    //   };
-    // },
   },
 
   methods: {
@@ -85,42 +70,19 @@ export default {
       } else {
         this.$store.commit('preventBodyScroll');
       }
-
-      // this.$store.commit(`${this.isFullScreen ? 'prevent' : 'reset'}BodyScroll`);
     },
 
     updateImageList() {
       api.photoContents.queryItemByProperty(this.name)
         .then((res) => {
-          console.log(res);
           this.list = res[0].contents;
         });
     },
-
-    // addResizeEvent() {
-    //   window.addEventListener('resize', this.updateContainerWidth);
-    // },
-
-    // removeResizeEvent() {
-    //   window.removeEventListener('resize', this.updateContainerWidth);
-    // },
-
-    // updateContainerWidth() {
-    //   this.containerWidth = this.$refs.container.clientWidth;
-    // },
   },
 
   mounted() {
     this.updateImageList();
-
-    // this.updateContainerWidth();
-
-    // this.addResizeEvent();
   },
-
-  // beforeDestroy() {
-  //   this.removeResizeEvent();
-  // },
 };
 </script>
 
@@ -138,19 +100,11 @@ export default {
 }
 
 .image-parser-container {
-  /* max-height: 100vh;
-  overflow-y: scroll; */
   margin-bottom: 80px;
   text-align: center;
 }
 
-/* .image-parser-container::-webkit-scrollbar {
-  display: none;
-} */
-
 .image-parser-content {
-  /* height: var(--height);
-  scroll-snap-align: start; */
   margin-bottom: 100px;
 }
 

@@ -1,47 +1,3 @@
-import axios from 'axios';
-
-const network = (() => {
-  const poolUtils = {
-    pool: [],
-    currIndex: 0,
-    imageQuality: 75,
-
-    add(size, duration) {
-      this.pool[this.currIndex] = { size, duration };
-
-      this.currIndex = (this.currIndex + 1) % 5;
-
-      this.calculate();
-    },
-
-    calculate() {
-      // const sum = this.pool.reduce((prev, curr) => ({
-      //   size: prev.size + curr.size,
-      //   duration: prev.duration + curr.duration,
-      // }), { size: 0, duration: 0 });
-
-      // const ratio = sum.size / sum.duration;
-
-      // console.log(`network ratio: ${ratio}`);
-    },
-  };
-
-  return {
-    addNetworkInfo(size, duration) {
-      poolUtils.add(size, duration);
-    },
-
-    getImageQuality() {
-      return poolUtils.imageQuality;
-    },
-
-    generateCancelSource() {
-      return axios.CancelToken.source();
-    },
-  };
-})();
-
-
 const lazyload = (() => {
   const loadEvent = new CustomEvent('loadFullImage');
 
@@ -72,9 +28,8 @@ const lazyload = (() => {
   };
 })();
 
-const smartImg = {
+const smart = {
   lazyload,
-  network,
 };
 
-export default smartImg;
+export default smart;

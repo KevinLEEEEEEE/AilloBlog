@@ -71,6 +71,7 @@ header {
 @media screen and (max-width: 1024px) {
   header {
     flex-direction: column;
+    text-align: center;
   }
 }
 

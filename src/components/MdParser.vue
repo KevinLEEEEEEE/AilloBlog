@@ -97,8 +97,7 @@ export default {
   },
 
   mounted() {
-    console.log(this.filename);
-    this.$axios.get(`http://127.0.0.1:80/${this.filename}.md`)
+    this.$axios.get(`${this.filename}.md`)
       .then((res) => {
         this.updateHtmlByMd(res.data);
       });

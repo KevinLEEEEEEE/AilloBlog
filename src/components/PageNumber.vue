@@ -56,10 +56,10 @@ export default {
   --side-length: 35px;
   --side-length-hover: 40px;
   height: var(--side-length);
-  background-image: linear-gradient(transparent calc(50%),
-                                    var(--border-color) calc(50%),
-                                    var(--border-color) calc(50% + 1px),
-                                    transparent calc(50% + 1px));
+  background-image: linear-gradient(var(--border-color) 0, var(--border-color) 100%);
+  background-size: 100% 1px;
+  background-repeat: no-repeat;
+  background-position: center;
   text-align: center;
 }
 

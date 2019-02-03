@@ -1,5 +1,6 @@
 const path = require('path');
 const CompressionPlugin = require('compression-webpack-plugin');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 const isProduction = process.env.NODE_ENV === 'production';
 
@@ -20,6 +21,10 @@ module.exports = {
         args[0].template = `./src/html/index.${name}.html`;
         return args;
       });
+
+    // config
+    //   .plugin('webpack-bundle-analyzer')
+    //   .use(BundleAnalyzerPlugin);
   },
   configureWebpack: (config) => {
     if (isProduction) {

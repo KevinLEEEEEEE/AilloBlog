@@ -6,8 +6,6 @@
         :path="path"
         :raw-width="width"
         :raw-height="height"
-        :size-lock="false"
-        cancel-request="onRouteChange"
       ></smart-cover>
     </div>
 
@@ -109,13 +107,13 @@ export default {
 
 .catalog-poster-info {
   color: var(--info-color);
-  font-size: 0.65em;
+  font-size: 0.7em;
 }
 
 .catalog-poster-description {
   margin-top: 20px;
   padding: 0 20%;
   color: var(--description-color-color);
-  font-size: 0.7em;
+  font-size: 0.75em;
 }
 </style>

@@ -1,0 +1,64 @@
+.smart {
+  font-size: 0;
+}
+
+.centerBoth {
+  position: absolute;
+  left: 0; right: 0; top: 0; bottom: 0;
+  margin: auto;
+}
+
+.smart-cover {
+  font-size: 0;
+  
+  &-content {
+    width: 100%;
+    height: auto;
+  }
+
+  &-content:not([src]) {
+    display: none; // make sure the lazy load won't be falsely actived
+  }
+}
+
+.smart-rect {
+  @extend .smart;
+
+  &-content {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+.smart-hd {
+  @extend .smart;
+  position: fixed;
+  left: 0; right: 0; top: 0; bottom: 0;
+  background-color: rgba(0, 0, 0, 0.95);
+
+  &-content {
+    @extend .centerBoth;
+    max-width: 98%;
+    max-height: 96%;
+    opacity: 0;
+    transition: opacity ease 0.6s;
+  }
+
+  &-content[src] {
+    opacity: 100;
+  }
+
+  &-content[src] + &-progress-bar {
+    display: none;
+  }
+
+  &-progress-bar {
+    @extend .centerBoth;
+    $side-length: 40px;
+    $pos: var(--position, 0%);
+    width: $side-length;
+    height: $side-length;
+    border-radius: 50%;
+    background: linear-gradient(to top, white $pos, transparent $pos);
+  }
+}

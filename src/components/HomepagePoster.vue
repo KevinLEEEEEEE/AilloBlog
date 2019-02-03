@@ -4,11 +4,9 @@
       :path="path"
       :raw-width="width"
       :raw-height="height"
-      :size-lock="true"
-      cancel-request="onRouteChange"
     ></smart-cover>
 
-    <a class="title">
+    <a class="homepage-poster-title">
       {{ title }}
     </a>
   </div>
@@ -31,7 +29,7 @@ export default {
     return {
       path: `${this.route}/${this.covername}`,
       width: 1000,
-      height: 563,
+      height: 600,
     };
   },
 
@@ -55,32 +53,30 @@ export default {
   cursor: pointer;
 }
 
-.homepage-poster:hover .title {
-  filter: opacity(100%);
+.homepage-poster:hover .homepage-poster-title {
+  opacity: 100;
 }
 
-.title {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.homepage-poster-title {
   position: absolute;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
-  margin: 0;
-  filter: opacity(0%);
-  transition: filter ease 0.4s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity ease 0.4s;
   background-color: rgba(0, 0, 0, 0.5);
   color: white;
-  font-size: 0.9em;
-  letter-spacing: 0.8vw;
+  letter-spacing: 0.7vw;
 }
 
-@media screen and (max-width: 567px) {
-  .title {
-    filter: none;
-    font-size: 0.8rem;
+@media screen and (max-width: 1024px) {
+  .homepage-poster-title {
+    opacity: 100;
+    font-size: 0.8em;
     letter-spacing: 2vw;
   }
 }

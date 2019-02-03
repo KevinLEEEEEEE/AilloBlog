@@ -1,6 +1,5 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import axios from 'axios';
 import Home from './views/Home.vue';
 
 if (process.env.NODE_ENV === 'development') {
@@ -46,12 +45,6 @@ const router = new Router({
 
     return false;
   },
-});
-
-router.beforeEach((to, from, next) => {
-  axios.cancelAllRequest();
-
-  next();
 });
 
 export default router;
