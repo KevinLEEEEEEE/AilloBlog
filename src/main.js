@@ -6,22 +6,19 @@ import store from './store';
 import vueAxios from './plugins/vue-axios/index';
 import vueLazyload from './plugins/vue-lazyload/index';
 import vueImageLoader from './plugins/vue-imgloader/index';
+
 import mock from './api/mock/mock';
 
 mock({
-  Homepage: true,
-  Notes: true,
-  InformalEssays: true,
-  Photographs: true,
-  Designs: false,
-  PhotoContents: true,
+  Pages: true,
+  Contents: true,
   Markdown: true,
-  Image: true,
+  Images: false,
 });
 
 axios.defaults.baseURL = process.env.NODE_ENV === 'production'
   ? 'http://www.lucario.cn'
-  : 'http://localhost';
+  : 'http://localhost'; // remove later
 
 Vue.config.productionTip = false;
 

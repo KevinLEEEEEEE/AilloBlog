@@ -20,7 +20,7 @@
           <a @click="themeToDay"> Day-theme</a>
         </span>
         <span class="theme-btn">
-          <img src="../assets/night-theme.png" alt="day-theme-icon" width="11" height="11">
+          <img src="../assets/night-theme.png" alt="day-theme-icon" width="10" height="10">
           <a @click="themeToNight"> Night-theme</a>
         </span>
       </div>
@@ -121,6 +121,10 @@ footer {
 
 .footer-info a:hover {
   color: var(--text-hover-color);
+}
+
+.footer-info img {
+  vertical-align: -1px;
 }
 
 .police-link {

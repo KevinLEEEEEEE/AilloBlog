@@ -7,11 +7,9 @@ export default {
   name: 'app',
 
   watch: {
-    '$store.state.bodyScroll': function callback(to) {
-      if (to) {
-        document.body.classList.remove('preventScroll');
-      } else {
-        document.body.classList.add('preventScroll');
+    '$store.state.bodyScroll': function callback(to, from) {
+      if (to !== from) {
+        document.documentElement.classList.toggle('preventScroll');
       }
     },
   },
@@ -21,10 +19,12 @@ export default {
 <style>
 @import './css/globalAnim.css';
 
-#app {
-  font-family: 'Microsoft YaHei', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+html {
+  font: menu;
+}
+
+body {
+  font-size: 16px;
 }
 
 a {

@@ -5,8 +5,7 @@
 </template>
 
 <script>
-import smart from './smart';
-import config from './config';
+import smart from './SmartUtils/index';
 
 export default {
   name: 'smart-cover',
@@ -39,16 +38,16 @@ export default {
        * times smaller, if the size is not the multiple of 100, then the
        * node will suffer a sudden size change when full image loaded
       */
-      this.thumbnailWidth = Math.round(this.rawWidth / config.thumbnailScaleRatio);
-      this.thumbnailHeight = Math.round(this.rawHeight / config.thumbnailScaleRatio);
+      this.thumbnailWidth = Math.round(this.rawWidth / smart.config.thumbnailScaleRatio);
+      this.thumbnailHeight = Math.round(this.rawHeight / smart.config.thumbnailScaleRatio);
     },
 
     loadThumbnail() {
-      this.loadImage(this.thumbnailWidth, this.thumbnailHeight, config.cover.thumbnailQuality);
+      this.loadImage(this.thumbnailWidth, this.thumbnailHeight, smart.config.cover.thumbnailQua);
     },
 
     loadFullImage() {
-      this.loadImage(this.computedWidth, this.computedHeight, config.cover.fullImageQuality);
+      this.loadImage(this.computedWidth, this.computedHeight, smart.config.cover.fullImageQua);
     },
 
     loadImage(width = 100, height = 100, quality = 75, isSlim = true) {

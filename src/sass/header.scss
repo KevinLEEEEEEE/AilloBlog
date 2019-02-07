@@ -1,0 +1,59 @@
+
+header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 0 18%;
+  padding: 2rem 0 3rem 0;
+
+  @include respond-to('mobile') {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .title-link {
+    display: inline-block;
+    color: var(--title-color);
+    line-height: 2rem;
+    font: {
+      size: 2rem;
+      weight: bold;
+    }
+  }
+
+  $nav-gap: 1rem;
+
+  nav {
+    display: inline-block;
+    line-height: 2rem;
+    vertical-align: middle;
+    margin-right: -$nav-gap;
+
+    @include respond-to('mobile') {
+      margin: 20px 0 0 0;
+    }
+  }
+
+  .nav-link {
+    margin: 0 $nav-gap;
+    padding: 0.1rem 0;
+    color: var(--nav-color);
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+
+    &:not(:first-of-type)::before {
+      content: '·';
+      position: absolute;
+      margin-left: -$nav-gap;
+      font-size: 1rem;
+    }
+
+    @include respond-to('phone') {
+      display: block;
+
+      &::before {
+        display: none;
+      }
+    }
+  }
+}

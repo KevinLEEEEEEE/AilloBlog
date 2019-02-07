@@ -5,8 +5,7 @@
 </template>
 
 <script>
-import smart from './smart';
-import config from './config';
+import smart from './SmartUtils/index';
 
 export default {
   name: 'smart-rect',
@@ -52,11 +51,11 @@ export default {
     },
 
     loadThumbnail() {
-      this.loadImage(this.computedWidth, this.computedHeight, config.rect.thumbnailQuality);
+      this.loadImage(this.computedWidth, this.computedHeight, smart.config.rect.thumbnailQua);
     },
 
     loadFullImage() {
-      this.loadImage(this.computedWidth, this.computedHeight, config.rect.fullImageQuality);
+      this.loadImage(this.computedWidth, this.computedHeight, smart.config.rect.fullImageQua);
     },
 
     loadImage(width = 100, height = 100, quality = 75, isSlim = true) {

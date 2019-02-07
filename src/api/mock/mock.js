@@ -64,36 +64,27 @@ const photoContentsMock = {
 };
 
 
-function mockSwitch(key, value) {
+function mockSwitch(key, value, originValue) {
+  console.log(`Mock ${key}: ${value ? 'on' : 'off'}${value !== originValue ? ' [conflict]' : ''}`);
+
   if (!value) {
     return;
   }
 
-  console.log(`mock: ${key}`);
-
   switch (key) {
-    case 'Homepage':
+    case 'Pages':
       Mock.mock(/https:\/\/api.bmobcloud.com\/1\/classes\/Homepage/i, homepageMock);
-      break;
-    case 'Notes':
       Mock.mock(/https:\/\/api.bmobcloud.com\/1\/classes\/Notes/i, notesEssaysMock);
-      break;
-    case 'InformalEssays':
-      Mock.mock(/https:\/\/api.bmobcloud.com\/1\/classes\/InformalEssays/i, notesEssaysMock);
-      break;
-    case 'Photographs':
       Mock.mock(/https:\/\/api.bmobcloud.com\/1\/classes\/Photographs/i, photosDesignsMock);
-      break;
-    case 'Designs':
       Mock.mock(/https:\/\/api.bmobcloud.com\/1\/classes\/Designs/i, photosDesignsMock);
       break;
-    case 'PhotoContents':
+    case 'Contents':
       Mock.mock(/https:\/\/api.bmobcloud.com\/1\/classes\/PhotoContents/i, photoContentsMock);
       break;
     case 'Markdown':
       Mock.mock(/.md/i, mdMock);
       break;
-    case 'Image':
+    case 'Images':
       Mock.mock(/http:\/\/cdn.lucario.cn/, imageMock);
       break;
     default:
@@ -103,8 +94,15 @@ function mockSwitch(key, value) {
 export default function mock(config) {
   console.log('********** Mock Settings **********', '\n');
 
-  Object.keys(config).forEach((key) => {
-    mockSwitch(key, config[key]);
+  const mockConfig = {
+    Pages: config.Pages,
+    Contents: config.Pages || config.Contents,
+    Markdown: config.Pages || config.Contents || config.Markdown,
+    Images: config.Pages || config.Contents || config.Images,
+  };
+
+  Object.keys(mockConfig).forEach((key) => {
+    mockSwitch(key, mockConfig[key], config[key]);
   });
 
   console.log('***********************************', '\n');
