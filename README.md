@@ -42,19 +42,19 @@ npm run build
 
 ##### 第一稿
 
-![HCategory](https://github.com/KevinLEEEEEEE/AilloBlog/blob/master/doc/v1/category1.png)
+![Category](https://github.com/KevinLEEEEEEE/AilloBlog/blob/master/doc/v1/category1.jpg)
 
 一开始的设计只考虑了文章的部分，觉得这样依旧不错，但是当照片集加入之后，现有的设计显得太过臃肿，难以凸显照片本身，便临时做了二稿
 
 ##### 第二稿
 
-![Category](https://github.com/KevinLEEEEEEE/AilloBlog/blob/master/doc/v1/category1.png)
+![Category](https://github.com/KevinLEEEEEEE/AilloBlog/blob/master/doc/v1/category2.png)
 
 二稿更加简洁，删去巨量动画，专注于图文显示，只是缺乏特色
 
 #### 阅读界面
 
-![Category](https://github.com/KevinLEEEEEEE/AilloBlog/blob/master/doc/v1/reader.png)
+![Category](https://github.com/KevinLEEEEEEE/AilloBlog/blob/master/doc/v1/reader.jpg)
 
 #### 照片界面
 
