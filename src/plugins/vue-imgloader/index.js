@@ -18,8 +18,6 @@ export default {
         if (!res) {
           return {
             data: '',
-            size: Infinity,
-            duration: Infinity,
           };
         }
 
@@ -27,8 +25,6 @@ export default {
 
         return {
           data,
-          size: res.data.size || Infinity,
-          duration: res.duration,
         };
       },
 

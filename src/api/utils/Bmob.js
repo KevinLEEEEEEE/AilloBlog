@@ -10,12 +10,8 @@ class Bmob {
 
   tableName;
 
-  // cache;
-
   constructor(tableName) {
     this.tableName = tableName;
-
-    // this.cache = new BmobCache(tableName);
   }
 
   /**
@@ -60,8 +56,6 @@ class Bmob {
 
   async getQueryData(params = {}) {
     if (cache.hasCache(this.tableName, params)) {
-      console.log(`read from cache: ${this.tableName}`);
-
       return Promise.resolve(cache.getCache(this.tableName, params));
     }
 

@@ -21,6 +21,11 @@ const router = new Router({
       component: Home,
     },
     {
+      path: '/dormitory',
+      name: 'dormitory',
+      component: () => import('./views/Dormitory.vue'),
+    },
+    {
       path: '/:category/:page',
       name: 'catalog',
       component: () => import('./views/Catalog.vue'),

@@ -19,8 +19,10 @@ export default {
 <style>
 @import './css/globalAnim.css';
 
-html {
-  font: menu;
+#app {
+  font-family: 'Microsoft YaHei', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
