@@ -1,5 +1,5 @@
 <template>
-  <div class="homepage-poster" @click="pagejump">
+  <li class="homepage-poster" @click="pagejump">
     <smart-cover
       :path="path"
       :raw-width="width"
@@ -9,7 +9,7 @@
     <a class="homepage-poster-title">
       {{ title }}
     </a>
-  </div>
+  </li>
 </template>
 
 <script>
@@ -51,6 +51,7 @@ export default {
 .homepage-poster {
   position: relative;
   cursor: pointer;
+  list-style: none;
 }
 
 .homepage-poster:hover .homepage-poster-title {

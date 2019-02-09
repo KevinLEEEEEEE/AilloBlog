@@ -52,7 +52,7 @@ export default {
   data() {
     return {
       list: [],
-      path: '',
+      path: `blog/${this.category}`,
       itemsPerPage: 12,
       itemsAmount: 0,
     };
@@ -94,8 +94,6 @@ export default {
 
   methods: {
     updateCategoryInfo() {
-      this.path = `blog/${this.category}`;
-
       api[this.apiName].getCount()
         .then((res) => {
           this.itemsAmount = res;

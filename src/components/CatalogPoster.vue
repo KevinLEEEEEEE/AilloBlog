@@ -76,8 +76,8 @@ export default {
 
 .catalog-poster-night-theme {
   --title-color: rgb(230, 230, 230);
-  --info-color: rgb(180, 180, 180);
-  --description-color: rgb(180, 180, 180);
+  --info-color: rgb(130, 130, 130);
+  --description-color: rgb(160, 160, 160);
 }
 
 .catalog-poster {
@@ -88,11 +88,11 @@ export default {
 }
 
 .catalog-poster:hover .catalog-poster-cover-container {
-  padding: 12%;
+  padding: 11.5%;
 }
 
 .catalog-poster-cover-container {
-  padding: 13%;
+  padding: 12%;
   transition: padding 0.2s ease;
 }
 
@@ -113,7 +113,7 @@ export default {
 .catalog-poster-description {
   margin-top: 20px;
   padding: 0 20%;
-  color: var(--description-color-color);
+  color: var(--description-color);
   font-size: 0.75em;
 }
 </style>

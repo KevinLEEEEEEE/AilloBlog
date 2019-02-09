@@ -1,0 +1,75 @@
+.home {
+  header {
+    position: absolute;
+    width: 64%;
+    z-index: 2;
+  }
+
+  .info-container {
+    $info-gap: 3px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: $info-gap;
+    margin: 0;
+    padding: $info-gap 0;
+    background-color: var(--background-color);
+
+    @include respond-to('mobile') {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+.forest {
+  position: relative;
+  height: 100vh;
+  background: {
+    image: url('./assets/bg.jpg');
+    repeat: no-repeat;
+    size: cover;
+    position: center;
+  }
+  font-size: 0;
+  overflow: hidden;
+  user-select: none;
+
+  &-text {
+    position: absolute;
+    left: 4%;
+    bottom: 5.5vh;
+    margin: 0;
+    font: {
+      size: 16vw;
+      weight: bolder;
+    }
+    letter-spacing: -8px;
+    white-space: nowrap;
+    background-image: linear-gradient(rgba(255, 255, 255, 0.8) 0%,
+                                      rgba(255, 255, 255, 0.7) 20%,
+                                     transparent 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+
+    @include respond-to('phone') {
+      bottom: 12vh;
+      font-size: 18vw;
+      letter-spacing: -3px;
+    }
+
+    @include respond-to('tablet') {
+      bottom: 10vh;
+      font-size: 20vw;
+      letter-spacing: -6px;
+    }
+  }
+
+  .forest-musk {
+    position: relative;
+    bottom: 0;
+    min-width: 100%;
+    max-height: 100%;
+    transform-origin: center bottom;
+    pointer-events: none;
+  }
+}
