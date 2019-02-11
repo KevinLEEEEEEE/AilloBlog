@@ -1,0 +1,8 @@
+.viewer-container {
+  min-height: calc(100vh - 200px);
+  margin: 0 18%;
+
+  @include respond-to('mobile') {
+    margin: 0 10%;
+  }
+}

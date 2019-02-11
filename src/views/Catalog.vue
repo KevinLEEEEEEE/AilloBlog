@@ -139,7 +139,7 @@ export default {
 .catalog-container {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-gap: 1.5rem;
+  grid-gap: 1rem;
   margin: 0;
   padding: 0;
 }

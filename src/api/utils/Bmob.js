@@ -65,14 +65,10 @@ class Bmob {
 
         return res.data;
       })
-      .catch(() => {
-        console.error('Bmob request failed');
-
-        return {
-          results: [],
-          count: 0,
-        };
-      });
+      .catch(() => ({
+        results: [],
+        count: 0,
+      }));
   }
 
   sendBmobRequest(params) {

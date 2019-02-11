@@ -106,6 +106,7 @@ export default {
 
 .image-parser-content {
   margin-bottom: 100px;
+  cursor: pointer;
 }
 
 .image-parser-description {

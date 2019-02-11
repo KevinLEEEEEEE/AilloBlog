@@ -8,9 +8,11 @@
         :name="filename"
         :theme="theme"
       ></image-parser>
-      <div class="tool-container">
-        <a @click="back" class="tool-btn return-btn">←</a>
-        <a @click="top" class="tool-btn top-btn">↑</a>
+      <div class="tool">
+        <div class="tool-container" v-if="!isFontTool">
+          <a @click="back" class="tool-btn return-btn">←</a>
+          <a @click="top" class="tool-btn top-btn">↑</a>
+        </div>
       </div>
     </div>
 
@@ -64,51 +66,5 @@ export default {
 .viewer-night-theme {
   --tool-color: rgb(220, 220, 220);
   background-color: rgb(18, 18, 18);
-}
-
-.viewer-container {
-  min-height: calc(100vh - 100px);
-  margin: 0 18% 100px 18%;
-  text-align: start;
-}
-
-@media screen and (max-width: 1024px) and (min-width: 567px) {
-  .viewer-container {
-    margin: 0 14% 100px 14%;
-  }
-}
-
-@media screen and (max-width: 567px) {
-  .viewer-container {
-    margin: 0 10% 50px 10%;
-  }
-}
-
-.tool-container {
-  margin-top: 60px;
-  text-align: right;
-}
-
-.tool-btn {
-  display: inline-block;
-  width: 40px;
-  height: 40px;
-  margin-right: 20px;
-  color: var(--tool-color);
-  border: 1.6px var(--tool-color) solid;
-  border-radius: 50%;
-  transition: transform 0.2s ease;
-  line-height: 40px;
-  text-align: center;
-  cursor: pointer;
-  user-select: none;
-}
-
-.return-btn:hover {
-  transform: translateX(-5px);
-}
-
-.top-btn:hover {
-  transform: translateY(-5px);
 }
 </style>

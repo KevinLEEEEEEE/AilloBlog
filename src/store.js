@@ -1,9 +1,11 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 
-if (process.env.NODE_ENV === 'development') {
-  Vue.use(Vuex);
-}
+Vue.use(Vuex);
+
+// if (process.env.NODE_ENV === 'development') {
+//   Vue.use(Vuex);
+// }
 
 const theme = {
   day: 'day',
@@ -14,6 +16,9 @@ export default new Vuex.Store({
   state: {
     theme: theme.day,
     bodyScroll: true,
+    markdown: {
+      fontsize: 16,
+    },
   },
   mutations: {
     themeToDay() {
@@ -30,6 +35,16 @@ export default new Vuex.Store({
 
     preventBodyScroll() {
       this.state.bodyScroll = false;
+    },
+
+    addFontSize() {
+      this.state.markdown.fontsize += 1;
+    },
+
+    reduceFontSize() {
+      if (this.state.markdown.fontsize > 0) {
+        this.state.markdown.fontsize -= 1;
+      }
     },
   },
   actions: {

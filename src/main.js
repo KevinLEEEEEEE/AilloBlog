@@ -7,18 +7,18 @@ import vueAxios from './plugins/vue-axios/index';
 import vueLazyload from './plugins/vue-lazyload/index';
 import vueImageLoader from './plugins/vue-imgloader/index';
 
-import mock from './api/mock/mock';
+// import mock from './api/mock/mock';
 
-mock({
-  Pages: true,
-  Contents: true,
-  Markdown: true,
-  Images: false,
-});
+// mock({
+//   Pages: true,
+//   Contents: true,
+//   Markdown: true,
+//   Images: false,
+// });
 
 axios.defaults.baseURL = process.env.NODE_ENV === 'production'
   ? 'http://www.lucario.cn'
-  : 'http://localhost'; // remove later
+  : 'http://localhost';
 
 Vue.config.productionTip = false;
 
@@ -35,7 +35,3 @@ new Vue({
   store,
   render: h => h(App),
 }).$mount('#app');
-
-window.addEventListener('unhandledrejection', (event) => {
-  console.warn(`WARNING: Unhandled promise rejection. Reason: ${event.reason}`);
-});

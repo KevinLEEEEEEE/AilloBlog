@@ -1,0 +1,8 @@
+.reader-container {
+  min-height: calc(100vh - 200px);
+  margin: 0 26%;
+
+  @include respond-to('mobile') {
+    margin: 0  10%;
+  }
+}

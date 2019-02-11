@@ -1,5 +1,8 @@
 <template>
-  <div v-html="rawHtml" :class="[`md-reader-${theme}-theme`, 'md-reader']" ref="doc"></div>
+  <div v-html="rawHtml" ref="doc"
+    :class="[`md-reader-${theme}-theme`, 'md-reader']"
+    :style="mdStyle"
+  ></div>
 </template>
 
 <script>
@@ -28,6 +31,13 @@ export default {
     return {
       rawHtml: '',
     };
+  },
+  computed: {
+    mdStyle() {
+      return {
+        'font-size': `${this.$store.state.markdown.fontsize}px`,
+      };
+    },
   },
 
   methods: {
@@ -121,7 +131,7 @@ export default {
 }
 
 .md-reader {
-  letter-spacing: 0.05rem;
+  line-height: 1.8em;
 }
 
 .md-reader >>> hr {
@@ -132,7 +142,7 @@ export default {
 .md-reader >>> h1, .md-reader >>> h2, .md-reader >>> h3,
 .md-reader >>> h4, .md-reader >>> h5, .md-reader >>> h6 {
   color: var(--fontcolor);
-  line-height: 3rem;
+  line-height: 2.5em;
 }
 
 .md-reader >>> h1:first-of-type {
@@ -141,20 +151,16 @@ export default {
 
 .md-reader >>> p {
   color: var(--fontcolor);
-  font-size: 0.9rem;
-  line-height: 1.5rem;
 }
 
 .md-reader >>> li {
-  font-size: 0.8rem;
-  line-height: 1.5rem;
+  font-size: 0.9em;
 }
 
 .md-reader >>> pre {
   padding: 20px 30px;
   overflow-x: auto;
-  font-size: 0.9rem;
-  line-height: 1.3rem;
+  font-size: 0.9em;
 }
 
 .md-reader >>> a {
@@ -169,6 +175,7 @@ export default {
 .md-reader >>> blockquote {
   margin: 0;
   padding: 1rem 2rem;
+  font-size: 0.9em;
   background: linear-gradient(to right, var(--quote-start-color) 4px, var(--quote-end-color) 4px);
 }
 

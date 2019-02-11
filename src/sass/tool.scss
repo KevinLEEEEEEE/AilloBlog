@@ -1,0 +1,55 @@
+
+.tool {
+  margin: 60px 0 100px 0;
+  text-align: right;
+  transition: opacity 0.5s ease;
+
+  @include respond-to('mobile') {
+    opacity: 1;
+  }
+
+  @include respond-to('monitor') {
+    opacity: 0.4;
+
+    &:hover {
+      opacity: 1;
+    }
+
+    .return-btn:hover {
+      transform: translateX(-3px);
+    }
+    
+    .top-btn:hover {
+      transform: translateY(-3px);
+    }
+    
+    .bigger-font:hover {
+      transform: scale(1.07);
+    }
+    
+    .smaller-font:hover {
+      transform: scale(0.93);
+    }
+  }
+
+  &-container {
+    display: inline-block;
+  }
+
+  &-btn {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    margin-left: 15px;
+    color: var(--tool-color);
+    border: 1.6px var(--tool-color) solid;
+    border-radius: 50%;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 40px;
+    text-align: center;
+    transition: transform 0.2s ease;
+    cursor: pointer;
+    user-select: none;
+  }
+}

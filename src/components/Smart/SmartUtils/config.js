@@ -5,7 +5,7 @@ const config = {
     fullImageQua: 75,
   },
   rect: {
-    thumbnailQua: 1,
+    thumbnailQua: 10,
     fullImageQua: 75,
   },
 };

@@ -4,7 +4,7 @@
 
     <div class="forest" @mousemove.passive="forestMove" ref="forest">
       <p class="forest-text">I am Aillo</p>
-      <img class="forest-musk" src="../assets/bgfront.png" alt="musk" :style="forestStyle">
+      <img src="../assets/bgfront.png" alt="musk" class="forest-musk" :style="forestStyle">
     </div>
 
     <ul :class="[`home-${theme}-theme`, 'info-container']">

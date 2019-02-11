@@ -18,6 +18,7 @@ export default {
 
 <style>
 @import './css/globalAnim.css';
+@import './css/tomorrow-night.min.css';
 
 #app {
   font-family: 'Microsoft YaHei', Helvetica, Arial, sans-serif;

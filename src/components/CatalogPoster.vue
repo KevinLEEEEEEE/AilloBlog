@@ -71,7 +71,7 @@ export default {
 .catalog-poster-day-theme {
   --title-color: black;
   --info-color: rgb(180, 180, 180);
-  --description-color: rgb(180, 180, 180);
+  --description-color: rgb(160, 160, 160);
 }
 
 .catalog-poster-night-theme {
