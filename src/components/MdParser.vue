@@ -107,9 +107,15 @@ export default {
   },
 
   mounted() {
-    this.$axios.get(`${this.filename}.md`)
+    this.$axios.get(`${this.filename}.md`, {
+      retry: 3,
+      retryDelay: 500,
+    })
       .then((res) => {
         this.updateHtmlByMd(res.data);
+      })
+      .catch((err) => {
+        console.log('md failed', err);
       });
   },
 };

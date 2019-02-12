@@ -51,11 +51,12 @@ export default {
     },
 
     loadThumbnail() {
-      this.loadImage(this.computedWidth, this.computedHeight, smart.config.rect.thumbnailQua);
+      this.loadImage(this.computedWidth, this.computedHeight, smart.config.rect.thumbnailQua, true);
     },
 
     loadFullImage() {
-      this.loadImage(this.computedWidth, this.computedHeight, smart.config.rect.fullImageQua);
+      this.loadImage(this.computedWidth, this.computedHeight,
+        smart.config.rect.fullImageQua, false);
     },
 
     loadImage(width = 100, height = 100, quality = 75, isSlim = true) {

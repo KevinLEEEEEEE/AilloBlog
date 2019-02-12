@@ -16,6 +16,12 @@ import vueImageLoader from './plugins/vue-imgloader/index';
 //   Images: false,
 // });
 
+axios.defaults.timeout = 6000;
+
+axios.defaults.retry = 4;
+
+axios.defaults.retryDelay = 500;
+
 axios.defaults.baseURL = process.env.NODE_ENV === 'production'
   ? 'http://www.lucario.cn'
   : 'http://localhost';
