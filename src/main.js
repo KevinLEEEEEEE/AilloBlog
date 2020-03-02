@@ -24,7 +24,7 @@ axios.defaults.retryDelay = 500;
 
 axios.defaults.baseURL = process.env.NODE_ENV === 'production'
   ? 'http://www.lucario.cn'
-  : 'http://localhost';
+  : 'y';
 
 Vue.config.productionTip = false;
 
