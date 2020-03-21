@@ -7,7 +7,7 @@
       <router-link class="bgscale_anim nav-link" :to="getUrl('informal-essays')">随笔</router-link>
       <a class="bgscale_anim nav-link" href="https://github.com/KevinLEEEEEEE" target="_blank" rel="noopener">编程作品集</a>
       <router-link class="bgscale_anim nav-link" :to="getUrl('photographs')">影像年鉴</router-link>
-      <router-link class="bgscale_anim nav-link" :to="getUrl('designs')">设计</router-link>
+      <!-- <router-link class="bgscale_anim nav-link" :to="getUrl('designs')">设计</router-link> -->
     </nav>
   </header>
 </template>
